@@ -4713,186 +4713,267 @@
     </footer>
     
     <script>
-        // Navigation Tabs Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tab Navigation
-            const navLinks = document.querySelectorAll('.nav-link');
-            const tabContents = document.querySelectorAll('.tab-content');
+// Modified search functionality to work across all tabs
+document.addEventListener('DOMContentLoaded', function() {
+    // Tab Navigation
+    const navLinks = document.querySelectorAll('.nav-link');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
             
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active class from all tabs and content sections
-                    navLinks.forEach(item => item.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-                    
-                    // Add active class to clicked tab
-                    this.classList.add('active');
-                    
-                    // Show corresponding content
-                    const targetId = this.getAttribute('data-tab');
-                    document.getElementById(targetId).classList.add('active');
-                    
-                    // Update URL hash
-                    window.location.hash = targetId;
-                });
-            });
+            // Remove active class from all tabs and content sections
+            navLinks.forEach(item => item.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
             
-            // Check URL hash on page load
-            if (window.location.hash) {
-                const hash = window.location.hash.substring(1);
-                const activeTab = document.querySelector(`.nav-link[data-tab="${hash}"]`);
-                
-                if (activeTab) {
-                    // Remove active class from all tabs and content sections
-                    navLinks.forEach(item => item.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-                    
-                    // Add active class to hash-matching tab
-                    activeTab.classList.add('active');
-                    
-                    // Show corresponding content
-                    document.getElementById(hash).classList.add('active');
-                }
+            // Add active class to clicked tab
+            this.classList.add('active');
+            
+            // Show corresponding content
+            const targetId = this.getAttribute('data-tab');
+            document.getElementById(targetId).classList.add('active');
+            
+            // Update URL hash
+            window.location.hash = targetId;
+        });
+    });
+    
+    // Check URL hash on page load
+    if (window.location.hash) {
+        const hash = window.location.hash.substring(1);
+        const activeTab = document.querySelector(`.nav-link[data-tab="${hash}"]`);
+        
+        if (activeTab) {
+            // Remove active class from all tabs and content sections
+            navLinks.forEach(item => item.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to hash-matching tab
+            activeTab.classList.add('active');
+            
+            // Show corresponding content
+            document.getElementById(hash).classList.add('active');
+        }
+    }
+    
+    // Toggle Episodes Functionality
+    const toggleButtons = document.querySelectorAll('.toggle-episodes-btn');
+    
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const dramaId = this.getAttribute('data-drama-id');
+            const episodesContainer = document.getElementById(`${dramaId}-episodes`);
+            
+            // Toggle expanded class on button
+            this.classList.toggle('expanded');
+            
+            // Toggle expanded class on episodes container
+            episodesContainer.classList.toggle('expanded');
+            
+            // Find the parent drama card and adjust styles if needed
+            const dramaCard = this.closest('.drama-card');
+            if (episodesContainer.classList.contains('expanded')) {
+                // Scroll to see expanded content
+                setTimeout(() => {
+                    episodesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
             }
-            
-            // Toggle Episodes Functionality
-            const toggleButtons = document.querySelectorAll('.toggle-episodes-btn');
-            
-            toggleButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const dramaId = this.getAttribute('data-drama-id');
-                    const episodesContainer = document.getElementById(`${dramaId}-episodes`);
-                    
-                    // Toggle expanded class on button
-                    this.classList.toggle('expanded');
-                    
-                    // Toggle expanded class on episodes container
-                    episodesContainer.classList.toggle('expanded');
-                    
-                    // Find the parent drama card and adjust styles if needed
-                    const dramaCard = this.closest('.drama-card');
-                    if (episodesContainer.classList.contains('expanded')) {
-                        // Scroll to see expanded content
-                        setTimeout(() => {
-                            episodesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                        }, 100);
-                    }
-                });
-            });
-            
-            // Search Functionality
+        });
+    });
+    
+    // Improved Search Functionality
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('search-button');
-    const clearSearchButton = document.getElementById('clear-search-button'); // Add this line
+    const clearSearchButton = document.getElementById('clear-search-button');
     const searchResultsCount = document.getElementById('search-results-count');
-    const allDramas = document.querySelectorAll('.drama-card');
+    
+    // Get all cards from all tabs
+    const allContentCards = document.querySelectorAll('.drama-card, .video-item');
 
+    function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        
+        if (searchTerm === '') {
+            // If search is empty, show all content and reset
+            allContentCards.forEach(card => card.classList.remove('hidden'));
+            searchResultsCount.textContent = '';
+            return;
+        }
+        
+        let matchCount = 0;
+        let matchesInTabs = {
+            'all-dramas': 0,
+            'performances': 0,
+            'variety': 0
+        };
+        
+        // Search through all content cards in all tabs
+        allContentCards.forEach(card => {
+            // Find which tab this card belongs to
+            const parentTab = card.closest('.tab-content');
+            const tabId = parentTab ? parentTab.id : null;
             
-            function performSearch() {
-                const searchTerm = searchInput.value.toLowerCase().trim();
+            // Elements to search in can vary based on card type
+            let searchElements = [];
+            
+            if (card.classList.contains('drama-card')) {
+                // For drama cards, search in data attributes and description
+                const title = card.getAttribute('data-title') || '';
+                const year = card.getAttribute('data-year') || '';
+                const role = card.getAttribute('data-role') || '';
+                const descriptionEl = card.querySelector('.drama-description');
+                const description = descriptionEl ? descriptionEl.textContent : '';
                 
-                if (searchTerm === '') {
-                    // If search is empty, show all dramas in all tabs
-                    allDramas.forEach(drama => drama.classList.remove('hidden'));
-                    searchResultsCount.textContent = '';
-                    return;
-                }
-                
-                let matchCount = 0;
-                
-                // Show "All Dramas" tab for search results
-                navLinks.forEach(item => item.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                document.querySelector('.nav-link[data-tab="all-dramas"]').classList.add('active');
-                document.getElementById('all-dramas').classList.add('active');
-                
-                // Search through all dramas
-                allDramas.forEach(drama => {
-                    const title = drama.getAttribute('data-title').toLowerCase();
-                    const year = drama.getAttribute('data-year').toLowerCase();
-                    const role = drama.getAttribute('data-role').toLowerCase();
-                    const description = drama.querySelector('.drama-description').textContent.toLowerCase();
+                if (
+                    title.toLowerCase().includes(searchTerm) || 
+                    year.toLowerCase().includes(searchTerm) || 
+                    role.toLowerCase().includes(searchTerm) || 
+                    description.toLowerCase().includes(searchTerm)
+                ) {
+                    card.classList.remove('hidden');
+                    matchCount++;
                     
-                    if (title.includes(searchTerm) || 
-                        year.includes(searchTerm) || 
-                        role.includes(searchTerm) || 
-                        description.includes(searchTerm)) {
-                        drama.classList.remove('hidden');
-                        matchCount++;
-                        
-                        // Highlight matching text
-                        highlightText(drama.querySelector('.drama-title'), searchTerm);
-                        highlightText(drama.querySelector('.drama-role'), searchTerm);
-                        highlightText(drama.querySelector('.drama-description'), searchTerm);
-                    } else {
-                        drama.classList.add('hidden');
+                    if (tabId && matchesInTabs.hasOwnProperty(tabId)) {
+                        matchesInTabs[tabId]++;
                     }
-                });
+                    
+                    // Elements to highlight
+                    searchElements = [
+                        card.querySelector('.drama-title'),
+                        card.querySelector('.drama-role'),
+                        card.querySelector('.drama-description')
+                    ];
+                } else {
+                    card.classList.add('hidden');
+                }
+            } else if (card.classList.contains('video-item')) {
+                // For video items, search in title and description
+                const titleEl = card.querySelector('.video-title');
+                const descriptionEl = card.querySelector('.video-description');
                 
-                // Show search results count
-                searchResultsCount.textContent = `Found ${matchCount} result${matchCount !== 1 ? 's' : ''}`;
-            }
-            
-            // Function to highlight matching text
-            function highlightText(element, searchTerm) {
-                if (!element) return;
+                const title = titleEl ? titleEl.textContent : '';
+                const description = descriptionEl ? descriptionEl.textContent : '';
                 
-                const content = element.innerHTML;
-                // Create a case-insensitive regular expression
-                const pattern = new RegExp(`(${searchTerm})`, 'gi');
-                
-                // Replace matching text with highlighted version
-                if (pattern.test(content)) {
-                    const newContent = content.replace(pattern, '<span class="highlight">$1</span>');
-                    element.innerHTML = newContent;
+                if (
+                    title.toLowerCase().includes(searchTerm) || 
+                    description.toLowerCase().includes(searchTerm)
+                ) {
+                    card.classList.remove('hidden');
+                    matchCount++;
+                    
+                    if (tabId && matchesInTabs.hasOwnProperty(tabId)) {
+                        matchesInTabs[tabId]++;
+                    }
+                    
+                    // Elements to highlight
+                    searchElements = [titleEl, descriptionEl];
+                } else {
+                    card.classList.add('hidden');
                 }
             }
             
-            // Add event listeners for search
-            searchButton.addEventListener('click', performSearch);
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    performSearch();
+            // Highlight matching text in elements
+            searchElements.forEach(element => {
+                if (element) {
+                    highlightText(element, searchTerm);
                 }
             });
- 
-
-    // Add Clear Search Functionality
+        });
+        
+        // Find which tab has the most matches and switch to it
+        let maxMatches = 0;
+        let bestTab = null;
+        
+        for (const [tab, count] of Object.entries(matchesInTabs)) {
+            if (count > maxMatches) {
+                maxMatches = count;
+                bestTab = tab;
+            }
+        }
+        
+        // Only switch to best tab if it has matches
+        if (bestTab && maxMatches > 0) {
+            // Switch to tab with most matches
+            navLinks.forEach(item => item.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            document.querySelector(`.nav-link[data-tab="${bestTab}"]`).classList.add('active');
+            document.getElementById(bestTab).classList.add('active');
+        }
+        
+        // Show search results count
+        searchResultsCount.textContent = `Found ${matchCount} result${matchCount !== 1 ? 's' : ''}`;
+    }
+    
+    // Function to highlight matching text
+    function highlightText(element, searchTerm) {
+        if (!element) return;
+        
+        const content = element.innerHTML;
+        // Create a case-insensitive regular expression
+        const pattern = new RegExp(`(${searchTerm.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi');
+        
+        // Replace matching text with highlighted version
+        if (pattern.test(content)) {
+            const newContent = content.replace(pattern, '<span class="highlight">$1</span>');
+            element.innerHTML = newContent;
+        }
+    }
+    
+    // Function to clear search and reset all elements
     function clearSearch() {
         // Clear the search input
         searchInput.value = '';
         
-        // Show all dramas
-        allDramas.forEach(drama => {
-            drama.classList.remove('hidden');
+        // Show all content cards
+        allContentCards.forEach(card => {
+            card.classList.remove('hidden');
             
-            // Remove any highlights
-            const elementsToClean = [
-                drama.querySelector('.drama-title'),
-                drama.querySelector('.drama-role'),
-                drama.querySelector('.drama-description')
-            ];
-            
-            elementsToClean.forEach(element => {
-                if (element) {
-                    element.innerHTML = element.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/g, '$1');
-                }
-            });
+            // Remove highlights from drama cards
+            if (card.classList.contains('drama-card')) {
+                const elementsToClean = [
+                    card.querySelector('.drama-title'),
+                    card.querySelector('.drama-role'),
+                    card.querySelector('.drama-description')
+                ];
+                
+                elementsToClean.forEach(element => {
+                    if (element) {
+                        element.innerHTML = element.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/g, '$1');
+                    }
+                });
+            } 
+            // Remove highlights from video items
+            else if (card.classList.contains('video-item')) {
+                const elementsToClean = [
+                    card.querySelector('.video-title'),
+                    card.querySelector('.video-description')
+                ];
+                
+                elementsToClean.forEach(element => {
+                    if (element) {
+                        element.innerHTML = element.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/g, '$1');
+                    }
+                });
+            }
         });
         
         // Clear search results count
         searchResultsCount.textContent = '';
     }
     
+    // Add event listeners for search
+    searchButton.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+    
     // Add event listener for clear button
     clearSearchButton.addEventListener('click', clearSearch);
-
-
-
-
-       });
+});
 
 
 
