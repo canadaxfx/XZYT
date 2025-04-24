@@ -757,6 +757,117 @@
 }
 
 
+/* Mobile-Friendly Episode Preview Grid */
+@media (max-width: 768px) {
+    /* Change horizontal scroll to grid for episode previews */
+    .episodes-preview {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, auto);
+        gap: 8px;
+        overflow-x: visible;
+        padding-bottom: 10px;
+    }
+    
+    .episode-preview {
+        width: 100%;
+    }
+    
+    .episode-thumbnail {
+        width: 100% !important;
+        height: 0 !important;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        position: relative;
+    }
+    
+    .episode-thumbnail img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%; /* Adjust to show faces better */
+    }
+    
+    /* Keep drama poster (the main drama image) responsive but maintain aspect ratio */
+    .drama-poster {
+        height: auto;
+    }
+}
+
+/* Tablet Optimization */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* For tablets, display episodes in a grid without horizontal scrolling */
+    .episodes-preview {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr); /* All 6 episodes in one row */
+        gap: 10px;
+        overflow-x: visible;
+    }
+    
+    /* For narrower tablets, use 3x2 grid instead */
+    @media (min-width: 769px) and (max-width: 900px) {
+        .episodes-preview {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, auto);
+        }
+    }
+    
+    .episode-preview {
+        width: 100%;
+    }
+    
+    .episode-thumbnail {
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        position: relative;
+    }
+    
+    .episode-thumbnail img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 25%; /* Position to show faces better */
+    }
+    
+    /* Fix drama poster (main drama image) aspect ratio on tablets */
+    .drama-poster img {
+        object-position: center 15%; /* Adjust to prevent "headless" portraits */
+    }
+}
+
+/* Improved All Episodes Grid View */
+.all-episodes-grid {
+    display: grid;
+    gap: 10px;
+}
+
+/* Responsive grid adjustments for "View All Episodes" section */
+@media (max-width: 768px) {
+    .all-episodes-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .all-episodes-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1025px) {
+    .all-episodes-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+
+
 
     </style>
 </head>
@@ -4026,7 +4137,7 @@
                             <div class="drama-poster">
                                 <img src="wm.webp" alt="Playlist">
                                 <div class="episode-count">All MVs</div>
-                                <div class="year-label">  </div>
+                                <div class="year-label">Updated by XZ.Studio</div>
                                 <div class="watch-now-overlay">
                                     <a href="https://www.youtube.com/playlist?list=PLxbgQdcnIafilPb623TecynKrRGbt_zp9" target="_blank" class="watch-button">Watch Series</a>
                                 </div>
