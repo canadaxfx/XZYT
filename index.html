@@ -619,6 +619,21 @@
             color: var(--text-color);
             opacity: 0.8;
         }
+
+
+
+
+/* For tablets with slightly more lenient font sizing */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .episode-number {
+        font-size: clamp(0.7rem, 
+            (100% / (var(--title-length, 1) * 0.8)) * 0.8rem, 
+            0.8rem
+        );
+    }
+}
+
+
         
         /* Footer */
 
@@ -747,9 +762,14 @@
             }
             
             .site-title {
-                font-size: 1.8rem;
+                font-size: 1.3rem;
             }
             
+            .site-subtitle {
+                font-size: 0.8rem;
+            }
+
+
             .all-episodes-grid {
                 grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             }
@@ -983,7 +1003,7 @@
         <div class="header-content">
             <img src="logo.jpg" alt="Xiao Zhan" class="profile-img">
             <h1 class="site-title">XZ Screen Universe on YouTube<br>肖战作品YouTube聚合站</h1>
-            <p class="site-subtitle">Explore Xiao Zhan's Drama Series and Performances on YouTube<br>For the complete collection from various streaming platforms, please refer to <a href="https://canadaxfx.github.io/XZworks/" style="color: white; text-decoration: underline;">the main site: Screen Arts of Xiao Zhan</a></p>
+            <p class="site-subtitle">Explore Xiao Zhan's shows on YouTube<br>For the complete collection from various streaming platforms, please refer to: <br><a href="https://canadaxfx.github.io/XZworks/" style="color: white; text-decoration: underline;">the main site: Screen Arts of Xiao Zhan</a></p>
         </div>
     </header>
     
@@ -4760,19 +4780,19 @@
                                         <a href="https://www.youtube.com/watch?v=gHgZAt8BohY" target="_blank" class="episode-preview">
                                             <div class="episode-thumbnail">
                                                 <img src="https://i.ytimg.com/vi/gHgZAt8BohY/mqdefault.jpg" alt="Episode 3">
-                                                <span class="episode-number">蓝羽会客厅·新春圆桌会”之《射雕英雄传：侠之大者》</span>
+                                                <span class="episode-number">蓝羽会客厅射雕英雄传</span>
                                             </div>
                                         </a>
                                         <a href="https://www.youtube.com/watch?v=2aumtAO4uXk" target="_blank" class="episode-preview">
                                             <div class="episode-thumbnail">
                                                 <img src="https://i.ytimg.com/vi/2aumtAO4uXk/mqdefault.jpg" alt="Episode 4">
-                                                <span class="episode-number">《射雕英雄传：侠之大者》新春拜年会</span>
+                                                <span class="episode-number">射雕英雄传新春拜年会</span>
                                             </div>
                                         </a>
                                         <a href="https://www.youtube.com/watch?v=hSYrpewz-lc" target="_blank" class="episode-preview">
                                             <div class="episode-thumbnail">
                                                 <img src="https://i.ytimg.com/vi/hSYrpewz-lc/mqdefault.jpg" alt="Episode 5">
-                                                <span class="episode-number">央视新闻对话<br>射雕英雄传侠之大者</span>
+                                                <span class="episode-number">央视新闻对话<br>射雕英雄传</span>
                                             </div>
                                         </a>
 
@@ -5398,10 +5418,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 </script>
 
+
+
+
 <!-- Add this HTML code right before the closing </body> tag -->
 <div id="back-to-top" title="Back to Top">
     <span>&#10514;</span>
 </div>
+
 
 
 
