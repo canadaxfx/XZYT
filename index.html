@@ -19,6 +19,48 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
+
+
+<!-- Add this CSS to your existing <style> section in the head -->
+<style>
+    #back-to-top {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background-color: var(--primary-color);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 48px;
+        font-size: 32px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+    
+    #back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    #back-to-top:hover {
+        background-color: var(--accent-color);
+        transform: scale(1.1);
+    }
+    
+    /* Ensure it doesn't interfere with the music player */
+    @media (max-width: 768px) {
+        #back-to-top {
+            bottom: 70px; /* Position above the music player on mobile */
+        }
+    }
+</style>
     
     <style>
         :root {
@@ -5216,5 +5258,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     </script>
+
+<!-- Add this JavaScript code -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        // Show/hide the button based on scroll position
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) { // Show button after scrolling 300px
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        // Scroll to top when clicked
+        backToTopButton.addEventListener('click', function() {
+            // Smooth scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+
+<!-- Add this HTML code right before the closing </body> tag -->
+<div id="back-to-top" title="Back to Top">
+    <span>&#10514;</span>
+</div>
+
+
+
 </body>
 </html>
