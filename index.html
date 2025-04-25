@@ -249,7 +249,7 @@
         
         /* Search Bar */
         .search-container {
-            max-width: 600px;
+            max-width: 100%;
             margin: 0 auto 40px;
             display: flex;
             gap: 10px;
@@ -293,7 +293,42 @@
 }
 
 
+/* Add these mobile-specific styles */
+@media (max-width: 768px) {
+    .search-container {
+        max-width: 100%;
+        margin: 0 auto 30px;
+        gap: 5px;
+    }
+    
+    .search-input {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .search-button, .clear-button {
+        padding: 0 12px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+}
 
+/* Even smaller screens */
+@media (max-width: 480px) {
+    .search-container {
+        margin: 0 auto 20px;
+    }
+    
+    .search-input {
+        padding: 6px 8px;
+        font-size: 0.85rem;
+    }
+    
+    .search-button, .clear-button {
+        padding: 0 8px;
+        font-size: 0.85rem;
+    }
+}
 
 
         /* Content Tabs */
@@ -1024,7 +1059,7 @@
             
             
             <div class="search-container">
-                <input type="text" id="search-input" class="search-input" placeholder="Search by drama title, role, or year...">
+                <input type="text" id="search-input" class="search-input" placeholder="Search by title, role, or year...">
                 <button id="search-button" class="search-button">Search</button>
                 <button id="clear-search-button" class="clear-button">Clear</button>
 
