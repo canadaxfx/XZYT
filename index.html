@@ -54,12 +54,6 @@
         transform: scale(1.1);
     }
     
-    /* Ensure it doesn't interfere with the music player */
-    @media (max-width: 768px) {
-        #back-to-top {
-            bottom: 70px; /* Position above the music player on mobile */
-        }
-    }
 </style>
     
     <style>
@@ -163,6 +157,7 @@
             overflow-x: auto;
             padding: 0;
             -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
         }
         
         .nav-item {
@@ -292,43 +287,6 @@
     background-color: #d0d0d0;
 }
 
-
-/* Add these mobile-specific styles */
-@media (max-width: 768px) {
-    .search-container {
-        max-width: 100%;
-        margin: 0 auto 30px;
-        gap: 5px;
-    }
-    
-    .search-input {
-        padding: 8px 10px;
-        font-size: 0.9rem;
-    }
-    
-    .search-button, .clear-button {
-        padding: 0 12px;
-        font-size: 0.9rem;
-        white-space: nowrap;
-    }
-}
-
-/* Even smaller screens */
-@media (max-width: 480px) {
-    .search-container {
-        margin: 0 auto 20px;
-    }
-    
-    .search-input {
-        padding: 6px 8px;
-        font-size: 0.85rem;
-    }
-    
-    .search-button, .clear-button {
-        padding: 0 8px;
-        font-size: 0.85rem;
-    }
-}
 
 
         /* Content Tabs */
@@ -658,15 +616,7 @@
 
 
 
-/* For tablets with slightly more lenient font sizing */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .episode-number {
-        font-size: clamp(0.7rem, 
-            (100% / (var(--title-length, 1) * 0.8)) * 0.8rem, 
-            0.8rem
-        );
-    }
-}
+
 
 
         
@@ -778,74 +728,6 @@
 
 
     
-        /* Responsive Styles */
-        @media (max-width: 900px) {
-            .drama-card {
-                flex-direction: column;
-            }
-            
-            .drama-poster {
-                flex: 0 0 auto;
-                height: 200px;
-            }
-            
-            .site-header {
-                padding: 1.5rem 0;
-            }
-            
-            .profile-img {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .site-title {
-                font-size: 1.3rem;
-            }
-            
-            .site-subtitle {
-                font-size: 0.8rem;
-            }
-
-
-            .all-episodes-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .nav-link {
-                padding: 12px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .episode-thumbnail {
-                width: 100px;
-                height: 56px;
-            }
-            
-            .drama-title {
-                font-size: 1.2rem;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
-            }
-            
-            .back-button-container {
-                top: 10px;
-                left: 10px;
-            }
-            
-            .back-button {
-                padding: 6px 12px;
-                font-size: 0.8rem;
-            }
-            
-            .all-episodes-grid {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            }
-        }
-        
         /* Search Results Styling */
         .search-results-count {
             text-align: center;
@@ -922,9 +804,153 @@
 }
 
 
-/* Mobile-Friendly Episode Preview Grid */
+
+
+/* Improved All Episodes Grid View */
+.all-episodes-grid {
+    display: grid;
+    gap: 10px;
+}
+
+
+
+
+
+
+    </style>
+
+
+
+
+    <style>
+
+
+* ==========================================================================
+   Responsive Styles - Organized by breakpoint
+   ========================================================================== */
+
+/* Small Mobile Devices (up to 360px) */
+@media (max-width: 360px) {
+    /* Navigation tabs for very small screens */
+    .nav-link {
+        font-size: 0.75rem;
+        padding: 8px 2px;
+    }
+}
+
+/* Small Mobile Devices (up to 480px) */
+@media (max-width: 480px) {
+    /* Search components */
+    .search-container {
+        margin: 0 auto 20px;
+    }
+    
+    .search-input {
+        padding: 6px 8px;
+        font-size: 0.85rem;
+    }
+    
+    .search-button, .clear-button {
+        padding: 0 8px;
+        font-size: 0.85rem;
+    }
+}
+
+/* All Mobile Devices (up to 600px) */
+@media (max-width: 600px) {
+    /* Navigation */
+    .nav-link {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+    
+    /* Typography */
+    .drama-title {
+        font-size: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    /* Back button */
+    .back-button-container {
+        top: 10px;
+        left: 10px;
+    }
+    
+    .back-button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    /* Episode thumbnails */
+    .episode-thumbnail {
+        width: 100px;
+        height: 56px;
+    }
+    
+    /* Episode grid */
+    .all-episodes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+}
+
+/* All Mobile Devices (up to 768px) */
 @media (max-width: 768px) {
-    /* Change horizontal scroll to grid for episode previews */
+    /* Navigation tabs - ensure they fit screen width */
+    .nav-container {
+        width: 100%;
+        padding: 0;
+    }
+    
+    .nav-list {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .nav-item {
+        flex: 1;
+    }
+    
+    .nav-link {
+        padding: 10px 5px;
+        font-size: 0.85rem;
+        white-space: normal;
+        text-align: center;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 60px;
+    }
+    
+    /* Back to top button */
+    #back-to-top {
+        bottom: 70px; /* Position above the music player on mobile */
+    }
+    
+    /* Search components */
+    .search-container {
+        max-width: 100%;
+        margin: 0 auto 30px;
+        gap: 5px;
+    }
+    
+    .search-input {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .search-button, .clear-button {
+        padding: 0 12px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+    
+    /* Episode preview grid - convert horizontal scroll to grid */
     .episodes-preview {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -955,28 +981,66 @@
         object-position: center 20%; /* Adjust to show faces better */
     }
     
-    /* Keep drama poster (the main drama image) responsive but maintain aspect ratio */
+    /* Drama poster */
     .drama-poster {
         height: auto;
     }
+    
+    /* Episodes grid */
+    .all-episodes-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
-/* Tablet Optimization */
+/* Medium Devices (up to 900px) */
+@media (max-width: 900px) {
+    /* Drama card layout */
+    .drama-card {
+        flex-direction: column;
+    }
+    
+    .drama-poster {
+        flex: 0 0 auto;
+        height: 200px;
+    }
+    
+    /* Header components */
+    .site-header {
+        padding: 1.5rem 0;
+    }
+    
+    .profile-img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .site-title {
+        font-size: 1.3rem;
+    }
+    
+    .site-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    /* Episodes grid */
+    .all-episodes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+
+/* Tablet Devices (769px to 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
-    /* For tablets, display episodes in a grid without horizontal scrolling */
+    /* Episode number font size */
+    .episode-number {
+        font-size: clamp(0.7rem, (100% / (var(--title-length, 1) * 0.8)) * 0.8rem, 0.8rem);
+    }
+    
+    /* Episodes preview */
     .episodes-preview {
         display: grid;
         grid-template-columns: repeat(6, 1fr); /* All 6 episodes in one row */
         gap: 10px;
         overflow-x: visible;
-    }
-    
-    /* For narrower tablets, use 3x2 grid instead */
-    @media (min-width: 769px) and (max-width: 900px) {
-        .episodes-preview {
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, auto);
-        }
     }
     
     .episode-preview {
@@ -1000,35 +1064,29 @@
         object-position: center 25%; /* Position to show faces better */
     }
     
-    /* Fix drama poster (main drama image) aspect ratio on tablets */
+    /* Drama poster adjustment */
     .drama-poster img {
         object-position: center 15%; /* Adjust to prevent "headless" portraits */
     }
-}
-
-/* Improved All Episodes Grid View */
-.all-episodes-grid {
-    display: grid;
-    gap: 10px;
-}
-
-/* Responsive grid adjustments for "View All Episodes" section */
-@media (max-width: 768px) {
-    .all-episodes-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
+    
+    /* Episodes grid */
     .all-episodes-grid {
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
-
+/* Narrower Tablets (769px to 900px) - nested media query */
+@media (min-width: 769px) and (max-width: 900px) {
+    .episodes-preview {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, auto);
+    }
+}
 
 
     </style>
+
+
 </head>
 <body>
     <header class="site-header">
@@ -1048,7 +1106,7 @@
         <div class="container nav-container">
             <ul class="nav-list">
                 <li class="nav-item"><a href="#all-dramas" class="nav-link active" data-tab="all-dramas">TV Dramas<br>剧集</a></li>
-                <li class="nav-item"><a href="#performances" class="nav-link" data-tab="performances">Stage Performances<br>舞台</a></li>
+                <li class="nav-item"><a href="#performances" class="nav-link" data-tab="performances">Stages<br>舞台</a></li>
                 <li class="nav-item"><a href="#variety" class="nav-link" data-tab="variety">Variety Shows<br>综艺</a></li>
             </ul>
         </div>
@@ -5130,8 +5188,8 @@
     </div>
 </footer>
     
-    <script>
-
+<script>
+// Lazy loading observer
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -5147,16 +5205,20 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.lazy-load').forEach(element => {
   observer.observe(element);
 });
+</script>
 
-
-// Modified search functionality to work across all tabs
+<!-- Main JavaScript functionality -->
+<script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Tab Navigation
+    // Tab Navigation with event delegation
     const navLinks = document.querySelectorAll('.nav-link');
     const tabContents = document.querySelectorAll('.tab-content');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+    const navContainer = document.querySelector('.nav-container');
+
+    navContainer.addEventListener('click', function(e) {
+        const navLink = e.target.closest('.nav-link');
+        
+        if (navLink) {
             e.preventDefault();
             
             // Remove active class from all tabs and content sections
@@ -5164,17 +5226,64 @@ document.addEventListener('DOMContentLoaded', function() {
             tabContents.forEach(content => content.classList.remove('active'));
             
             // Add active class to clicked tab
-            this.classList.add('active');
+            navLink.classList.add('active');
             
             // Show corresponding content
-            const targetId = this.getAttribute('data-tab');
+            const targetId = navLink.getAttribute('data-tab');
             document.getElementById(targetId).classList.add('active');
             
             // Update URL hash
             window.location.hash = targetId;
-        });
+        }
     });
-    
+
+    // Toggle Episodes Functionality with event delegation
+    const mainContent = document.querySelector('.main-content');
+
+    mainContent.addEventListener('click', function(e) {
+        const toggleButton = e.target.closest('.toggle-episodes-btn');
+        
+        if (toggleButton) {
+            const dramaId = toggleButton.getAttribute('data-drama-id');
+            const episodesContainer = document.getElementById(`${dramaId}-episodes`);
+            
+            // Toggle expanded class on button
+            toggleButton.classList.toggle('expanded');
+            
+            // Toggle expanded class on episodes container
+            episodesContainer.classList.toggle('expanded');
+            
+            if (episodesContainer.classList.contains('expanded')) {
+                // Scroll to see expanded content
+                setTimeout(() => {
+                    episodesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+    });
+
+    // Simplified Search Functionality with fewer listeners
+    const searchInput = document.getElementById('search-input');
+    const searchContainer = document.querySelector('.search-container');
+    const searchResultsCount = document.getElementById('search-results-count');
+    const allContentCards = document.querySelectorAll('.drama-card, .video-item');
+
+    // Single event listener for the search container using event delegation
+    searchContainer.addEventListener('click', function(e) {
+        if (e.target.id === 'search-button') {
+            performSearch();
+        } else if (e.target.id === 'clear-search-button') {
+            clearSearch();
+        }
+    });
+
+    // Keep this separate listener for the Enter key
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+
     // Check URL hash on page load
     if (window.location.hash) {
         const hash = window.location.hash.substring(1);
@@ -5192,40 +5301,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById(hash).classList.add('active');
         }
     }
-    
-    // Toggle Episodes Functionality
-    const toggleButtons = document.querySelectorAll('.toggle-episodes-btn');
-    
-    toggleButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const dramaId = this.getAttribute('data-drama-id');
-            const episodesContainer = document.getElementById(`${dramaId}-episodes`);
-            
-            // Toggle expanded class on button
-            this.classList.toggle('expanded');
-            
-            // Toggle expanded class on episodes container
-            episodesContainer.classList.toggle('expanded');
-            
-            // Find the parent drama card and adjust styles if needed
-            const dramaCard = this.closest('.drama-card');
-            if (episodesContainer.classList.contains('expanded')) {
-                // Scroll to see expanded content
-                setTimeout(() => {
-                    episodesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 100);
-            }
-        });
-    });
-    
-    // Improved Search Functionality
-    const searchInput = document.getElementById('search-input');
-    const searchButton = document.getElementById('search-button');
-    const clearSearchButton = document.getElementById('clear-search-button');
-    const searchResultsCount = document.getElementById('search-results-count');
-    
-    // Get all cards from all tabs
-    const allContentCards = document.querySelectorAll('.drama-card, .video-item');
 
     function performSearch() {
         const searchTerm = searchInput.value.toLowerCase().trim();
@@ -5398,67 +5473,47 @@ document.addEventListener('DOMContentLoaded', function() {
         // Clear search results count
         searchResultsCount.textContent = '';
     }
-    
-    // Add event listeners for search
-    searchButton.addEventListener('click', performSearch);
-    searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            performSearch();
-        }
-    });
-    
-    // Add event listener for clear button
-    clearSearchButton.addEventListener('click', clearSearch);
-});
 
-
-
-    </script>
-
-<!-- Add this JavaScript code -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const backToTopButton = document.getElementById('back-to-top');
-        
-        // Show/hide the button based on scroll position
+    // Back to top button functionality
+    const backToTopButton = document.getElementById('back-to-top');
+    if (backToTopButton) {
         window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) { // Show button after scrolling 300px
+            if (window.pageYOffset > 300) {
                 backToTopButton.classList.add('visible');
             } else {
                 backToTopButton.classList.remove('visible');
             }
         });
         
-        // Scroll to top when clicked
         backToTopButton.addEventListener('click', function() {
-            // Smooth scroll to top
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
-    });
+    }
+
+    // Terms toggle functionality
+    const termsToggle = document.getElementById('terms-toggle');
+    if (termsToggle) {
+        termsToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            var termsContent = document.getElementById('terms-content');
+            if (termsContent.style.display === 'none' || !termsContent.style.display) {
+                termsContent.style.display = 'block';
+                this.textContent = 'Hide Terms of Use';
+            } else {
+                termsContent.style.display = 'none';
+                this.textContent = 'See Terms of Use';
+            }
+        });
+    }
+});
 </script>
 
-<!-- Add this simple JavaScript right before the closing </body> tag -->
-<script>
-    document.getElementById('terms-toggle').addEventListener('click', function(e) {
-        e.preventDefault();
-        var termsContent = document.getElementById('terms-content');
-        if (termsContent.style.display === 'none') {
-            termsContent.style.display = 'block';
-            this.textContent = 'Hide Terms of Use';
-        } else {
-            termsContent.style.display = 'none';
-            this.textContent = 'See Terms of Use';
-        }
-    });
-</script>
 
 
 
-
-<!-- Add this HTML code right before the closing </body> tag -->
 <div id="back-to-top" title="Back to Top">
     <span>&#10514;</span>
 </div>
