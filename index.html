@@ -531,9 +531,13 @@
         }
         
         .all-episodes-grid {
-            display: grid;
             grid-template-columns: repeat(auto-fill, minmax(120px, 0fr));
             gap: 15px;
+            margin-bottom: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            display: grid;
+
         }
         
         .toggle-episodes-btn {
@@ -806,12 +810,12 @@
 
 
 
-/* Improved All Episodes Grid View */
-.all-episodes-grid {
-    display: grid;
-    gap: 10px;
+    .episode-number {
+        font-size: 0.65rem; /* Smaller font for very narrow screens */
+        padding: 1px 3px; /* Smaller padding */
+        line-height: 1.1; /* Even tighter line height */
+    }
 }
-
 
 
 
@@ -890,14 +894,41 @@
         height: 56px;
     }
     
-    /* Episode grid */
-    .all-episodes-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    }
 }
 
 /* All Mobile Devices (up to 768px) */
 @media (max-width: 768px) {
+
+
+    /* Drama card layout */
+    .drama-card {
+        flex-direction: column;
+    }
+    
+    .drama-poster {
+        flex: 0 0 auto;
+        height: 200px;
+    }
+    
+    /* Header components */
+    .site-header {
+        padding: 1.5rem 0;
+    }
+    
+    .profile-img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .site-title {
+        font-size: 1.3rem;
+    }
+    
+    .site-subtitle {
+        font-size: 0.8rem;
+    }
+
+
     /* Navigation tabs - ensure they fit screen width */
     .nav-container {
         width: 100%;
@@ -954,7 +985,6 @@
     .episodes-preview {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, auto);
         gap: 8px;
         overflow-x: visible;
         padding-bottom: 10px;
@@ -988,12 +1018,21 @@
     
     /* Episodes grid */
     .all-episodes-grid {
+        display: grid;
         grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        overflow-x: visible;
+        padding-bottom: 10px;
+        width: 100%;
+
     }
 }
 
-/* Medium Devices (up to 900px) */
-@media (max-width: 900px) {
+
+
+/* Tablet Devices (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    
     /* Drama card layout */
     .drama-card {
         flex-direction: column;
@@ -1021,16 +1060,10 @@
     .site-subtitle {
         font-size: 0.8rem;
     }
-    
-    /* Episodes grid */
-    .all-episodes-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    }
-}
 
-/* Tablet Devices (769px to 1024px) */
-@media (min-width: 769px) and (max-width: 1024px) {
-    /* Episode number font size */
+
+
+/* Episode number font size */
     .episode-number {
         font-size: clamp(0.7rem, (100% / (var(--title-length, 1) * 0.8)) * 0.8rem, 0.8rem);
     }
@@ -1041,6 +1074,8 @@
         grid-template-columns: repeat(6, 1fr); /* All 6 episodes in one row */
         gap: 10px;
         overflow-x: visible;
+        padding-bottom: 10px;
+
     }
     
     .episode-preview {
@@ -1071,13 +1106,27 @@
     
     /* Episodes grid */
     .all-episodes-grid {
-        grid-template-columns: repeat(4, 1fr);
+        display: grid;
+        grid-template-columns: repeat(6, 1fr); /* All 6 episodes in one row */
+        gap: 10px;
+        overflow-x: visible;
     }
+
+
 }
+
+
+
+
+
 
 /* Narrower Tablets (769px to 900px) - nested media query */
 @media (min-width: 769px) and (max-width: 900px) {
     .episodes-preview {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, auto);
+    }
+    .all-episodes-grid {
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2, auto);
     }
@@ -4575,7 +4624,7 @@
                             </div>
                             <div class="video-info">
                                 <h3 class="video-title">Tan Weiwei & Xiao Zhan 我们曾经在一起</h3>
-                                <p class="video-description">OST MV for Ace Troops<br>王牌部队片尾曲MV(2021)</p>
+                                <p class="video-description">OST MV for Ace Troops<br>王牌部队片尾曲MV (2021)</p>
                             </div>
                         </div>
 
@@ -4585,7 +4634,7 @@
                             </div>
                             <div class="video-info">
                                 <h3 class="video-title">Tan Weiwei & Xiao Zhan 我们曾经在一起</h3>
-                                <p class="video-description">TV version for OST of Ace Troops<br>王牌部队片尾曲电视版(2021)</p>
+                                <p class="video-description">TV version for OST of Ace Troops<br>王牌部队片尾曲电视版 (2021)</p>
                             </div>
                         </div>
 
