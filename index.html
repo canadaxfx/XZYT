@@ -187,17 +187,17 @@
         /* Back to Main Site Button */
         .back-button-container {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 15px;
+            left: 15px;
             z-index: 5;
         }
         
         .back-button {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             color: var(--primary-color);
             border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 6px 10px;
+            border-radius: 15px;
             font-weight: bold;
             cursor: pointer;
             display: flex;
@@ -205,6 +205,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: all 0.3s;
             text-decoration: none;
+	    font-size: 0.9rem;
         }
         
         .back-button:hover {
@@ -216,6 +217,7 @@
         .back-arrow {
             margin-right: 5px;
             font-size: 18px;
+	    font-weight: bold;
         }
         
         /* Main content */
@@ -840,6 +842,12 @@
         font-size: 0.75rem;
         padding: 8px 2px;
     }
+    .back-button {
+        padding: 3px 6px;
+        font-size: 0.7rem;
+    }
+
+
 }
 
 /* Small Mobile Devices (up to 480px) */
@@ -898,6 +906,22 @@
 
 /* All Mobile Devices (up to 768px) */
 @media (max-width: 768px) {
+
+    .back-button-container {
+        top: 10px;
+        left: 10px;
+    }
+    
+    .back-button {
+        padding: 4px 8px;
+        font-size: 0.75rem; /* Smaller text on mobile */
+        border-radius: 12px; /* Slightly smaller radius */
+    }
+    
+    .back-arrow {
+        font-size: 14px; /* Smaller arrow */
+        margin-right: 3px; /* Less spacing */
+    }
 
 
     /* Drama card layout */
