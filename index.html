@@ -24,38 +24,50 @@
     <link rel="icon" type="image/png" href="favicon.png">
 
 
-<!-- Add this CSS to your existing <style> section in the head -->
 <style>
-    #back-to-top {
-        position: fixed;
-        bottom: 20px;
-        left: 20px;
-        background-color: var(--primary-color);
-        color: white;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 48px;
-        font-size: 32px;
-        font-weight: bold;
-        cursor: pointer;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 1000;
-    }
-    
-    #back-to-top.visible {
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    #back-to-top:hover {
-        background-color: var(--accent-color);
-        transform: scale(1.1);
-    }
+        #back-to-top {
+            position: fixed; bottom: 20px; Left: 20px; 
+            background: white;
+            color: #e53e3e; width: 80px; height: 150x; border-radius: 60px; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            opacity: 0; visibility: hidden; 
+            transition: all 0.3s ease; z-index: 9999;
+            border: 3px solid #e53e3e;
+            font-size: 30px; font-weight: 600; 
+            -webkit-text-stroke: 2px #e53e3e;
+            text-stroke: 2px #e53e3e;
+            padding: 4px 4px;
+        }
+        #back-to-top .arrow {
+            line-height: 1;
+        }
+        #back-to-top .text {
+            font-size: 9px; font-weight: 600; margin-top: 0px;
+            text-align: center; line-height: 1;
+            color: #e53e3e;
+            -webkit-text-stroke: 0;
+            text-stroke: 0;
+            -webkit-text-fill-color: #e53e3e;
+            position: relative;
+            z-index: 1;
+        }
+
+        #back-to-top.visible { 
+            opacity: 0.8; visibility: visible; 
+            animation: subtle-pulse-white 2s infinite ease-in-out;
+        }
+        #back-to-top:hover { 
+            transform: scale(1.15); 
+            box-shadow: 0 6px 25px rgba(229, 62, 62, 0.4);
+            opacity: 1;
+        }
+        
+        @keyframes subtle-pulse-white {
+            0%, 100% { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); }
+            50% { box-shadow: 0 4px 20px rgba(229, 62, 62, 0.3); }
+        }
+
     
 </style>
     
@@ -986,10 +998,17 @@
     }
     
     /* Back to top button */
-    #back-to-top {
-        bottom: 70px; /* Position above the music player on mobile */
-    }
-    
+            #back-to-top {
+                bottom: 8px;
+                left: 8px;
+                width: 60px;
+                padding: 2px 2px;
+            }
+            
+            #back-to-top .text {
+                font-size: 7px;
+            }
+
     /* Search components */
     .search-container {
         max-width: 100%;
@@ -7226,9 +7245,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-<div id="back-to-top" title="Back to Top">
-    <span>&#10514;</span>
-</div>
+    <div id="back-to-top">
+        <div class="arrow">▲</div>
+        <div class="text">TOP<br>回顶部</div>
+    </div>
 
 
 
