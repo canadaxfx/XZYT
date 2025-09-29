@@ -25,819 +25,797 @@
 
 
 <style>
-        #back-to-top {
-            position: fixed; bottom: 20px; Left: 20px; 
-            background: white;
-            color: #e53e3e; width: 80px; height: 150x; border-radius: 60px; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            cursor: pointer; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            opacity: 0; visibility: hidden; 
-            transition: all 0.3s ease; z-index: 9999;
-            border: 3px solid #e53e3e;
-            font-size: 30px; font-weight: 600; 
-            -webkit-text-stroke: 2px #e53e3e;
-            text-stroke: 2px #e53e3e;
-            padding: 4px 4px;
-        }
-        #back-to-top .arrow {
-            line-height: 1;
-        }
-        #back-to-top .text {
-            font-size: 9px; font-weight: 600; margin-top: 0px;
-            text-align: center; line-height: 1;
-            color: #e53e3e;
-            -webkit-text-stroke: 0;
-            text-stroke: 0;
-            -webkit-text-fill-color: #e53e3e;
-            position: relative;
-            z-index: 1;
-        }
+#back-to-top {
+position:fixed;
+bottom:20px;
+left:20px;
+background:#fff;
+color:#e53e3e;
+width:80px;
+height:150x;
+border-radius:60px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+box-shadow:0 4px 20px #00000026;
+opacity:0;
+visibility:hidden;
+transition:all .3s ease;
+z-index:9999;
+border:3px solid #e53e3e;
+font-size:30px;
+font-weight:600;
+-webkit-text-stroke:2px #e53e3e;
+text-stroke:2px #e53e3e;
+padding:4px
+}
 
-        #back-to-top.visible { 
-            opacity: 0.8; visibility: visible; 
-            animation: subtle-pulse-white 2s infinite ease-in-out;
-        }
-        #back-to-top:hover { 
-            transform: scale(1.15); 
-            box-shadow: 0 6px 25px rgba(229, 62, 62, 0.4);
-            opacity: 1;
-        }
-        
-        @keyframes subtle-pulse-white {
-            0%, 100% { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); }
-            50% { box-shadow: 0 4px 20px rgba(229, 62, 62, 0.3); }
-        }
+#back-to-top .arrow {
+line-height:1
+}
 
-    
+#back-to-top .text {
+font-size:9px;
+font-weight:600;
+margin-top:0;
+text-align:center;
+line-height:1;
+color:#e53e3e;
+-webkit-text-stroke:0;
+text-stroke:0;
+-webkit-text-fill-color:#e53e3e;
+position:relative;
+z-index:1
+}
+
+#back-to-top.visible {
+opacity:.8;
+visibility:visible;
+animation:subtle-pulse-white 2s infinite ease-in-out
+}
+
+#back-to-top:hover {
+transform:scale(1.15);
+box-shadow:0 6px 25px #e53e3e66;
+opacity:1
+}
+
+@keyframes subtle-pulse-white {
+0%,100% {
+box-shadow:0 4px 20px #00000026
+}
+
+50% {
+box-shadow:0 4px 20px #e53e3e4d
+}
+}
+
 </style>
-    
-    <style>
-        :root {
-            --primary-color: #3f3f7d;
-            --secondary-color: #f8f8ff;
-            --accent-color: #7f3a7f;
-            --text-color: #333;
-            --light-gray: #f5f5f5;
-            --card-shadow: 0 3px 15px rgba(0,0,0,0.08);
-            --hover-shadow: 0 10px 25px rgba(0,0,0,0.12);
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: 'Noto Sans', Arial, sans-serif;
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header */
-        .site-header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .site-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://i.ytimg.com/vi/cNREvXFsOCw/maxresdefault.jpg');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.2;
-            filter: blur(3px);
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid white;
-            margin-bottom: 1rem;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .site-title {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        
-        .site-subtitle {
-            font-size: 1.2rem;
-            font-weight: normal;
-            opacity: 0.9;
-        }
-        
-        /* Navigation */
-        .main-nav {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: center;
-            padding: 0;
-        }
-        
-        .nav-list {
-            display: flex;
-            list-style: none;
-            overflow-x: auto;
-            padding: 0;
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior: contain;
-        }
-        
-        .nav-item {
-            flex-shrink: 0;
-        }
-        
-        .nav-link {
-            display: block;
-            padding: 15px 20px;
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
-            white-space: nowrap;
-            text-align: center;
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            color: var(--primary-color);
-            background-color: rgba(63, 63, 125, 0.05);
-        }
-        
-        .nav-link.active {
-            border-bottom: 7px solid var(--primary-color);
-        }
+<style>
+:root {
+--primary-color:#3f3f7d;
+--secondary-color:#f8f8ff;
+--accent-color:#7f3a7f;
+--text-color:#333;
+--light-gray:#f5f5f5;
+--card-shadow:0 3px 15px #00000014;
+--hover-shadow:0 10px 25px #0000001f
+}
 
-        /* Back to Main Site Button */
-        .back-button-container {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            z-index: 5;
-        }
-        
-        .back-button {
-            background-color: rgba(255, 255, 255, 0.9);
-            color: var(--primary-color);
-            border: none;
-            padding: 6px 10px;
-            border-radius: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            text-decoration: none;
-	    font-size: 0.9rem;
-        }
-        
-        .back-button:hover {
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            transform: translateY(-2px);
-        }
-        
-        .back-arrow {
-            margin-right: 5px;
-            font-size: 18px;
-	    font-weight: bold;
-        }
-        
-        /* Main content */
-        .main-content {
-            padding: 40px 0;
-        }
-        
-        .section-heading {
-            text-align: center;
-            color: var(--primary-color);
-            margin-bottom: 40px;
-        }
-        
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-        }
-        
-        .section-subtitle {
-            font-size: 1rem;
-            font-weight: normal;
-            opacity: 0.7;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Search Bar */
-        .search-container {
-            max-width: 100%;
-            margin: 0 auto 40px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .search-input {
-            flex: 1;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        .search-button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .search-button:hover {
-            background-color: var(--accent-color);
-        }
-        
+* {
+box-sizing:border-box;
+margin:0;
+padding:0
+}
+
+body {
+font-family:'Noto Sans',Arial,sans-serif;
+background-color:var(--secondary-color);
+color:var(--text-color);
+line-height:1.6
+}
+
+.container {
+max-width:1200px;
+margin:0 auto;
+padding:0 20px
+}
+
+.site-header {
+background-color:var(--primary-color);
+color:#fff;
+padding:2rem 0;
+text-align:center;
+position:relative;
+overflow:hidden
+}
+
+.site-header::before {
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-image:url(https://i.ytimg.com/vi/cNREvXFsOCw/maxresdefault.jpg);
+background-size:cover;
+background-position:center;
+opacity:.2;
+filter:blur(3px)
+}
+
+.header-content {
+position:relative;
+z-index:1
+}
+
+.profile-img {
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid #fff;
+margin-bottom:1rem;
+box-shadow:0 0 15px #0003
+}
+
+.site-title {
+font-size:1.8rem;
+margin-bottom:10px
+}
+
+.site-subtitle {
+font-size:1.2rem;
+font-weight:400;
+opacity:.9
+}
+
+.main-nav {
+background-color:#fff;
+box-shadow:0 2px 10px #0000000d;
+position:sticky;
+top:0;
+z-index:100
+}
+
+.nav-container {
+display:flex;
+justify-content:center;
+padding:0
+}
+
+.nav-list {
+display:flex;
+list-style:none;
+overflow-x:auto;
+padding:0;
+-webkit-overflow-scrolling:touch;
+overscroll-behavior:contain
+}
+
+.nav-item {
+flex-shrink:0
+}
+
+.nav-link {
+display:block;
+padding:15px 20px;
+color:var(--text-color);
+text-decoration:none;
+font-weight:700;
+transition:all .3s;
+white-space:nowrap;
+text-align:center
+}
+
+.nav-link:hover,.nav-link.active {
+color:var(--primary-color);
+background-color:#3f3f7d0d
+}
+
+.nav-link.active {
+border-bottom:7px solid var(--primary-color)
+}
+
+.back-button-container {
+position:absolute;
+top:15px;
+left:15px;
+z-index:5
+}
+
+.back-button {
+background-color:#ffffffe6;
+color:var(--primary-color);
+border:none;
+padding:6px 10px;
+border-radius:15px;
+font-weight:700;
+cursor:pointer;
+display:flex;
+align-items:center;
+box-shadow:0 2px 5px #0000001a;
+transition:all .3s;
+text-decoration:none;
+font-size:.9rem
+}
+
+.back-button:hover {
+background-color:#fff;
+box-shadow:0 4px 8px #00000026;
+transform:translateY(-2px)
+}
+
+.back-arrow {
+margin-right:5px;
+font-size:18px;
+font-weight:700
+}
+
+.main-content {
+padding:40px 0
+}
+
+.section-heading {
+text-align:center;
+color:var(--primary-color);
+margin-bottom:40px
+}
+
+.section-title {
+font-size:1.8rem;
+margin-bottom:5px
+}
+
+.section-subtitle {
+font-size:1rem;
+font-weight:400;
+opacity:.7;
+max-width:700px;
+margin:0 auto
+}
+
+.search-container {
+max-width:100%;
+margin:0 auto 40px;
+display:flex;
+gap:10px
+}
+
+.search-input {
+flex:1;
+padding:12px 15px;
+border:1px solid #ddd;
+border-radius:5px;
+font-size:1rem
+}
+
+.search-button {
+background-color:var(--primary-color);
+color:#fff;
+border:none;
+padding:0 20px;
+border-radius:5px;
+cursor:pointer;
+transition:background-color .3s
+}
+
+.search-button:hover {
+background-color:var(--accent-color)
+}
 
 .clear-button {
-    background-color: #e0e0e0;
-    color: var(--text-color);
-    border: none;
-    padding: 0 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+background-color:#e0e0e0;
+color:var(--text-color);
+border:none;
+padding:0 20px;
+border-radius:5px;
+cursor:pointer;
+transition:background-color .3s
 }
 
 .clear-button:hover {
-    background-color: #d0d0d0;
+background-color:#d0d0d0
 }
 
+.tab-container {
+margin-bottom:30px
+}
 
+.tab-buttons {
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:30px
+}
 
-        /* Content Tabs */
-        .tab-container {
-            margin-bottom: 30px;
-        }
-        
-        .tab-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-        
-        .tab-button {
-            padding: 10px 20px;
-            background-color: #e0e0e0;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        .tab-button:hover {
-            background-color: #d0d0d0;
-        }
-        
-        .tab-button.active {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        /* Drama Series Cards */
-        .drama-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            margin-bottom: 15px; /* Additional margin at bottom */
-   	    border: 1px solid rgba(0,0,0,0.05); /* Subtle border */
-        }
-        
-        .drama-card {
-            display: flex;
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .drama-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--hover-shadow);
-        }
-        
-        .drama-poster {
-            flex: 0 0 300px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .drama-poster img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .drama-card:hover .drama-poster img {
-            transform: scale(1.05);
-        }
-        
-        .episode-count {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: rgba(0,0,0,0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        .year-label {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        .watch-now-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .drama-card:hover .watch-now-overlay {
-            opacity: 1;
-        }
-        
-        .watch-button {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-        
-        .watch-button:hover {
-            background-color: var(--accent-color);
-        }
-        
-        .drama-info {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .drama-title {
-            color: var(--primary-color);
-            font-size: 1.4rem;
-            margin: 0 0 5px 0;
-        }
-        
-        .drama-role {
-            color: var(--accent-color);
-            font-style: italic;
-            margin: 0 0 10px 0;
-        }
-        
-        .drama-description {
-            margin-bottom: 15px;
-        }
-        
-        .drama-description p {
-            color: var(--text-color);
-            line-height: 1.6;
-            margin: 0;
-        }
-        
-        /* Episodes Preview */
-        .drama-episodes {
-            margin-top: auto;
-        }
-        
-        .episodes-preview {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 10px;
-            overflow-x: auto;
-            padding-bottom: 5px;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary-color) #f0f0f0;
-        }
-        
-        .episodes-preview::-webkit-scrollbar {
-            height: 6px;
-        }
-        
-        .episodes-preview::-webkit-scrollbar-track {
-            background: #f0f0f0;
-            border-radius: 10px;
-        }
-        
-        .episodes-preview::-webkit-scrollbar-thumb {
-            background-color: var(--primary-color);
-            border-radius: 10px;
-        }
-        
-        .episode-preview {
-            flex: 0 0 auto;
-            text-decoration: none;
-        }
-        
-        .episode-thumbnail {
-            position: relative;
-            width: 120px;
-            height: 68px;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        
-        .episode-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-        
-        .episode-preview:hover .episode-thumbnail img {
-            transform: scale(1.1);
-        }
-        
-        .episode-number {
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            background-color: rgba(0,0,0,0.7);
-            color: white;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-size: 0.7rem;
-        }
-        
-        /* NEW STYLES FOR EXPANDABLE EPISODES */
-        .all-episodes-container {
-            display: none;
-            padding-top: 20px;
-            margin-top: 20px;
-            border-top: 1px dashed #ddd;
-        }
-        
-        .all-episodes-container.expanded {
-            display: block;
-        }
-        
-        .all-episodes-grid {
-            grid-template-columns: repeat(auto-fill, minmax(120px, 0fr));
-            gap: 15px;
-            margin-bottom: 10px;
-            overflow-x: auto;
-            padding-bottom: 5px;
-            display: grid;
+.tab-button {
+padding:10px 20px;
+background-color:#e0e0e0;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-weight:600;
+transition:all .3s
+}
 
-        }
-        
-        .toggle-episodes-btn {
-            display: inline-block;
-            color: var(--primary-color);
-            font-weight: bold;
-            text-decoration: none;
-            padding: 5px 0;
-            transition: color 0.3s;
-            cursor: pointer;
-        }
-        
-        .toggle-episodes-btn:hover {
-            color: var(--accent-color);
-        }
-        
-        .toggle-episodes-btn .close-text {
-            display: none;
-        }
-        
-        .toggle-episodes-btn.expanded .view-text {
-            display: none;
-        }
-        
-        .toggle-episodes-btn.expanded .close-text {
-            display: inline;
-        }
-        
-        /* Grid Layout for Other sections */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
-        .video-item {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .video-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--hover-shadow);
-        }
-        
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-        }
-        
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-        
-        .video-info {
-            padding: 15px;
-        }
-        
-        .video-title {
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            margin: 0 0 5px 0;
-        }
-        
-        .video-description {
-            font-size: 0.9rem;
-            color: var(--text-color);
-            opacity: 0.8;
-        }
+.tab-button:hover {
+background-color:#d0d0d0
+}
 
+.tab-button.active {
+background-color:var(--primary-color);
+color:#fff
+}
 
+.tab-content {
+display:none
+}
 
+.tab-content.active {
+display:block
+}
 
+.drama-cards {
+display:flex;
+flex-direction:column;
+gap:30px;
+margin-bottom:15px;
+border:1px solid #0000000d
+}
 
+.drama-card {
+display:flex;
+background-color:#fff;
+border-radius:10px;
+overflow:hidden;
+box-shadow:var(--card-shadow);
+transition:transform 0.3s,box-shadow .3s
+}
 
+.drama-card:hover {
+transform:translateY(-5px);
+box-shadow:var(--hover-shadow)
+}
 
-        
-        /* Footer */
+.drama-poster {
+flex:0 0 300px;
+position:relative;
+overflow:hidden
+}
 
+.drama-poster img {
+width:100%;
+height:100%;
+object-fit:cover;
+transition:transform .5s
+}
+
+.drama-card:hover .drama-poster img {
+transform:scale(1.05)
+}
+
+.episode-count {
+position:absolute;
+top:10px;
+right:10px;
+background-color:#000000b3;
+color:#fff;
+padding:5px 10px;
+border-radius:20px;
+font-size:.8rem;
+font-weight:700
+}
+
+.year-label {
+position:absolute;
+top:10px;
+left:10px;
+background-color:var(--primary-color);
+color:#fff;
+padding:5px 10px;
+border-radius:20px;
+font-size:.8rem;
+font-weight:700
+}
+
+.watch-now-overlay {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-color:#00000080;
+display:flex;
+justify-content:center;
+align-items:center;
+opacity:0;
+transition:opacity .3s
+}
+
+.drama-card:hover .watch-now-overlay {
+opacity:1
+}
+
+.watch-button {
+background-color:var(--primary-color);
+color:#fff;
+padding:10px 20px;
+border-radius:5px;
+font-weight:700;
+text-decoration:none;
+transition:background-color .3s
+}
+
+.watch-button:hover {
+background-color:var(--accent-color)
+}
+
+.drama-info {
+flex:1;
+padding:20px;
+display:flex;
+flex-direction:column
+}
+
+.drama-title {
+color:var(--primary-color);
+font-size:1.4rem;
+margin:0 0 5px
+}
+
+.drama-role {
+color:var(--accent-color);
+font-style:italic;
+margin:0 0 10px
+}
+
+.drama-description {
+margin-bottom:15px
+}
+
+.drama-description p {
+color:var(--text-color);
+line-height:1.6;
+margin:0
+}
+
+.drama-episodes {
+margin-top:auto
+}
+
+.episodes-preview {
+display:flex;
+gap:15px;
+margin-bottom:10px;
+overflow-x:auto;
+padding-bottom:5px;
+scrollbar-width:thin;
+scrollbar-color:var(--primary-color) #f0f0f0
+}
+
+.episodes-preview::-webkit-scrollbar {
+height:6px
+}
+
+.episodes-preview::-webkit-scrollbar-track {
+background:#f0f0f0;
+border-radius:10px
+}
+
+.episodes-preview::-webkit-scrollbar-thumb {
+background-color:var(--primary-color);
+border-radius:10px
+}
+
+.episode-preview {
+flex:0 0 auto;
+text-decoration:none
+}
+
+.episode-thumbnail {
+position:relative;
+width:120px;
+height:68px;
+border-radius:5px;
+overflow:hidden
+}
+
+.episode-thumbnail img {
+width:100%;
+height:100%;
+object-fit:cover;
+transition:transform .3s
+}
+
+.episode-preview:hover .episode-thumbnail img {
+transform:scale(1.1)
+}
+
+.episode-number {
+position:absolute;
+bottom:5px;
+right:5px;
+background-color:#000000b3;
+color:#fff;
+padding:2px 5px;
+border-radius:3px;
+font-size:.7rem
+}
+
+.all-episodes-container {
+display:none;
+padding-top:20px;
+margin-top:20px;
+border-top:1px dashed #ddd
+}
+
+.all-episodes-container.expanded {
+display:block
+}
+
+.all-episodes-grid {
+grid-template-columns:repeat(auto-fill,minmax(120px,0fr));
+gap:15px;
+margin-bottom:10px;
+overflow-x:auto;
+padding-bottom:5px;
+display:grid
+}
+
+.toggle-episodes-btn {
+display:inline-block;
+color:var(--primary-color);
+font-weight:700;
+text-decoration:none;
+padding:5px 0;
+transition:color .3s;
+cursor:pointer
+}
+
+.toggle-episodes-btn:hover {
+color:var(--accent-color)
+}
+
+.toggle-episodes-btn .close-text {
+display:none
+}
+
+.toggle-episodes-btn.expanded .view-text {
+display:none
+}
+
+.toggle-episodes-btn.expanded .close-text {
+display:inline
+}
+
+.video-grid {
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+gap:20px
+}
+
+.video-item {
+background-color:#fff;
+border-radius:10px;
+overflow:hidden;
+box-shadow:var(--card-shadow);
+transition:transform 0.3s,box-shadow .3s
+}
+
+.video-item:hover {
+transform:translateY(-5px);
+box-shadow:var(--hover-shadow)
+}
+
+.video-container {
+position:relative;
+padding-bottom:56.25%;
+height:0
+}
+
+.video-container iframe {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+border:0
+}
+
+.video-info {
+padding:15px
+}
+
+.video-title {
+font-size:1.1rem;
+color:var(--primary-color);
+margin:0 0 5px
+}
+
+.video-description {
+font-size:.9rem;
+color:var(--text-color);
+opacity:.8
+}
 
 .site-footer .copyright-text ul {
-    list-style-type: disc;
-    padding-left: 30px;
-    text-align: left;
+list-style-type:disc;
+padding-left:30px;
+text-align:left
 }
 
 .site-footer .copyright-text li {
-    margin-bottom: 10px;
+margin-bottom:10px
 }
 
 .site-footer .footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+display:flex;
+justify-content:center;
+gap:20px
 }
 
 .site-footer .copyright-notice {
-    text-align: center;
-} 
+text-align:center
+}
 
-        .site-footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 30px 0;
-            margin-top: 50px;
-        }
-        
-        .footer-content {
-            text-align: center;
-	    margin-bottom: 20px; /* Add space between footer content and copyright notice */
-        }
-        
-        
+.site-footer {
+background-color:var(--primary-color);
+color:#fff;
+padding:30px 0;
+margin-top:50px
+text-align: center; 
+}
 
-	.footer-link {
-            color: white;
-            text-decoration: underline;
-            margin: 0 10px;
-            transition: all 0.3s;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-style: italic;
-        }
-        
-        .footer-link:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            text-decoration: underline;
-            transform: translateY(-2px);
-        }
-        .copyright {
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-        
-    /* Style the copyright notice container */
-    .copyright-notice {
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-        padding-top: 15px;
-        margin-top: 15px;
-        text-align: center;
-    }
+.footer-content {
+text-align:center;
+margin-bottom:20px
+}
 
-    /* Make the Terms of Use link more visible */
-    #terms-toggle {
-        display: inline-block;
-        color: white;
-        background-color: var(--accent-color);
-        padding: 5px 15px;
-        border-radius: 4px;
-        margin: 10px auto;
-        font-weight: bold;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
+.footer-link {
+color:#fff;
+text-decoration:underline;
+margin:0 10px;
+transition:all .3s;
+padding:5px 10px;
+border-radius:4px;
+font-weight:700;
+font-style:italic
+}
 
-    #terms-toggle:hover {
-        background-color: white;
-        color: var(--accent-color);
-        transform: translateY(-2px);
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
+.footer-link:hover {
+background-color:#fff3;
+text-decoration:underline;
+transform:translateY(-2px)
+}
 
-    /* Style the Terms content when shown */
-    #terms-content {
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 5px;
-        padding: 15px;
-        margin-top: 10px;
-        text-align: left;
-    }
+.copyright {
+font-size:.9rem;
+opacity:.7
+}
 
-    #terms-content ul {
-        list-style-type: disc;
-        padding-left: 20px;
-        margin-top: 10px;
-    }
+.copyright-notice {
+border-top:1px solid #fff3;
+padding-top:15px;
+margin-top:15px;
+text-align:center
+}
 
-    #terms-content li {
-        margin-bottom: 5px;
-    }
+#terms-toggle {
+display:inline-block;
+color:#fff;
+background-color:var(--accent-color);
+padding:5px 15px;
+border-radius:4px;
+margin:10px auto;
+font-weight:700;
+text-decoration:none;
+transition:all .3s ease
+}
 
+#terms-toggle:hover {
+background-color:#fff;
+color:var(--accent-color);
+transform:translateY(-2px);
+box-shadow:0 2px 5px #0003
+}
 
+#terms-content {
+background-color:#ffffff1a;
+border-radius:5px;
+padding:15px;
+margin-top:10px;
+text-align:left
+}
 
-    
-        /* Search Results Styling */
-        .search-results-count {
-            text-align: center;
-            margin-bottom: 20px;
-            font-weight: 500;
-            color: var(--accent-color);
-        }
-        
-        .no-results {
-            text-align: center;
-            padding: 30px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: var(--card-shadow);
-        }
-        
-        .no-results h3 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-        
-        .highlight {
-            background-color: rgba(127, 58, 127, 0.15);
-            padding: 0 3px;
-            border-radius: 3px;
-        }
-        
-        .hidden {
-            display: none !important;
-        }
+#terms-content ul {
+list-style-type:disc;
+padding-left:20px;
+margin-top:10px
+}
 
+#terms-content li {
+margin-bottom:5px
+}
 
-/* Section Divider Styles */
+.search-results-count {
+text-align:center;
+margin-bottom:20px;
+font-weight:500;
+color:var(--accent-color)
+}
+
+.no-results {
+text-align:center;
+padding:30px;
+background-color:#fff;
+border-radius:10px;
+box-shadow:var(--card-shadow)
+}
+
+.no-results h3 {
+color:var(--primary-color);
+margin-bottom:10px
+}
+
+.highlight {
+background-color:#7f3a7f26;
+padding:0 3px;
+border-radius:3px
+}
+
+.hidden {
+display:none!important
+}
+
 .section-divider {
-    margin: 40px 0;
-    text-align: center;
-    position: relative;
-    padding: 20px;
-    background-color: var(--light-gray);
-    border-radius: 10px;
-    box-shadow: var(--card-shadow);
+margin:40px 0;
+text-align:center;
+position:relative;
+padding:20px;
+background-color:var(--light-gray);
+border-radius:10px;
+box-shadow:var(--card-shadow)
 }
 
 .divider-heading {
-    color: var(--primary-color);
-    font-size: 1.6rem;
-    margin-bottom: 10px;
+color:var(--primary-color);
+font-size:1.6rem;
+margin-bottom:10px
 }
 
 .divider-text {
-    color: var(--text-color);
-    max-width: 800px;
-    margin: 0 auto;
-    opacity: 0.8;
+color:var(--text-color);
+max-width:800px;
+margin:0 auto;
+opacity:.8
 }
 
-/* Add a subtle border before and after */
-.section-divider::before,
-.section-divider::after {
-    content: '';
-    height: 1px;
-    width: 100%;
-    background: linear-gradient(to right, transparent, var(--primary-color), transparent);
-    position: absolute;
-    left: 0;
+.section-divider::before,.section-divider::after {
+content:'';
+height:1px;
+width:100%;
+background:linear-gradient(to right,transparent,var(--primary-color),transparent);
+position:absolute;
+left:0
 }
 
 .section-divider::before {
-    top: 0;
+top:0
 }
 
 .section-divider::after {
-    bottom: 0;
+bottom:0
 }
 
-
-
-
-    .episode-number {
-        font-size: 0.65rem; /* Smaller font for very narrow screens */
-        padding: 1px 3px; /* Smaller padding */
-        line-height: 1.1; /* Even tighter line height */
-    }
+.episode-number {
+font-size:.65rem;
+padding:1px 3px;
+line-height:1.1
 }
-
-
-
-
-
     </style>
 
 
@@ -6876,27 +6854,23 @@
 <footer class="site-footer">
     <div class="container">
         <div class="footer-content">
+	    <div style="margin-bottom:10px;font-weight:700; text-align: center;">Explore more</div>
             <div class="footer-links">
                 <a href="https://www.youtube.com/@xzstudio-1005" target="_blank" class="footer-link">XZ.Studio on YouTube</a>
-                <a href="https://canadaxfx.github.io/XZworks/index.html#contact" class="footer-link">Contact Us</a>
+                <a href="https://canadaxfx.github.io/contact-us/" class="footer-link">Contact Us</a>
             </div>
-            <div class="copyright-text">
-                <ul>
-                    <li>This fan-made website by CanadaXFX is created for personal and non-commercial use only.</li>
-                    <li>All images, videos, and content related to Xiao Zhan belong to their respective copyright owners.</li>
-                    <li>The original content, design, and code of this website may not be reproduced, distributed, or used without explicit permission.</li>
-                    <li>Last updated September 2025 ©CanadaXFX.</li>
-                </ul>
-            </div>
+             <div class="copyright-notice">&copy; 2025 CanadaXFX. All rights reserved.</div>
+
             <div class="copyright-notice">
                 <p><a href="#" id="terms-toggle">See Terms of Use</a></p>
                 <div id="terms-content" style="display: none;">
                     <p><strong>Terms of Use:</strong></p>
                     <ul>
-                        <li>The content of this website is for personal, non-commercial viewing only.</li>
-                        <li>Content may not be copied, reproduced, republished, uploaded, posted, transmitted, or distributed in any way without prior written consent.</li>
-                        <li>Modification of materials on this website is prohibited.</li>
-                        <li>This website is provided "as is" without warranties of any kind.</li>
+                <li>All images and content related to Xiao Zhan belong to their respective copyright owners.</li>
+                <li>All content on this site is curated and organized © 2025 CanadaXFX.</li>
+                <li>AI training is strictly prohibited.</li>
+                <li>The original content, design, and code of this website may not be reproduced, distributed, or used without explicit permission.</li>
+                <li>Personal and non-commercial use only.</li>                                             
                         <li>Links to this website are permitted, but framing or mirroring is prohibited.</li>
                     </ul>
                 </div>
@@ -7224,21 +7198,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Terms toggle functionality
-    const termsToggle = document.getElementById('terms-toggle');
-    if (termsToggle) {
-        termsToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            var termsContent = document.getElementById('terms-content');
-            if (termsContent.style.display === 'none' || !termsContent.style.display) {
-                termsContent.style.display = 'block';
-                this.textContent = 'Hide Terms of Use';
-            } else {
-                termsContent.style.display = 'none';
-                this.textContent = 'See Terms of Use';
-            }
-        });
-    }
+// Terms toggle functionality
+const termsToggle = document.getElementById('terms-toggle');
+if (termsToggle) {
+    termsToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        var termsContent = document.getElementById('terms-content');
+        if (termsContent.style.display === 'none' || !termsContent.style.display) {
+            termsContent.style.display = 'block';
+            this.textContent = 'Hide Terms of Use';
+            
+            // Scroll to show the terms button and content at the top of viewport
+            setTimeout(() => {
+                this.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start'
+                });
+            }, 100);
+        } else {
+            termsContent.style.display = 'none';
+            this.textContent = 'See Terms of Use';
+        }
+    });
+}
+
+
 });
 </script>
 
