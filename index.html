@@ -22,7 +22,7 @@
     <link rel="icon" type="image/png" href="favicon.png">
 
     <!-- ALL YOUR EXISTING CSS STAYS EXACTLY THE SAME -->
-    <style>
+<style>
 #back-to-top {
 position:fixed;
 bottom:20px;
@@ -30,7 +30,7 @@ left:20px;
 background:#fff;
 color:#e53e3e;
 width:80px;
-height:150x;
+height:60px;
 border-radius:60px;
 display:flex;
 flex-direction:column;
@@ -137,7 +137,6 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background-image:url(https://i.ytimg.com/vi/cNREvXFsOCw/maxresdefault.jpg);
 background-size:cover;
 background-position:center;
 opacity:.2;
@@ -160,12 +159,12 @@ box-shadow:0 0 15px #0003
 }
 
 .site-title {
-font-size:1.8rem;
+font-size:1.2rem;
 margin-bottom:10px
 }
 
 .site-subtitle {
-font-size:1.2rem;
+font-size:.8rem;
 font-weight:400;
 opacity:.9
 }
@@ -254,25 +253,6 @@ font-weight:700
 
 .main-content {
 padding:40px 0
-}
-
-.section-heading {
-text-align:center;
-color:var(--primary-color);
-margin-bottom:40px
-}
-
-.section-title {
-font-size:1.8rem;
-margin-bottom:5px
-}
-
-.section-subtitle {
-font-size:1rem;
-font-weight:400;
-opacity:.7;
-max-width:700px;
-margin:0 auto
 }
 
 .search-container {
@@ -461,24 +441,20 @@ flex-direction:column
 
 .drama-title {
 color:var(--primary-color);
-font-size:1.4rem;
+font-size:1rem;
 margin:0 0 5px
 }
 
 .drama-role {
 color:var(--accent-color);
 font-style:italic;
-margin:0 0 10px
+margin:0 0 10px;
+font-size:.8rem
 }
 
 .drama-description {
-margin-bottom:15px
-}
-
-.drama-description p {
-color:var(--text-color);
-line-height:1.6;
-margin:0
+margin-bottom:15px;
+font-size:0.8rem;
 }
 
 .drama-episodes {
@@ -629,13 +605,15 @@ padding:15px
 }
 
 .video-title {
-font-size:1.1rem;
+font-size:.9rem;
 color:var(--primary-color);
-margin:0 0 5px
+margin:0 0 5px;
+flex-wrap:wrap;
+display:flex
 }
 
 .video-description {
-font-size:.9rem;
+font-size:.8rem;
 color:var(--text-color);
 opacity:.8
 }
@@ -650,12 +628,6 @@ text-align:left
 margin-bottom:10px
 }
 
-.site-footer .footer-links {
-display:flex;
-justify-content:center;
-gap:20px
-}
-
 .site-footer .copyright-notice {
 text-align:center
 }
@@ -664,8 +636,8 @@ text-align:center
 background-color:var(--primary-color);
 color:#fff;
 padding:30px 0;
-margin-top:50px
-text-align: center; 
+margin-top:50px;
+text-align:center
 }
 
 .footer-content {
@@ -681,7 +653,12 @@ transition:all .3s;
 padding:5px 10px;
 border-radius:4px;
 font-weight:700;
-font-style:italic
+font-style:italic;
+white-space:nowrap;
+font-size:.8rem;
+display:flex;
+flex-wrap:wrap;
+justify-content:center
 }
 
 .footer-link:hover {
@@ -691,7 +668,7 @@ transform:translateY(-2px)
 }
 
 .copyright {
-font-size:.9rem;
+font-size:.7rem;
 opacity:.7
 }
 
@@ -699,7 +676,8 @@ opacity:.7
 border-top:1px solid #fff3;
 padding-top:15px;
 margin-top:15px;
-text-align:center
+text-align:center;
+font-size:.7rem
 }
 
 #terms-toggle {
@@ -781,7 +759,7 @@ box-shadow:var(--card-shadow)
 
 .divider-heading {
 color:var(--primary-color);
-font-size:1.6rem;
+font-size:1rem;
 margin-bottom:10px
 }
 
@@ -789,7 +767,8 @@ margin-bottom:10px
 color:var(--text-color);
 max-width:800px;
 margin:0 auto;
-opacity:.8
+opacity:.75;
+font-size:.8rem
 }
 
 .section-divider::before,.section-divider::after {
@@ -814,347 +793,266 @@ font-size:.65rem;
 padding:1px 3px;
 line-height:1.1
 }
-    </style>
 
-
-
-
-    <style>
-
-
+</style>
+<style>
 * ==========================================================================
-   Responsive Styles - Organized by breakpoint
-   ========================================================================== */
-
+Responsive Styles - Organized by breakpoint
+========================================================================== */
 /* Small Mobile Devices (up to 360px) */
 @media (max-width: 360px) {
-    /* Navigation tabs for very small screens */
-    .nav-link {
-        font-size: 0.75rem;
-        padding: 8px 2px;
-    }
-    .back-button {
-        padding: 3px 6px;
-        font-size: 0.7rem;
-    }
-
-
+.nav-linkfont-size:.75rem;
+padding:8px 2px
 }
 
-/* Small Mobile Devices (up to 480px) */
+.back-button {
+padding:3px 6px;
+font-size:.7rem
+}
+
 @media (max-width: 480px) {
-    /* Search components */
-    .search-container {
-        margin: 0 auto 20px;
-    }
-    
-    .search-input {
-        padding: 6px 8px;
-        font-size: 0.85rem;
-    }
-    
-    .search-button, .clear-button {
-        padding: 0 8px;
-        font-size: 0.85rem;
-    }
+.search-container {
+margin:0 auto 20px
 }
 
-/* All Mobile Devices (up to 600px) */
+.search-input {
+padding:6px 8px;
+font-size:.85rem
+}
+
+.search-button,.clear-button {
+padding:0 8px;
+font-size:.85rem
+}
+}
+
 @media (max-width: 600px) {
-    /* Navigation */
-    .nav-link {
-        padding: 12px 15px;
-        font-size: 0.9rem;
-    }
-    
-    /* Typography */
-    .drama-title {
-        font-size: 1.2rem;
-    }
-    
-    .section-title {
-        font-size: 1.5rem;
-    }
-    
-    /* Back button */
-    .back-button-container {
-        top: 10px;
-        left: 10px;
-    }
-    
-    .back-button {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-    }
-    
-    /* Episode thumbnails */
-    .episode-thumbnail {
-        width: 100px;
-        height: 56px;
-    }
-    
+.nav-link {
+padding:12px 15px;
+font-size:.9rem
 }
 
-/* All Mobile Devices (up to 768px) */
+.drama-title {
+font-size:.9rem
+}
+
+.back-button-container {
+top:10px;
+left:10px
+}
+
+.back-button {
+padding:6px 12px;
+font-size:.8rem
+}
+
+.episode-thumbnail {
+width:100px;
+height:56px
+}
+}
+
 @media (max-width: 768px) {
-
-    .back-button-container {
-        top: 10px;
-        left: 10px;
-    }
-    
-    .back-button {
-        padding: 4px 8px;
-        font-size: 0.75rem; /* Smaller text on mobile */
-        border-radius: 12px; /* Slightly smaller radius */
-    }
-    
-    .back-arrow {
-        font-size: 14px; /* Smaller arrow */
-        margin-right: 3px; /* Less spacing */
-    }
-
-
-    /* Drama card layout */
-    .drama-card {
-        flex-direction: column;
-    }
-    
-    .drama-poster {
-        flex: 0 0 auto;
-        height: 200px;
-    }
-    
-    /* Header components */
-    .site-header {
-        padding: 1.5rem 0;
-    }
-    
-    .profile-img {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .site-title {
-        font-size: 1.3rem;
-    }
-    
-    .site-subtitle {
-        font-size: 0.8rem;
-    }
-
-
-    /* Navigation tabs - ensure they fit screen width */
-    .nav-container {
-        width: 100%;
-        padding: 0;
-    }
-    
-    .nav-list {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-    }
-    
-    .nav-item {
-        flex: 1;
-    }
-    
-    .nav-link {
-        padding: 10px 5px;
-        font-size: 0.85rem;
-        white-space: normal;
-        text-align: center;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 60px;
-    }
-    
-    /* Back to top button */
-            #back-to-top {
-                bottom: 8px;
-                left: 8px;
-                width: 60px;
-                padding: 2px 2px;
-            }
-            
-            #back-to-top .text {
-                font-size: 7px;
-            }
-
-    /* Search components */
-    .search-container {
-        max-width: 100%;
-        margin: 0 auto 30px;
-        gap: 5px;
-    }
-    
-    .search-input {
-        padding: 8px 10px;
-        font-size: 0.9rem;
-    }
-    
-    .search-button, .clear-button {
-        padding: 0 12px;
-        font-size: 0.9rem;
-        white-space: nowrap;
-    }
-    
-    /* Episode preview grid - convert horizontal scroll to grid */
-    .episodes-preview {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-        overflow-x: visible;
-        padding-bottom: 10px;
-    }
-    
-    .episode-preview {
-        width: 100%;
-    }
-    
-    .episode-thumbnail {
-        width: 100% !important;
-        height: 0 !important;
-        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-        position: relative;
-    }
-    
-    .episode-thumbnail img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center 20%; /* Adjust to show faces better */
-    }
-    
-    /* Drama poster */
-    .drama-poster {
-        height: auto;
-    }
-    
-    /* Episodes grid */
-    .all-episodes-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-        overflow-x: visible;
-        padding-bottom: 10px;
-        width: 100%;
-
-    }
+.back-button-container {
+top:10px;
+left:10px
 }
 
+.back-button {
+padding:4px 8px;
+font-size:.75rem;
+border-radius:12px
+}
 
+.back-arrow {
+font-size:14px;
+margin-right:3px
+}
 
-/* Tablet Devices (769px to 1024px) */
+.drama-card {
+flex-direction:column
+}
+
+.drama-poster {
+flex:0 0 auto;
+height:200px
+}
+
+.profile-img {
+width:100px;
+height:100px
+}
+
+.nav-container {
+width:100%;
+padding:0
+}
+
+.nav-list {
+display:flex;
+width:100%;
+justify-content:space-between
+}
+
+.nav-item {
+flex:1
+}
+
+.nav-link {
+padding:10px 5px;
+font-size:.85rem;
+white-space:normal;
+text-align:center;
+width:100%;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+min-height:60px
+}
+
+#back-to-top {
+bottom:8px;
+left:8px;
+width:60px;
+padding:2px
+}
+
+#back-to-top .text {
+font-size:7px
+}
+
+.search-container {
+max-width:100%;
+margin:0 auto 30px;
+gap:5px
+}
+
+.search-input {
+padding:8px 10px;
+font-size:.9rem
+}
+
+.search-button,.clear-button {
+padding:0 12px;
+font-size:.9rem;
+white-space:nowrap
+}
+
+.episodes-preview {
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+overflow-x:visible;
+padding-bottom:10px
+}
+
+.episode-preview {
+width:100%
+}
+
+.episode-thumbnail {
+width:100%!important;
+height:0!important;
+padding-bottom:56.25%;
+position:relative
+}
+
+.episode-thumbnail img {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:center 20%
+}
+
+.drama-poster {
+height:auto
+}
+
+.all-episodes-grid {
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+overflow-x:visible;
+padding-bottom:10px;
+width:100%
+}
+}
+
 @media (min-width: 769px) and (max-width: 1024px) {
-    
-    /* Drama card layout */
-    .drama-card {
-        flex-direction: column;
-    }
-    
-    .drama-poster {
-        flex: 0 0 auto;
-        height: 300px;
-    }
-    
-    /* Header components */
-    .site-header {
-        padding: 1.5rem 0;
-    }
-    
-    .profile-img {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .site-title {
-        font-size: 1.3rem;
-    }
-    
-    .site-subtitle {
-        font-size: 0.8rem;
-    }
-
-
-
-/* Episode number font size */
-    .episode-number {
-        font-size: clamp(0.7rem, (100% / (var(--title-length, 1) * 0.8)) * 0.8rem, 0.8rem);
-    }
-    
-    /* Episodes preview */
-    .episodes-preview {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr); /* All 6 episodes in one row */
-        gap: 10px;
-        overflow-x: visible;
-        padding-bottom: 10px;
-
-    }
-    
-    .episode-preview {
-        width: 100%;
-    }
-    
-    .episode-thumbnail {
-        width: 100%;
-        height: 0;
-        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-        position: relative;
-    }
-    
-    .episode-thumbnail img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center 25%; /* Position to show faces better */
-    }
-    
-    /* Drama poster adjustment */
-    .drama-poster img {
-        object-position: center 15%; /* Adjust to prevent "headless" portraits */
-    }
-    
-    /* Episodes grid */
-    .all-episodes-grid {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr); /* All 6 episodes in one row */
-        gap: 10px;
-        overflow-x: visible;
-    }
-
-
+.drama-card {
+flex-direction:column
 }
 
+.drama-poster {
+flex:0 0 auto;
+height:300px
+}
 
+.profile-img {
+width:100px;
+height:100px
+}
 
+.episode-number {
+font-size:clamp(0.7rem,(100% / (var(--title-length,1) * 0.8)) * 0.8rem,0.8rem)
+}
 
+.episodes-preview {
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:10px;
+overflow-x:visible;
+padding-bottom:10px
+}
 
+.episode-preview {
+width:100%
+}
 
-/* Narrower Tablets (769px to 900px) - nested media query */
+.episode-thumbnail {
+width:100%;
+height:0;
+padding-bottom:56.25%;
+position:relative
+}
+
+.episode-thumbnail img {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:center 25%
+}
+
+.drama-poster img {
+object-position:center 15%
+}
+
+.all-episodes-grid {
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:10px;
+overflow-x:visible
+}
+}
+
 @media (min-width: 769px) and (max-width: 900px) {
-    .episodes-preview {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, auto);
-    }
-    .all-episodes-grid {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, auto);
-    }
+.episodes-preview {
+grid-template-columns:repeat(3,1fr);
+grid-template-rows:repeat(2,auto)
 }
 
-
+.all-episodes-grid {
+grid-template-columns:repeat(3,1fr);
+grid-template-rows:repeat(2,auto)
+}
+}
     </style>
 </head>
 <body>

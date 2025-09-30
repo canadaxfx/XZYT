@@ -40,7 +40,7 @@ function renderPerformances(data) {
 
     const dividerHTML = createSectionDivider(
         'Featured Performance Videos',
-        'Watch selected stage performances directly through embedded videos below. <br>For the complete collection, use the playlist card above.<br> 在本页浏览可直接点击以下视频卡，更全站外视频集请点击上方播放列表'
+        'Watch selected performances directly through embedded videos below. <br>See the playlist cards above for all shows.<br> 本页浏览可直接点击以下视频卡，更全站外视频集请点击上方播放列表'
     );
 
     const videosHTML = `
@@ -64,7 +64,7 @@ function renderVariety(data) {
 
     const dividerHTML = createSectionDivider(
         'Featured Variety Shows Videos',
-        'Watch selected variety shows directly through embedded videos below. <br>For the complete collection, use the playlist card above.<br> 在本页浏览可直接点击以下视频卡，更全站外视频集请点击上方播放列表'
+        'Watch selected variety shows directly through embedded videos below. <br>See the playlist cards above for all shows.<br> 本页浏览可直接点击以下视频卡，更全站外视频集请点击上方播放列表'
     );
 
     const videosHTML = `
