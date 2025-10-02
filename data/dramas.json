@@ -1817,13 +1817,18 @@
       "description": "The COVID-19 pandemic in China serves as the backdrop for this 7-part series.",
       "previewEpisodes": [
         {
+          "url": "https://www.youtube.com/watch?v=dub3zAJo9Eg",
+          "thumbnail": "https://i.ytimg.com/vi/dub3zAJo9Eg/mqdefault.jpg",
+          "title": "20200920CCTV8星推荐肖战蔡丁专访"
+        },
+        {
           "url": "https://www.youtube.com/watch?v=ttmwU8mYYac",
-          "thumbnail": "cd.jpg",
+          "thumbnail": "https://i.ytimg.com/vi/ttmwU8mYYac/mqdefault.jpg",
           "title": "EP 1"
         },
         {
           "url": "https://www.youtube.com/watch?v=jC_1ErkEaVY",
-          "thumbnail": "cd.jpg",
+          "thumbnail": "https://i.ytimg.com/vi/jC_1ErkEaVY/mqdefault.jpg",
           "title": "EP 2"
         }
       ],
@@ -2114,14 +2119,14 @@
           "url": "https://www.youtube.com/watch?v=c19uhyLrqcM",
           "thumbnail": "https://i.ytimg.com/vi/c19uhyLrqcM/mqdefault.jpg",
           "title": "EP 5"
-        },
+        }
+      ],
+      "allEpisodes": [
         {
           "url": "https://www.youtube.com/watch?v=SxWqQ414oWE",
           "thumbnail": "https://i.ytimg.com/vi/SxWqQ414oWE/mqdefault.jpg",
           "title": "EP 6"
-        }
-      ],
-      "allEpisodes": [
+        },
         {
           "url": "https://www.youtube.com/watch?v=oNOBHcIjlbA",
           "thumbnail": "https://i.ytimg.com/vi/oNOBHcIjlbA/mqdefault.jpg",
