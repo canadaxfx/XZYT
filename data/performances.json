@@ -309,6 +309,11 @@
       "playlistUrl": "https://www.youtube.com/playlist?list=PLxbgQdcnIafilPb623TecynKrRGbt_zp9",
       "previewEpisodes": [
         {
+          "url": "https://www.youtube.com/watch?v=eXRtNG3dYg4",
+          "thumbnail": "https://i.ytimg.com/vi/eXRtNG3dYg4/mqdefault.jpg",
+          "title": "岁岁年年"
+        },
+        {
           "url": "https://www.youtube.com/watch?v=UuaGVJPGK-o",
           "thumbnail": "https://i.ytimg.com/vi/UuaGVJPGK-o/mqdefault.jpg",
           "title": "晚安 Bonne Nuit"
@@ -332,18 +337,13 @@
           "url": "https://www.youtube.com/watch?v=RF2rT_hkYLg",
           "thumbnail": "https://i.ytimg.com/vi/RF2rT_hkYLg/mqdefault.jpg",
           "title": "不要回头<br>Go ahead"
-        },
-        {
-          "url": "https://www.youtube.com/watch?v=T0BhjJuyI1g",
-          "thumbnail": "https://i.ytimg.com/vi/T0BhjJuyI1g/mqdefault.jpg",
-          "title": "我们 Wild"
         }
       ],
       "allEpisodes": [
         {
-          "url": "https://www.youtube.com/watch?v=ZXg0dzA6iVo",
-          "thumbnail": "https://i.ytimg.com/vi/ZXg0dzA6iVo/mqdefault.jpg",
-          "title": "岁岁年年"
+          "url": "https://www.youtube.com/watch?v=T0BhjJuyI1g",
+          "thumbnail": "https://i.ytimg.com/vi/T0BhjJuyI1g/mqdefault.jpg",
+          "title": "我们 Wild"
         },
         {
           "url": "https://www.youtube.com/watch?v=PTBLlCrPHIg",
@@ -409,6 +409,13 @@
     }
   ],
   "featuredVideos": [
+    {
+      "id": "xiao-zhan-27",
+      "year": "2025-10-05",
+      "title": "Xiao Zhan 岁岁年年",
+      "embedUrl": "https://www.youtube.com/embed/eXRtNG3dYg4",
+      "description": "the Mid-Autumn Festival MV produced by People's Daily<br>人民日报新媒体中秋定制MV：岁岁年年"
+    },
     {
       "id": "xiao-zhan-27",
       "year": "2025-09-28",
