@@ -1,779 +1,1139 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5FG504D59"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J5FG504D59');
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Screen Arts of Xiao Zhan</title>
+    <title>XZ Screen Universe on YouTube  肖战作品YouTube聚合站</title>
     <meta name="robots" content="noai, noimageai">
     <meta name="copyright" content="Content curation and organization © 2025 CanadaXFX. Unauthorized AI training prohibited.">
-    <link rel="preload" href="xiao-zhan1-1.jpg" as="image">
-
-    <!-- Keep all your existing CSS styles exactly as they are -->
-    <style>
-        /* PASTE ALL YOUR EXISTING CSS HERE - Keep it exactly the same */
-        :root {
-            --primary-color:#3f3f7d;
-            --secondary-color:#f8f8ff;
-            --accent-color:#7f3a7f;
-            --text-color:#333;
-            --light-gray:#f0f0f0
-        }
-
-        * {
-            box-sizing:border-box;
-            margin:0;
-            padding:0;
-            font-family:'Arial',sans-serif
-        }
-
-        body {
-            color:var(--text-color);
-            line-height:1.6;
-            background-color:var(--secondary-color)
-        }
-
-        .container {
-            max-width:1200px;
-            margin:0 auto;
-            padding:20px
-        }
-
-        header {
-            position:relative;
-            background-color:var(--primary-color);
-            color:#fff;
-            text-align:center;
-            padding:1rem 0;
-            overflow:hidden;
-            min-height:200px
-        }
-
-        .header-bg-carousel {
-            position:absolute;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            z-index:1;
-            overflow:hidden
-        }
-
-        .image-strip {
-            position:absolute;
-            top:0;
-            left:0;
-            height:100%;
-            display:flex;
-            will-change:transform;
-            backface-visibility:hidden;
-            transform:translateZ(0)
-        }
-
-        .image-strip img {
-            height:100%;
-            width:auto;
-            object-fit:cover;
-            flex-shrink:0;
-            -webkit-backface-visibility:hidden;
-            -moz-backface-visibility:hidden;
-            -webkit-perspective:1000;
-            -moz-perspective:1000
-        }
-
-        .header-overlay {
-            position:absolute;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            background-color:#00000080;
-            z-index:2
-        }
-
-        .header-content {
-            position:relative;
-            z-index:3
-        }
-
-        .profile-img {
-            width:80px;
-            height:80px;
-            border-radius:50%;
-            object-fit:cover;
-            border:5px solid #fff;
-            margin-bottom:1rem;
-            box-shadow:0 0 20px #0000004d
-        }
-
-        h1 {
-            font-size:1.3rem;
-            margin-bottom:10px;
-            white-space:nowrap
-        }
-
-        .subtitle {
-            font-size:.8rem;
-            font-weight:400;
-            white-space:nowrap;
-            margin-bottom:15px
-        }
-
-        .category-tabs {
-            display:flex;
-            justify-content:center;
-            margin-bottom:20px;
-            gap:5px;
-            flex-wrap:wrap
-        }
-
-        .tab {
-            padding:8px 10px;
-            background-color:#e0e0e0;
-            cursor:pointer;
-            margin:2px;
-            border-radius:5px;
-            transition:background-color .3s;
-            font-weight:700;
-            text-align:center;
-            font-size:1rem;
-            flex:0 0 auto;
-            min-width:60px;
-            white-space:normal;
-            height:auto;
-            display:flex;
-            flex-direction:column;
-            align-items:center;
-            justify-content:center
-        }
-
-        .tab::after {
-            content:"";
-            display:block;
-            margin-top:2px;
-            font-size:.7rem;
-            white-space:nowrap
-        }
-
-        .tab:hover {
-            background-color:#d0d0d0
-        }
-
-        .tab.active {
-            background-color:var(--primary-color);
-            color:#fff;
-            border:2px solid var(--accent-color)
-        }
-
-        .content-section {
-            display:none
-        }
-
-        .content-section.active {
-            display:block
-        }
-
-        .youtube-tab {
-            background:linear-gradient(135deg,red 0%,#C00 100%);
-            color:#fff;
-            border:2px solid red;
-            padding:8px 10px;
-            cursor:pointer;
-            margin:5px;
-            border-radius:5px;
-            transition:background-color .3s;
-            font-weight:700;
-            text-align:center;
-            font-size:1rem;
-            padding-left:25px;
-            box-shadow:0 0 8px #ff000080;
-            padding:14px 20px;
-            text-shadow:0 1px 2px #0000004d;
-            position:relative;
-            padding-left:40px
-        }
-
-        .youtube-tab::before {
-            content:"▶";
-            position:absolute;
-            left:8px;
-            font-size:14px;
-            top:50%;
-            transform:translateY(-50%)
-        }
-
-        .youtube-tab:hover {
-            background:linear-gradient(135deg,red 0%,#F33 100%);
-            transform:translateY(-3px);
-            box-shadow:0 4px 12px #f006;
-            transition:all .3s ease
-        }
-
-        .youtube-tab::after {
-            content:"";
-            position:absolute;
-            width:100%;
-            height:100%;
-            top:0;
-            left:0;
-            border-radius:5px;
-            opacity:0;
-            background:radial-gradient(circle,#ffffff4d 0%,#fff0 70%);
-            transition:opacity .3s ease
-        }
-
-        .youtube-tab:hover::after {
-            opacity:1
-        }
-
-        @keyframes subtle-pulse {
-            0% {
-                box-shadow:0 0 8px #ff000080
-            }
-
-            50% {
-                box-shadow:0 0 12px #ff0000b3
-            }
-
-            100% {
-                box-shadow:0 0 8px #ff000080
-            }
-        }
-
-        .youtube-tab {
-            animation:subtle-pulse 2s infinite
-        }
-
-        .work-item {
-            background-color:#fff;
-            border-radius:8px;
-            padding:20px;
-            margin-bottom:20px;
-            box-shadow:0 2px 10px #0000000d;
-            transition:transform .3s
-        }
-
-        .work-item:hover {
-            transform:translateY(-5px);
-            box-shadow:0 5px 15px #0000001a
-        }
-
-        .work-item.hidden {
-            display:none
-        }
-
-        .work-title {
-            font-size:1.1rem;
-            color:var(--primary-color);
-            margin-bottom:10px
-        }
-
-        .work-year {
-            font-weight:700;
-            color:var(--accent-color);
-            margin-bottom:5px
-        }
-
-        .work-role {
-            font-style:italic;
-            margin-bottom:10px
-        }
-
-        .work-description {
-            margin-bottom:15px
-        }
-
-        .platform-links {
-            display:flex;
-            flex-wrap:wrap;
-            gap:10px
-        }
-
-        .platform-link {
-            padding:5px 15px;
-            background-color:var(--primary-color);
-            color:#fff;
-            text-decoration:none;
-            border-radius:20px;
-            font-size:.9rem;
-            transition:background-color .3s
-        }
-
-        .platform-link:hover {
-            background-color:var(--accent-color)
-        }
-
-        .highlight {
-            background-color:#8f4a8f4d;
-            padding:0 2px;
-            border-radius:2px
-        }
-
-        .search-container {
-            display:flex;
-            flex-wrap:wrap;
-            align-items:center;
-            justify-content:center;
-            gap:10px;
-            max-width:600px;
-            margin:30px auto 0
-        }
-
-        #search-input {
-            flex:1;
-            min-width:200px;
-            max-width:600px;
-            padding:10px 15px;
-            border:1px solid #ddd;
-            border-radius:5px;
-            font-size:1rem;
-            outline:none
-        }
-
-        #search-input:focus {
-            border-color:var(--primary-color);
-            box-shadow:0 0 3px #4a4a8f4d
-        }
-
-        #search-button,#clear-search {
-            padding:10px 15px;
-            background-color:var(--primary-color);
-            color:#fff;
-            border:none;
-            border-radius:5px;
-            cursor:pointer;
-            transition:background-color .3s
-        }
-
-        #search-button:hover,#clear-search:hover {
-            background-color:var(--accent-color)
-        }
-
-        #clear-search {
-            background-color:#999
-        }
-
-        #search-results-count {
-            width:100%;
-            margin-top:5px;
-            font-size:.9rem;
-            color:var(--accent-color)
-        }
-
-        .music-player {
-            position:fixed;
-            bottom:8px;
-            right:20px;
-            z-index:1000;
-            background-color:#ffffffe6;
-            border-radius:50px;
-            padding:8px 16px;
-            box-shadow:0 2px 10px #0003;
-            display:flex;
-            align-items:center;
-            transition:all .3s ease;
-            opacity:.85
-        }
-
-        .music-controls {
-            display:flex;
-            align-items:center;
-            gap:8px
-        }
-
-        .play-btn,.control-btn {
-            background-color:var(--primary-color);
-            color:#fff;
-            border:none;
-            border-radius:50%;
-            width:36px;
-            height:36px;
-            cursor:pointer;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            transition:all .3s ease
-        }
-
-        .play-btn:hover,.control-btn:hover {
-            background-color:#1a252f;
-            transform:scale(1.1)
-        }
-
-        .track-info {
-            margin-left:10px;
-            font-size:.9rem;
-            color:var(--text-color);
-            white-space:nowrap;
-            max-width:150px;
-            overflow:hidden;
-            text-overflow:ellipsis
-        }
-
-        #back-to-top {
-            position:fixed;
-            bottom:20px;
-            left:20px;
-            background:#fff;
-            color:#e53e3e;
-            width:80px;
-            height:150x;
-            border-radius:60px;
-            display:flex;
-            flex-direction:column;
-            align-items:center;
-            justify-content:center;
-            cursor:pointer;
-            box-shadow:0 4px 20px #00000026;
-            opacity:0;
-            visibility:hidden;
-            transition:all .3s ease;
-            z-index:9999;
-            border:3px solid #e53e3e;
-            font-size:30px;
-            font-weight:600;
-            -webkit-text-stroke:2px #e53e3e;
-            text-stroke:2px #e53e3e;
-            padding:4px
-        }
-
-        #back-to-top .arrow {
-            line-height:1
-        }
-
-        #back-to-top .text {
-            font-size:9px;
-            font-weight:600;
-            margin-top:0;
-            text-align:center;
-            line-height:1;
-            color:#e53e3e;
-            -webkit-text-stroke:0;
-            text-stroke:0;
-            -webkit-text-fill-color:#e53e3e;
-            position:relative;
-            z-index:1
-        }
-
-        #back-to-top.visible {
-            opacity:.8;
-            visibility:visible;
-            animation:subtle-pulse-white 2s infinite ease-in-out
-        }
-
-        #back-to-top:hover {
-            transform:scale(1.15);
-            box-shadow:0 6px 25px #e53e3e66;
-            opacity:1
-        }
-
-        @keyframes subtle-pulse-white {
-            0%,100% {
-                box-shadow:0 4px 20px #00000026
-            }
-
-            50% {
-                box-shadow:0 4px 20px #e53e3e4d
-            }
-        }
-
-        .section-title {
-            text-align:center;
-            margin-bottom:20px;
-            color:var(--primary-color)
-        }
-
-        .site-footer {
-            background-color:var(--primary-color);
-            color:#fff;
-            padding:30px 0;
-            margin-top:50px
-        }
-
-        .footer-content {
-            text-align:center;
-            margin-bottom:20px
-        }
-
-        .footer-links {
-            margin-bottom:0;
-            display:flex;
-            justify-content:center;
-            gap:20px;
-            flex-wrap: wrap;
-            font-size: 0.8rem
-        }
-
-        .footer-link {
-            color:#fff;
-            margin:0 5px;
-            text-decoration:underline;
-            transition:all .3s;
-            padding:5px;
-            border-radius:4px;
-            font-weight:700;
-            font-style:italic;
-            white-space: nowrap;
-        }
-
-        .footer-link:hover {
-            opacity:.8
-        }
-
-        .copyright-notice {
-            border-top:1px solid #fff3;
-            padding-top:15px;
-            margin-top:15px;
-            text-align:center;
-            font-size: 0.7rem
-        }
-
-        #terms-toggle {
-            display:inline-block;
-            color:#fff;
-            background-color:var(--accent-color);
-            padding:5px 15px;
-            border-radius:4px;
-            margin:10px auto;
-            font-weight:700;
-            text-decoration:none;
-            transition:all .3s ease
-        }
-
-        #terms-toggle:hover {
-            background-color:#fff;
-            color:var(--accent-color);
-            transform:translateY(-2px);
-            box-shadow:0 2px 5px #0003
-        }
-
-        #terms-content {
-            background-color:#ffffff1a;
-            border-radius:5px;
-            padding:15px;
-            margin-top:10px;
-            text-align:left
-        }
-
-        #terms-content ul {
-            list-style-type:disc;
-            padding-left:20px;
-            margin-top:10px
-        }
-
-        #terms-content li {
-            margin-bottom:5px
-        }
-
-        .copyright-text ul {
-            list-style-type:disc;
-            padding-left:30px;
-            text-align:left
-        }
-
-        .copyright-text li {
-            margin-bottom:0
-        }
-
-        @media (max-width: 768px) {
-            .music-player {
-                bottom:20px;
-                right:8px;
-                padding:4px 8px;
-                border-radius:25px
-            }
-
-            .music-controls {
-                gap:4px
-            }
-
-            .play-btn,.control-btn {
-                width:28px;
-                height:28px;
-                font-size:12px
-            }
-
-            .track-info {
-                max-width:80px;
-                font-size:.75rem;
-                margin-left:6px
-            }
-
-            #back-to-top {
-                bottom:8px;
-                left:8px;
-                width:60px;
-                padding:2px
-            }
-
-            #back-to-top .text {
-                font-size:7px
-            }
-        }
-
-        @media (max-width: 380px) {
-            .tab {
-                padding:6px 8px;
-                font-size:.75rem;
-                margin:1px;
-                min-width:50px
-            }
-
-            .youtube-tab {
-                padding:6px 8px;
-                padding-left:20px;
-                font-size:.75rem
-            }
-
-            .youtube-tab::before {
-                left:5px;
-                font-size:12px
-            }
-        }
-
-        /* Loading state */
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: var(--accent-color);
-            font-size: 1.2rem;
-        }
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- ALL YOUR EXISTING CSS STAYS EXACTLY THE SAME -->
+<style>
+#back-to-top {
+position:fixed;
+bottom:20px;
+left:20px;
+background:#fff;
+color:#e53e3e;
+width:80px;
+height:60px;
+border-radius:60px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+box-shadow:0 4px 20px #00000026;
+opacity:0;
+visibility:hidden;
+transition:all .3s ease;
+z-index:9999;
+border:3px solid #e53e3e;
+font-size:30px;
+font-weight:600;
+-webkit-text-stroke:2px #e53e3e;
+text-stroke:2px #e53e3e;
+padding:4px
+}
+
+#back-to-top .arrow {
+line-height:1
+}
+
+#back-to-top .text {
+font-size:9px;
+font-weight:600;
+margin-top:0;
+text-align:center;
+line-height:1;
+color:#e53e3e;
+-webkit-text-stroke:0;
+text-stroke:0;
+-webkit-text-fill-color:#e53e3e;
+position:relative;
+z-index:1
+}
+
+#back-to-top.visible {
+opacity:.8;
+visibility:visible;
+animation:subtle-pulse-white 2s infinite ease-in-out
+}
+
+#back-to-top:hover {
+transform:scale(1.15);
+box-shadow:0 6px 25px #e53e3e66;
+opacity:1
+}
+
+@keyframes subtle-pulse-white {
+0%,100% {
+box-shadow:0 4px 20px #00000026
+}
+
+50% {
+box-shadow:0 4px 20px #e53e3e4d
+}
+}
+
+</style>
+<style>
+:root {
+--primary-color:#3f3f7d;
+--secondary-color:#f8f8ff;
+--accent-color:#7f3a7f;
+--text-color:#333;
+--light-gray:#f5f5f5;
+--card-shadow:0 3px 15px #00000014;
+--hover-shadow:0 10px 25px #0000001f
+}
+
+* {
+box-sizing:border-box;
+margin:0;
+padding:0
+}
 
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+font-family:'Noto Sans',Arial,sans-serif;
+background-color:var(--secondary-color);
+color:var(--text-color);
+line-height:1.6
+}
+
+.container {
+max-width:1200px;
+margin:0 auto;
+padding:0 20px
+}
+
+.site-header {
+background-color:var(--primary-color);
+color:#fff;
+padding:2rem 0;
+text-align:center;
+position:relative;
+overflow:hidden
+}
+
+.site-header::before {
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+opacity:.2;
+filter:blur(3px)
+}
+
+.header-content {
+position:relative;
+z-index:1
+}
+
+.profile-img {
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid #fff;
+margin-bottom:1rem;
+box-shadow:0 0 15px #0003
+}
+
+.site-title {
+font-size:1.2rem;
+margin-bottom:10px
+}
+
+.site-subtitle {
+font-size:.8rem;
+font-weight:400;
+opacity:.9
+}
+
+.main-nav {
+background-color:#fff;
+box-shadow:0 2px 10px #0000000d;
+position:sticky;
+top:0;
+z-index:100
+}
+
+.nav-container {
+display:flex;
+justify-content:center;
+padding:0
+}
+
+.nav-list {
+display:flex;
+list-style:none;
+overflow-x:auto;
+padding:0;
+-webkit-overflow-scrolling:touch;
+overscroll-behavior:contain
+}
+
+.nav-item {
+flex-shrink:0
+}
+
+.nav-link {
+display:block;
+padding:15px 20px;
+color:var(--text-color);
+text-decoration:none;
+font-weight:700;
+transition:all .3s;
+white-space:nowrap;
+text-align:center
+}
+
+.nav-link:hover,.nav-link.active {
+color:var(--primary-color);
+background-color:#3f3f7d0d
+}
+
+.nav-link.active {
+border-bottom:7px solid var(--primary-color)
+}
+
+.back-button-container {
+position:absolute;
+top:15px;
+left:15px;
+z-index:5
+}
+
+.back-button {
+background-color:#ffffffe6;
+color:var(--primary-color);
+border:none;
+padding:6px 10px;
+border-radius:15px;
+font-weight:700;
+cursor:pointer;
+display:flex;
+align-items:center;
+box-shadow:0 2px 5px #0000001a;
+transition:all .3s;
+text-decoration:none;
+font-size:.9rem
+}
+
+.back-button:hover {
+background-color:#fff;
+box-shadow:0 4px 8px #00000026;
+transform:translateY(-2px)
+}
+
+.back-arrow {
+margin-right:5px;
+font-size:18px;
+font-weight:700
+}
+
+.main-content {
+padding:40px 0
+}
+
+.search-container {
+max-width:100%;
+margin:0 auto 40px;
+display:flex;
+gap:10px
+}
+
+.search-input {
+flex:1;
+padding:12px 15px;
+border:1px solid #ddd;
+border-radius:5px;
+font-size:1rem
+}
+
+.search-button {
+background-color:var(--primary-color);
+color:#fff;
+border:none;
+padding:0 20px;
+border-radius:5px;
+cursor:pointer;
+transition:background-color .3s
+}
+
+.search-button:hover {
+background-color:var(--accent-color)
+}
+
+.clear-button {
+background-color:#e0e0e0;
+color:var(--text-color);
+border:none;
+padding:0 20px;
+border-radius:5px;
+cursor:pointer;
+transition:background-color .3s
+}
+
+.clear-button:hover {
+background-color:#d0d0d0
+}
+
+.tab-container {
+margin-bottom:30px
+}
+
+.tab-buttons {
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:30px
+}
+
+.tab-button {
+padding:10px 20px;
+background-color:#e0e0e0;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-weight:600;
+transition:all .3s
+}
+
+.tab-button:hover {
+background-color:#d0d0d0
+}
+
+.tab-button.active {
+background-color:var(--primary-color);
+color:#fff
+}
+
+.tab-content {
+display:none
+}
+
+.tab-content.active {
+display:block
+}
+
+.drama-cards {
+display:flex;
+flex-direction:column;
+gap:30px;
+margin-bottom:15px;
+border:1px solid #0000000d
+}
+
+.drama-card {
+display:flex;
+background-color:#fff;
+border-radius:10px;
+overflow:hidden;
+box-shadow:var(--card-shadow);
+transition:transform 0.3s,box-shadow .3s
+}
+
+.drama-card:hover {
+transform:translateY(-5px);
+box-shadow:var(--hover-shadow)
+}
+
+.drama-poster {
+flex:0 0 300px;
+position:relative;
+overflow:hidden
+}
+
+.drama-poster img {
+width:100%;
+height:100%;
+object-fit:cover;
+transition:transform .5s
+}
+
+.drama-card:hover .drama-poster img {
+transform:scale(1.05)
+}
+
+.episode-count {
+position:absolute;
+top:10px;
+right:10px;
+background-color:#000000b3;
+color:#fff;
+padding:5px 10px;
+border-radius:20px;
+font-size:.8rem;
+font-weight:700
+}
+
+.year-label {
+position:absolute;
+top:10px;
+left:10px;
+background-color:var(--primary-color);
+color:#fff;
+padding:5px 10px;
+border-radius:20px;
+font-size:.8rem;
+font-weight:700
+}
+
+.watch-now-overlay {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-color:#00000080;
+display:flex;
+justify-content:center;
+align-items:center;
+opacity:0;
+transition:opacity .3s
+}
+
+.drama-card:hover .watch-now-overlay {
+opacity:1
+}
+
+.watch-button {
+background-color:var(--primary-color);
+color:#fff;
+padding:10px 20px;
+border-radius:5px;
+font-weight:700;
+text-decoration:none;
+transition:background-color .3s
+}
+
+.watch-button:hover {
+background-color:var(--accent-color)
+}
+
+.drama-info {
+flex:1;
+padding:20px;
+display:flex;
+flex-direction:column
+}
+
+.drama-title {
+color:var(--primary-color);
+font-size:1rem;
+margin:0 0 5px
+}
+
+.drama-role {
+color:var(--accent-color);
+font-style:italic;
+margin:0 0 10px;
+font-size:.8rem
+}
+
+.drama-description {
+margin-bottom:15px;
+font-size:0.8rem;
+}
+
+.drama-episodes {
+margin-top:auto
+}
+
+.episodes-preview {
+display:flex;
+gap:15px;
+margin-bottom:10px;
+overflow-x:auto;
+padding-bottom:5px;
+scrollbar-width:thin;
+scrollbar-color:var(--primary-color) #f0f0f0
+}
+
+.episodes-preview::-webkit-scrollbar {
+height:6px
+}
+
+.episodes-preview::-webkit-scrollbar-track {
+background:#f0f0f0;
+border-radius:10px
+}
+
+.episodes-preview::-webkit-scrollbar-thumb {
+background-color:var(--primary-color);
+border-radius:10px
+}
+
+.episode-preview {
+flex:0 0 auto;
+text-decoration:none
+}
+
+.episode-thumbnail {
+position:relative;
+width:120px;
+height:68px;
+border-radius:5px;
+overflow:hidden
+}
+
+.episode-thumbnail img {
+width:100%;
+height:100%;
+object-fit:cover;
+transition:transform .3s
+}
+
+.episode-preview:hover .episode-thumbnail img {
+transform:scale(1.1)
+}
+
+.episode-number {
+position:absolute;
+bottom:5px;
+right:5px;
+background-color:#000000b3;
+color:#fff;
+padding:2px 5px;
+border-radius:3px;
+font-size:.7rem
+}
+
+.all-episodes-container {
+display:none;
+padding-top:20px;
+margin-top:20px;
+border-top:1px dashed #ddd
+}
+
+.all-episodes-container.expanded {
+display:block
+}
+
+.all-episodes-grid {
+grid-template-columns:repeat(auto-fill,minmax(120px,0fr));
+gap:15px;
+margin-bottom:10px;
+overflow-x:auto;
+padding-bottom:5px;
+display:grid
+}
+
+.toggle-episodes-btn {
+display:inline-block;
+color:var(--primary-color);
+font-weight:700;
+text-decoration:none;
+padding:5px 0;
+transition:color .3s;
+cursor:pointer
+}
+
+.toggle-episodes-btn:hover {
+color:var(--accent-color)
+}
+
+.toggle-episodes-btn .close-text {
+display:none
+}
+
+.toggle-episodes-btn.expanded .view-text {
+display:none
+}
+
+.toggle-episodes-btn.expanded .close-text {
+display:inline
+}
+
+.video-grid {
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+gap:20px
+}
+
+.video-item {
+background-color:#fff;
+border-radius:10px;
+overflow:hidden;
+box-shadow:var(--card-shadow);
+transition:transform 0.3s,box-shadow .3s
+}
+
+.video-item:hover {
+transform:translateY(-5px);
+box-shadow:var(--hover-shadow)
+}
+
+.video-container {
+position:relative;
+padding-bottom:56.25%;
+height:0
+}
+
+.video-container iframe {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+border:0
+}
+
+.video-info {
+padding:15px
+}
+
+.video-title {
+font-size:.9rem;
+color:var(--primary-color);
+margin:0 0 5px;
+flex-wrap:wrap;
+display:flex
+}
+
+.video-description {
+font-size:.8rem;
+color:var(--text-color);
+opacity:.8
+}
+
+.site-footer .copyright-text ul {
+list-style-type:disc;
+padding-left:30px;
+text-align:left
+}
+
+.site-footer .copyright-text li {
+margin-bottom:10px
+}
+
+.site-footer .copyright-notice {
+text-align:center
 }
 
 .site-footer {
-    margin-top: auto;
+background-color:var(--primary-color);
+color:#fff;
+padding:30px 0;
+margin-top:50px;
+text-align:center
 }
 
+.footer-content {
+text-align:center;
+margin-bottom:20px
+}
+
+.footer-link {
+color:#fff;
+text-decoration:underline;
+margin:0 10px;
+transition:all .3s;
+padding:5px 10px;
+border-radius:4px;
+font-weight:700;
+font-style:italic;
+white-space:nowrap;
+font-size:.8rem;
+display:flex;
+flex-wrap:wrap;
+justify-content:center
+}
+
+.footer-link:hover {
+background-color:#fff3;
+text-decoration:underline;
+transform:translateY(-2px)
+}
+
+.copyright {
+font-size:.7rem;
+opacity:.7
+}
+
+.copyright-notice {
+border-top:1px solid #fff3;
+padding-top:15px;
+margin-top:15px;
+text-align:center;
+font-size:.7rem
+}
+
+#terms-toggle {
+display:inline-block;
+color:#fff;
+background-color:var(--accent-color);
+padding:5px 15px;
+border-radius:4px;
+margin:10px auto;
+font-weight:700;
+text-decoration:none;
+transition:all .3s ease
+}
+
+#terms-toggle:hover {
+background-color:#fff;
+color:var(--accent-color);
+transform:translateY(-2px);
+box-shadow:0 2px 5px #0003
+}
+
+#terms-content {
+background-color:#ffffff1a;
+border-radius:5px;
+padding:15px;
+margin-top:10px;
+text-align:left
+}
+
+#terms-content ul {
+list-style-type:disc;
+padding-left:20px;
+margin-top:10px
+}
+
+#terms-content li {
+margin-bottom:5px
+}
+
+.search-results-count {
+text-align:center;
+margin-bottom:20px;
+font-weight:500;
+color:var(--accent-color)
+}
+
+.no-results {
+text-align:center;
+padding:30px;
+background-color:#fff;
+border-radius:10px;
+box-shadow:var(--card-shadow)
+}
+
+.no-results h3 {
+color:var(--primary-color);
+margin-bottom:10px
+}
+
+.highlight {
+background-color:#7f3a7f26;
+padding:0 3px;
+border-radius:3px
+}
+
+.hidden {
+display:none!important
+}
+
+.section-divider {
+margin:40px 0;
+text-align:center;
+position:relative;
+padding:20px;
+background-color:var(--light-gray);
+border-radius:10px;
+box-shadow:var(--card-shadow)
+}
+
+.divider-heading {
+color:var(--primary-color);
+font-size:1rem;
+margin-bottom:10px
+}
+
+.divider-text {
+color:var(--text-color);
+max-width:800px;
+margin:0 auto;
+opacity:.75;
+font-size:.8rem
+}
+
+.section-divider::before,.section-divider::after {
+content:'';
+height:1px;
+width:100%;
+background:linear-gradient(to right,transparent,var(--primary-color),transparent);
+position:absolute;
+left:0
+}
+
+.section-divider::before {
+top:0
+}
+
+.section-divider::after {
+bottom:0
+}
+
+.episode-number {
+font-size:.65rem;
+padding:1px 3px;
+line-height:1.1
+}
+
+</style>
+<style>
+* ==========================================================================
+Responsive Styles - Organized by breakpoint
+========================================================================== */
+/* Small Mobile Devices (up to 360px) */
+@media (max-width: 360px) {
+.nav-linkfont-size:.75rem;
+padding:8px 2px
+}
+
+.back-button {
+padding:3px 6px;
+font-size:.7rem
+}
+
+@media (max-width: 480px) {
+.search-container {
+margin:0 auto 20px
+}
+
+.search-input {
+padding:6px 8px;
+font-size:.85rem
+}
+
+.search-button,.clear-button {
+padding:0 8px;
+font-size:.85rem
+}
+}
+
+@media (max-width: 600px) {
+.nav-link {
+padding:12px 15px;
+font-size:.9rem
+}
+
+.drama-title {
+font-size:.9rem
+}
+
+.back-button-container {
+top:10px;
+left:10px
+}
+
+.back-button {
+padding:6px 12px;
+font-size:.8rem
+}
+
+.episode-thumbnail {
+width:100px;
+height:56px
+}
+}
+
+@media (max-width: 768px) {
+.back-button-container {
+top:10px;
+left:10px
+}
+
+.back-button {
+padding:4px 8px;
+font-size:.75rem;
+border-radius:12px
+}
+
+.back-arrow {
+font-size:14px;
+margin-right:3px
+}
+
+.drama-card {
+flex-direction:column
+}
+
+.drama-poster {
+flex:0 0 auto;
+height:200px
+}
+
+.profile-img {
+width:100px;
+height:100px
+}
+
+.nav-container {
+width:100%;
+padding:0
+}
+
+.nav-list {
+display:flex;
+width:100%;
+justify-content:space-between
+}
+
+.nav-item {
+flex:1
+}
+
+.nav-link {
+padding:10px 5px;
+font-size:.85rem;
+white-space:normal;
+text-align:center;
+width:100%;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+min-height:60px
+}
+
+#back-to-top {
+bottom:8px;
+left:8px;
+width:60px;
+padding:2px
+}
+
+#back-to-top .text {
+font-size:7px
+}
+
+.search-container {
+max-width:100%;
+margin:0 auto 30px;
+gap:5px
+}
+
+.search-input {
+padding:8px 10px;
+font-size:.9rem
+}
+
+.search-button,.clear-button {
+padding:0 12px;
+font-size:.9rem;
+white-space:nowrap
+}
+
+.episodes-preview {
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+overflow-x:visible;
+padding-bottom:10px
+}
+
+.episode-preview {
+width:100%
+}
+
+.episode-thumbnail {
+width:100%!important;
+height:0!important;
+padding-bottom:56.25%;
+position:relative
+}
+
+.episode-thumbnail img {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:center 20%
+}
+
+.drama-poster {
+height:auto
+}
+
+.all-episodes-grid {
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+overflow-x:visible;
+padding-bottom:10px;
+width:100%
+}
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+.drama-card {
+flex-direction:column
+}
+
+.drama-poster {
+flex:0 0 auto;
+height:300px
+}
+
+.profile-img {
+width:100px;
+height:100px
+}
+
+.episode-number {
+font-size:clamp(0.7rem,(100% / (var(--title-length,1) * 0.8)) * 0.8rem,0.8rem)
+}
+
+.episodes-preview {
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:10px;
+overflow-x:visible;
+padding-bottom:10px
+}
+
+.episode-preview {
+width:100%
+}
+
+.episode-thumbnail {
+width:100%;
+height:0;
+padding-bottom:56.25%;
+position:relative
+}
+
+.episode-thumbnail img {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:center 25%
+}
+
+.drama-poster img {
+object-position:center 15%
+}
+
+.all-episodes-grid {
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:10px;
+overflow-x:visible
+}
+}
+
+@media (min-width: 769px) and (max-width: 900px) {
+.episodes-preview {
+grid-template-columns:repeat(3,1fr);
+grid-template-rows:repeat(2,auto)
+}
+
+.all-episodes-grid {
+grid-template-columns:repeat(3,1fr);
+grid-template-rows:repeat(2,auto)
+}
+}
     </style>
-
-    <!-- Keep your Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3EF01R2111"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-3EF01R2111');
-    </script>
 </head>
-
 <body>
-    <!-- Music Player -->
-    <div class="music-player">
-        <audio id="background-music"></audio>
-        <div class="music-controls">
-            <button id="prev-track" class="control-btn">⏪</button>
-            <button id="music-toggle" class="play-btn">
-                <span class="music-icon">▶️</span>
-            </button>
-            <button id="next-track" class="control-btn">⏩</button>
-            <button id="shuffle-toggle" class="control-btn">🔀</button>
-            <span id="track-name" class="track-info">Select a track</span>
+    <!-- HEADER - Stays exactly the same -->
+    <header class="site-header">
+        <div class="back-button-container">
+            <a href="https://canadaxfx.github.io/XZworks/" class="back-button">
+                <span class="back-arrow">←</span> Back to Main Site<br>回主页
+            </a>
         </div>
-    </div>
-
-    <!-- Header -->
-    <header>
-        <div class="header-bg-carousel">
-            <div class="image-strip"></div>
-        </div>
-        <div class="header-overlay"></div>
         <div class="header-content">
-            <img src="logo.jpg" alt="Xiao Zhan" class="profile-img" id="profile-img">
-            <h1>Screen Arts of Xiao Zhan</h1>
-            <p class="subtitle">Collection of dramas, movies, and shows</p>
-            <p class="subtitle">Also welcome to visit:</p>        
-            <div class="footer-links">
-                <a href="https://www.youtube.com/@CanadaXFX" target="_blank" class="footer-link">CanadaXFX on YouTube</a>
-                <a href="https://canadaxfx.github.io/XZ-photo-gallery/" target="_blank" class="footer-link">Xiao Zhan Studio Gallery</a>
-
-            </div>
+            <img src="logo.jpg" alt="Xiao Zhan" class="profile-img">
+            <h1 class="site-title">XZ Screen Universe on YouTube<br>肖战作品YouTube聚合站</h1>
+            <p class="site-subtitle">Explore Xiao Zhan's shows on YouTube<br>For the complete collection from various streaming platforms, please refer to: <br><a href="https://canadaxfx.github.io/XZworks/" target="_blank" style="color: white; text-decoration: underline; font-style: italic; font-weight: 500">the main site: Screen Arts of Xiao Zhan</a><br>Also welcome to visit:<br><a href="https://www.youtube.com/@CanadaXFX" target="_blank" style="color: white; text-decoration: underline; font-style: italic; font-weight: 500">CanadaXFX YouTube Channel</a>&nbsp; &nbsp; &nbsp; &nbsp; <a href="https://canadaxfx.github.io/XZ-photo-gallery/" target="_blank" style="color: white; text-decoration: underline; font-style: italic; font-weight: 500">Xiao Zhan Studio Gallery</a></p>
         </div>
     </header>
     
-    <!-- Search Bar -->
-    <div class="search-container">
-        <input type="text" id="search-input" placeholder="Search by title, role, year..." />
-        <button id="search-button">Search</button>
-        <button id="clear-search">Clear</button>
-        <div id="search-results-count"></div>
-    </div>
-
-    <div class="container">
-        <!-- Category Tabs -->
-        <div class="category-tabs">
-            <div class="tab active" data-section="all">All Works<br>全部演出</div>
-            <div class="tab" data-section="dramas">TV Dramas<br>剧集</div>
-            <div class="tab" data-section="movies">Movies<br>电影</div>
-            <div class="tab" data-section="stage performances">Stages<br>舞台</div>
-            <div class="tab" data-section="variety">Variety Shows<br>综艺</div>
-            <div class="tab youtube-tab">YouTube<br>聚合站</div>
+    <!-- NAVIGATION - Stays exactly the same -->
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#all-dramas" class="nav-link active" data-tab="all-dramas">TV Dramas<br>剧集</a></li>
+                <li class="nav-item"><a href="#performances" class="nav-link" data-tab="performances">Stages & MVs<br>舞台</a></li>
+                <li class="nav-item"><a href="#variety" class="nav-link" data-tab="variety">Variety Shows<br>综艺</a></li>
+            </ul>
         </div>
-        
-        <!-- Content Sections - Works will be loaded dynamically -->
-        <div id="all" class="content-section active">
-            <h2>All Works</h2>
-            <div id="all-container" class="loading">Loading works...</div>
-        </div>
+    </nav>
+    
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- SEARCH - Stays exactly the same -->
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-input" placeholder="Search by title, role, or year...">
+                <button id="search-button" class="search-button">Search</button>
+                <button id="clear-search-button" class="clear-button">Clear</button>
+            </div>
+            
+            <div id="search-results-count" class="search-results-count"></div>
 
-        <div id="dramas" class="content-section">
-            <h2>TV Dramas</h2>
-            <div id="dramas-container"></div>
-        </div>
+            <div class="tab-container">
+                
+                <!-- TAB 1: TV DRAMAS -->
+                <div id="all-dramas" class="tab-content active">
+                    <!-- Drama cards will be dynamically inserted here -->
+                    <div id="drama-cards-container" class="drama-cards">
+                        <!-- Loaded from dramas.json -->
+                    </div>
+                </div>
+ 
+                <!-- TAB 2: PERFORMANCES -->
+                <div id="performances" class="tab-content">
+                    <!-- Performance content will be dynamically inserted here -->
+                    <div id="performances-container">
+                        <!-- Loaded from performances.json -->
+                    </div>
+                </div>
 
-        <div id="movies" class="content-section">
-            <h2>Movies</h2>
-            <div id="movies-container"></div>
-        </div>
-
-        <div id="stage performances" class="content-section">
-            <h2>Stage Performances</h2>
-            <div id="stage-performances-container"></div>
-        </div>
-
-        <div id="variety" class="content-section">
-            <h2>Variety Shows</h2>
-            <div id="variety-container"></div>
-        </div>
-    </div>
-
-    <!-- Social Media Section -->
-    <div class="container">
-        <div class="work-item" style="text-align: center; margin-bottom: 0px;">
-            <h3 class="work-title">Xiao Zhan on Social Media</h3>
-            <p class="work-description">Xiao Zhan's latest updates and activities on various social media platforms.</p>
-            <div style="margin-top: 20px;">
-                <a href="https://canadaxfx.github.io/xiaozhan/" target="_blank" class="platform-link" style="font-size: 1rem; padding: 10px 20px; white-space: nowrap;">Visit Xiao Zhan Social Media Hub</a>
+                <!-- TAB 3: VARIETY SHOWS -->
+                <div id="variety" class="tab-content">
+                    <!-- Variety content will be dynamically inserted here -->
+                    <div id="variety-container">
+                        <!-- Loaded from variety.json -->
+                    </div>
+                </div>
+                
             </div>
         </div>
-    </div>
-
-    <!-- Contact Section -->
-    <div class="container">
-        <div class="work-item" id="contact" style="text-align: center;">
-            <h2 class="work-title">Contact Us</h2>
-            <p class="work-description">Have questions or feedback? We'd love to hear from you!</p>
-            <a href="https://canadaxfx.github.io/contact-us/" target="_blank" class="platform-link" style="font-size: 1rem; padding: 10px 20px; white-space: nowrap;">
-                Go to Contact Page
-            </a>
-        </div>
-    </div>
-
-    <!-- Footer -->
+    </main>
+    
+    <!-- FOOTER - Stays exactly the same -->
     <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
                 <div style="margin-bottom:10px;font-weight:700; text-align: center;">Explore more</div>
                 <div class="footer-links">
                     <a href="https://www.youtube.com/@xzstudio-1005" target="_blank" class="footer-link">XZ.Studio on YouTube</a>
-                    <a href="https://canadaxfx.github.io/xiaozhan/" target="_blank" class="footer-link">XZ Social Media</a>
+                    <a href="https://canadaxfx.github.io/contact-us/" class="footer-link">Contact Us</a>
                 </div>
                 <div class="copyright-notice">&copy; 2025 CanadaXFX. All rights reserved.</div>
-
                 <div class="copyright-notice">
                     <p><a href="#" id="terms-toggle">See Terms of Use</a></p>
                     <div id="terms-content" style="display: none;">
@@ -791,14 +1151,237 @@ body {
             </div>
         </div>
     </footer>
-
-    <!-- Back to Top Button -->
+    
+    <!-- BACK TO TOP BUTTON - Stays exactly the same -->
     <div id="back-to-top">
         <div class="arrow">▲</div>
         <div class="text">TOP<br>回顶部</div>
     </div>
 
-    <!-- JavaScript will go here -->
-    <script src="app.js"></script>
+    <!-- Load external JS files -->
+    <script src="js/render.js"></script>
+    <script src="js/data-loader.js"></script>
+    
+    <!-- ALL YOUR EXISTING JAVASCRIPT - Keep everything -->
+    <script>
+    // ALL your existing JavaScript functionality stays here:
+    // - Lazy loading observer
+    // - Tab navigation
+    // - Toggle episodes
+    // - Search functionality
+    // - Back to top button
+    // - Terms toggle
+    // etc.
+    
+    // I'm including the essential parts below:
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Load data first
+        loadAllData();
+        
+        // THEN initialize all your existing functionality
+        initializeTabNavigation();
+        initializeSearch();
+        initializeBackToTop();
+        initializeTermsToggle();
+    });
+
+    // Tab Navigation
+    function initializeTabNavigation() {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const navContainer = document.querySelector('.nav-container');
+
+        navContainer.addEventListener('click', function(e) {
+            const navLink = e.target.closest('.nav-link');
+            if (navLink) {
+                e.preventDefault();
+                navLinks.forEach(item => item.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                navLink.classList.add('active');
+                const targetId = navLink.getAttribute('data-tab');
+                document.getElementById(targetId).classList.add('active');
+                window.location.hash = targetId;
+            }
+        });
+
+        // Check URL hash on page load
+        if (window.location.hash) {
+            const hash = window.location.hash.substring(1);
+            const activeTab = document.querySelector(`.nav-link[data-tab="${hash}"]`);
+            if (activeTab) {
+                navLinks.forEach(item => item.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                activeTab.classList.add('active');
+                document.getElementById(hash).classList.add('active');
+            }
+        }
+    }
+
+    // Toggle Episodes (event delegation for dynamically loaded content)
+    document.addEventListener('click', function(e) {
+        const toggleButton = e.target.closest('.toggle-episodes-btn');
+        if (toggleButton) {
+            const dramaId = toggleButton.getAttribute('data-drama-id');
+            const episodesContainer = document.getElementById(`${dramaId}-episodes`);
+            toggleButton.classList.toggle('expanded');
+            episodesContainer.classList.toggle('expanded');
+            if (episodesContainer.classList.contains('expanded')) {
+                setTimeout(() => {
+                    episodesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+    });
+
+    // Search Functionality
+    function initializeSearch() {
+        const searchInput = document.getElementById('search-input');
+        const searchContainer = document.querySelector('.search-container');
+        const searchResultsCount = document.getElementById('search-results-count');
+
+        searchContainer.addEventListener('click', function(e) {
+            if (e.target.id === 'search-button') {
+                performSearch();
+            } else if (e.target.id === 'clear-search-button') {
+                clearSearch();
+            }
+        });
+
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch();
+        });
+
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            if (searchTerm === '') {
+                document.querySelectorAll('.drama-card, .video-item').forEach(card => {
+                    card.classList.remove('hidden');
+                });
+                searchResultsCount.textContent = '';
+                return;
+            }
+            
+            let matchCount = 0;
+            let matchesInTabs = { 'all-dramas': 0, 'performances': 0, 'variety': 0 };
+            
+            document.querySelectorAll('.drama-card, .video-item').forEach(card => {
+                const parentTab = card.closest('.tab-content');
+                const tabId = parentTab ? parentTab.id : null;
+                let isMatch = false;
+                
+                if (card.classList.contains('drama-card')) {
+                    const title = card.getAttribute('data-title') || '';
+                    const year = card.getAttribute('data-year') || '';
+                    const role = card.getAttribute('data-role') || '';
+                    const descriptionEl = card.querySelector('.drama-description');
+                    const description = descriptionEl ? descriptionEl.textContent : '';
+                    
+                    if (title.toLowerCase().includes(searchTerm) || 
+                        year.toLowerCase().includes(searchTerm) || 
+                        role.toLowerCase().includes(searchTerm) || 
+                        description.toLowerCase().includes(searchTerm)) {
+                        isMatch = true;
+                    }
+                } else if (card.classList.contains('video-item')) {
+                    const titleEl = card.querySelector('.video-title');
+                    const descriptionEl = card.querySelector('.video-description');
+                    const title = titleEl ? titleEl.textContent : '';
+                    const description = descriptionEl ? descriptionEl.textContent : '';
+                    
+                    if (title.toLowerCase().includes(searchTerm) || 
+                        description.toLowerCase().includes(searchTerm)) {
+                        isMatch = true;
+                    }
+                }
+                
+                if (isMatch) {
+                    card.classList.remove('hidden');
+                    matchCount++;
+                    if (tabId && matchesInTabs.hasOwnProperty(tabId)) {
+                        matchesInTabs[tabId]++;
+                    }
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            
+            // Switch to tab with most matches
+            let maxMatches = 0;
+            let bestTab = null;
+            for (const [tab, count] of Object.entries(matchesInTabs)) {
+                if (count > maxMatches) {
+                    maxMatches = count;
+                    bestTab = tab;
+                }
+            }
+            
+            if (bestTab && maxMatches > 0) {
+                document.querySelectorAll('.nav-link').forEach(item => item.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                document.querySelector(`.nav-link[data-tab="${bestTab}"]`).classList.add('active');
+                document.getElementById(bestTab).classList.add('active');
+            }
+            
+            searchResultsCount.textContent = `Found ${matchCount} result${matchCount !== 1 ? 's' : ''}`;
+        }
+        
+        function clearSearch() {
+            searchInput.value = '';
+            document.querySelectorAll('.drama-card, .video-item').forEach(card => {
+                card.classList.remove('hidden');
+            });
+            searchResultsCount.textContent = '';
+        }
+    }
+
+    // Back to Top
+    function initializeBackToTop() {
+        const backToTopButton = document.getElementById('back-to-top');
+        if (backToTopButton) {
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }
+
+    // Terms Toggle
+    function initializeTermsToggle() {
+        const termsToggle = document.getElementById('terms-toggle');
+        if (termsToggle) {
+            termsToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                var termsContent = document.getElementById('terms-content');
+                if (termsContent.style.display === 'none' || !termsContent.style.display) {
+                    termsContent.style.display = 'block';
+                    this.textContent = 'Hide Terms of Use';
+                    setTimeout(() => {
+                        this.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                } else {
+                    termsContent.style.display = 'none';
+                    this.textContent = 'See Terms of Use';
+                }
+            });
+        }
+    }
+
+    // Lazy loading for iframes
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('iframe').forEach(function(iframe) {
+            if (iframe.allow) {
+                iframe.allow = iframe.allow.replace(/autoplay[^;]*/g, '').trim();
+            }
+        });
+    });
+    </script>
 </body>
 </html>
