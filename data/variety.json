@@ -424,6 +424,11 @@
           "thumbnail": "https://i.ytimg.com/vi/VgppDwGIAfk/mqdefault.jpg"
         },
         {
+          "title": "20230619凤凰网非常道肖春生专访",
+          "url": "https://www.youtube.com/watch?v=RDT0JD26P3k",
+          "thumbnail": "https://i.ytimg.com/vi/RDT0JD26P3k/mqdefault.jpg"
+        },
+        {
           "title": "20220116肖战顾一野专访",
           "url": "https://www.youtube.com/watch?v=ofcwM2-2AxU",
           "thumbnail": "https://i.ytimg.com/vi/ofcwM2-2AxU/mqdefault.jpg"
@@ -526,6 +531,13 @@
       "year": "2023-06-18",
       "title": "Show of Great Shows - The Youth Memories<br> 剧说很好看：梦中的那片海1",
       "embedUrl": "https://www.youtube.com/embed/h6OG10lWir4",
+      "description": "Behind-the-scenes and interviews (2023)"
+    },
+    {
+      "id": "ifeng-talk---the-youth-memories",
+      "year": "2023-06-19",
+      "title": "Ifeng Talk: Xiao Chunsheng - The Youth Memories<br> 凤凰网非常道肖春生专访",
+      "embedUrl": "https://www.youtube.com/embed/RDT0JD26P3k",
       "description": "Behind-the-scenes and interviews (2023)"
     },
     {
