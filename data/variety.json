@@ -12,6 +12,38 @@
       "description": "",
       "previewEpisodes": [
         {
+          "title": "20251213电影频道融媒体<br>得闲谨制",
+          "url": "https://www.youtube.com/watch?v=7bAMTUnvAfc",
+          "thumbnail": "https://i.ytimg.com/vi/7bAMTUnvAfc/mqdefault.jpg"
+        },
+        {
+          "title": "20251211央视新闻<br>肖战谈得闲谨制",
+          "url": "https://www.youtube.com/watch?v=M6cRi-rI_Ow",
+          "thumbnail": "https://i.ytimg.com/vi/M6cRi-rI_Ow/mqdefault.jpg"
+        },
+        {
+          "title": "20251211人民日报：得闲谨制",
+          "url": "https://www.youtube.com/watch?v=Fqd92BN-MoM",
+          "thumbnail": "https://i.ytimg.com/vi/Fqd92BN-MoM/mqdefault.jpg"
+        },
+        {
+          "title": "20251211新华社：得闲谨制",
+          "url": "https://www.youtube.com/watch?v=f5uNZZFV39Y",
+          "thumbnail": "https://i.ytimg.com/vi/f5uNZZFV39Y/mqdefault.jpg"
+        },
+        {
+          "title": "20251211今日影评",
+          "url": "https://www.youtube.com/watch?v=bA-RkgroikM",
+          "thumbnail": "https://i.ytimg.com/vi/bA-RkgroikM/mqdefault.jpg"
+        },
+        {
+          "title": "20251209中国电影报道<br>闲谨制",
+          "url": "https://www.youtube.com/watch?v=mDQemipi2uY",
+          "thumbnail": "https://i.ytimg.com/vi/mDQemipi2uY/mqdefault.jpg"
+        }
+      ],
+      "allEpisodes": [
+        {
           "title": "20250527剧说很好看<br>肖战专访",
           "url": "https://www.youtube.com/watch?v=7fk1h9jC4_8",
           "thumbnail": "https://i.ytimg.com/vi/7fk1h9jC4_8/mqdefault.jpg"
@@ -40,9 +72,7 @@
           "title": "20250518新华社采访：藏海传",
           "url": "https://www.youtube.com/watch?v=V7rVhVAagVE",
           "thumbnail": "https://i.ytimg.com/vi/V7rVhVAagVE/mqdefault.jpg"
-        }
-      ],
-      "allEpisodes": [
+        },
         {
           "title": "20250328回顾从2019到2025的演员成长之路",
           "url": "https://www.youtube.com/watch?v=_K-GHUOQTAo",
@@ -222,6 +252,11 @@
       "description": "",
       "previewEpisodes": [
         {
+          "title": "20251212新浪娱情实验室<br>肖战得闲谨制",
+          "url": "https://www.youtube.com/watch?v=u391WRsAHnU",
+          "thumbnail": "https://i.ytimg.com/vi/u391WRsAHnU/mqdefault.jpg"
+        },
+        {
           "title": "20250523新浪娱情实验室藏海专访+花絮互动",
           "url": "https://www.youtube.com/watch?v=JzrelRPWisA",
           "thumbnail": "https://i.ytimg.com/vi/JzrelRPWisA/mqdefault.jpg"
@@ -245,14 +280,14 @@
           "title": "20230327微博之夜专访",
           "url": "https://www.youtube.com/watch?v=tF9umgmARJo",
           "thumbnail": "https://i.ytimg.com/vi/tF9umgmARJo/mqdefault.jpg"
-        },
+        }
+      ],
+      "allEpisodes": [
         {
           "title": "20221207微博视界大会专访",
           "url": "https://www.youtube.com/watch?v=BZTFVxyXsHI",
           "thumbnail": "https://i.ytimg.com/vi/BZTFVxyXsHI/mqdefault.jpg"
-        }
-      ],
-      "allEpisodes": [
+        },
         {
           "title": "20210228微博之夜专访",
           "url": "https://www.youtube.com/watch?v=AMAovAd2qXs",
@@ -399,6 +434,11 @@
           "thumbnail": "https://i.ytimg.com/vi/yoI1CYD6-Ok/mqdefault.jpg"
         },
         {
+          "title": "20251212百度娱乐<br>肖战得闲谨制",
+          "url": "https://www.youtube.com/watch?v=LEGxDQGtEB4",
+          "thumbnail": "https://i.ytimg.com/vi/LEGxDQGtEB4/mqdefault.jpg"
+        },
+        {
           "title": "20250524百度APP藏海专访",
           "url": "https://www.youtube.com/watch?v=f1DJPJ5cSoU",
           "thumbnail": "https://i.ytimg.com/vi/f1DJPJ5cSoU/mqdefault.jpg"
@@ -534,13 +574,6 @@
       "description": "Behind-the-scenes and interviews (2023)"
     },
     {
-      "id": "ifeng-talk---the-youth-memories",
-      "year": "2023-06-19",
-      "title": "Ifeng Talk: Xiao Chunsheng - The Youth Memories<br> 凤凰网非常道肖春生专访",
-      "embedUrl": "https://www.youtube.com/embed/RDT0JD26P3k",
-      "description": "Behind-the-scenes and interviews (2023)"
-    },
-    {
       "id": "douluo-continent-launch-event",
       "year": "2021-02-05",
       "title": "Douluo Continent Launch Event<br>斗罗大陆发布会",
@@ -602,6 +635,13 @@
       "title": "Hi Star: Interviewed by Tongdao 你好明星（同道大叔采访）",
       "embedUrl": "https://www.youtube.com/embed/8zXvCZfbREQ",
       "description": "Xiao Zhan Interviewed by Tongdao (2018)"
+    },
+    {
+      "id": "ifeng-talk---the-youth-memories",
+      "year": "2023-06-19",
+      "title": "Ifeng Talk: Xiao Chunsheng - The Youth Memories<br> 凤凰网非常道肖春生专访",
+      "embedUrl": "https://www.youtube.com/embed/RDT0JD26P3k",
+      "description": "Behind-the-scenes and interviews (2023)"
     }
   ]
 }
