@@ -185,8 +185,8 @@
         },
         {
           "title": "余年",
-          "url": "https://www.iq.com/play/2020%E4%B8%9C%E6%96%B9%E8%B7%A8%E5%B9%B4-%E8%82%96%E6%88%98%E6%AD%8C%E6%9B%B2%E3%80%8A%E4%BD%99%E5%B9%B4%E3%80%8B-2019-19rwgj221g?lang=en_us",
-          "thumbnail": "2019yn.jpg"
+          "url": "https://www.youtube.com/watch?v=kMUOBhd7reg",
+          "thumbnail": "https://i.ytimg.com/vi/kMUOBhd7reg/mqdefault.jpg"
         },
         {
           "title": "神奇",
@@ -304,111 +304,121 @@
       "id": "mv",
       "year": "Updated 2025.05",
       "title": "MVs of Xiao Zhan",
-      "poster": "wm.webp",
+      "titleShort": "",
+      "role": "",
       "episodeCount": "All MVs",
+      "poster": "wm.webp",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLxbgQdcnIafilPb623TecynKrRGbt_zp9",
+      "description": "",
       "previewEpisodes": [
         {
+          "title": "岁岁年年",
           "url": "https://www.youtube.com/watch?v=eXRtNG3dYg4",
-          "thumbnail": "https://i.ytimg.com/vi/eXRtNG3dYg4/mqdefault.jpg",
-          "title": "岁岁年年"
+          "thumbnail": "https://i.ytimg.com/vi/eXRtNG3dYg4/mqdefault.jpg"
         },
         {
+          "title": "晚安 Bonne Nuit",
           "url": "https://www.youtube.com/watch?v=UuaGVJPGK-o",
-          "thumbnail": "https://i.ytimg.com/vi/UuaGVJPGK-o/mqdefault.jpg",
-          "title": "晚安 Bonne Nuit"
+          "thumbnail": "https://i.ytimg.com/vi/UuaGVJPGK-o/mqdefault.jpg"
         },
         {
+          "title": "灯塔 Beacon",
           "url": "https://www.youtube.com/watch?v=HtgizUPOOO4",
-          "thumbnail": "https://i.ytimg.com/vi/HtgizUPOOO4/mqdefault.jpg",
-          "title": "灯塔 Beacon"
+          "thumbnail": "https://i.ytimg.com/vi/HtgizUPOOO4/mqdefault.jpg"
         },
         {
+          "title": "都一样 Anonymous",
           "url": "https://www.youtube.com/watch?v=_u6IH4ZqAyc",
-          "thumbnail": "https://i.ytimg.com/vi/_u6IH4ZqAyc/mqdefault.jpg",
-          "title": "都一样 Anonymous"
+          "thumbnail": "https://i.ytimg.com/vi/_u6IH4ZqAyc/mqdefault.jpg"
         },
         {
+          "title": "漂流 Life of Us",
           "url": "https://www.youtube.com/watch?v=GmuwqCqKqGU",
-          "thumbnail": "https://i.ytimg.com/vi/GmuwqCqKqGU/mqdefault.jpg",
-          "title": "漂流 Life of Us"
+          "thumbnail": "https://i.ytimg.com/vi/GmuwqCqKqGU/mqdefault.jpg"
         },
         {
+          "title": "不要回头<br>Go ahead",
           "url": "https://www.youtube.com/watch?v=RF2rT_hkYLg",
-          "thumbnail": "https://i.ytimg.com/vi/RF2rT_hkYLg/mqdefault.jpg",
-          "title": "不要回头<br>Go ahead"
+          "thumbnail": "https://i.ytimg.com/vi/RF2rT_hkYLg/mqdefault.jpg"
         }
       ],
       "allEpisodes": [
         {
+          "title": "我们 Wild",
           "url": "https://www.youtube.com/watch?v=T0BhjJuyI1g",
-          "thumbnail": "https://i.ytimg.com/vi/T0BhjJuyI1g/mqdefault.jpg",
-          "title": "我们 Wild"
+          "thumbnail": "https://i.ytimg.com/vi/T0BhjJuyI1g/mqdefault.jpg"
         },
         {
+          "title": "余生请多指教",
           "url": "https://www.youtube.com/watch?v=PTBLlCrPHIg",
-          "thumbnail": "https://i.ytimg.com/vi/PTBLlCrPHIg/mqdefault.jpg",
-          "title": "余生请多指教"
+          "thumbnail": "https://i.ytimg.com/vi/PTBLlCrPHIg/mqdefault.jpg"
         },
         {
+          "title": "最幸运的幸运",
           "url": "https://www.youtube.com/watch?v=smn3O4XqECs",
-          "thumbnail": "https://i.ytimg.com/vi/smn3O4XqECs/mqdefault.jpg",
-          "title": "最幸运的幸运"
+          "thumbnail": "https://i.ytimg.com/vi/smn3O4XqECs/mqdefault.jpg"
         },
         {
+          "title": "我们曾经在一起<br>电视版",
           "url": "https://www.youtube.com/watch?v=b-gdk7cH0Po",
-          "thumbnail": "https://i.ytimg.com/vi/b-gdk7cH0Po/mqdefault.jpg",
-          "title": "我们曾经在一起<br>电视版"
+          "thumbnail": "https://i.ytimg.com/vi/b-gdk7cH0Po/mqdefault.jpg"
         },
         {
+          "title": "我们曾经在一起<br>MV版",
           "url": "https://www.youtube.com/watch?v=hjQGlhZ_BIQ",
-          "thumbnail": "https://i.ytimg.com/vi/hjQGlhZ_BIQ/mqdefault.jpg",
-          "title": "我们曾经在一起<br>MV版"
+          "thumbnail": "https://i.ytimg.com/vi/hjQGlhZ_BIQ/mqdefault.jpg"
         },
         {
+          "title": "陪你度过漫长岁月",
           "url": "https://www.youtube.com/watch?v=8G1-kUsFUbE",
-          "thumbnail": "https://i.ytimg.com/vi/8G1-kUsFUbE/mqdefault.jpg",
-          "title": "陪你度过漫长岁月"
+          "thumbnail": "https://i.ytimg.com/vi/8G1-kUsFUbE/mqdefault.jpg"
         },
         {
+          "title": "策马正少年",
           "url": "https://www.youtube.com/watch?v=qUySd_rHi3A",
-          "thumbnail": "https://i.ytimg.com/vi/qUySd_rHi3A/mqdefault.jpg",
-          "title": "策马正少年"
+          "thumbnail": "https://i.ytimg.com/vi/qUySd_rHi3A/mqdefault.jpg"
         },
         {
+          "title": "光点",
           "url": "https://www.youtube.com/watch?v=84bRFXFWWzs",
-          "thumbnail": "https://i.ytimg.com/vi/84bRFXFWWzs/mqdefault.jpg",
-          "title": "光点"
+          "thumbnail": "https://i.ytimg.com/vi/84bRFXFWWzs/mqdefault.jpg"
         },
         {
+          "title": "岁岁平安",
           "url": "https://www.youtube.com/watch?v=sdPU5efeNxc",
-          "thumbnail": "https://i.ytimg.com/vi/sdPU5efeNxc/mqdefault.jpg",
-          "title": "岁岁平安"
+          "thumbnail": "https://i.ytimg.com/vi/sdPU5efeNxc/mqdefault.jpg"
         },
         {
+          "title": "余年",
           "url": "https://www.youtube.com/watch?v=CHL47bmeGrA",
-          "thumbnail": "https://i.ytimg.com/vi/CHL47bmeGrA/mqdefault.jpg",
-          "title": "余年"
+          "thumbnail": "https://i.ytimg.com/vi/CHL47bmeGrA/mqdefault.jpg"
         },
         {
+          "title": "曲尽陈情",
           "url": "https://www.youtube.com/watch?v=vKwKOPgK_JM",
-          "thumbnail": "https://i.ytimg.com/vi/vKwKOPgK_JM/mqdefault.jpg",
-          "title": "曲尽陈情"
+          "thumbnail": "https://i.ytimg.com/vi/vKwKOPgK_JM/mqdefault.jpg"
         },
         {
+          "title": "满足",
           "url": "https://www.youtube.com/watch?v=uRoYlWBFdck",
-          "thumbnail": "https://i.ytimg.com/vi/uRoYlWBFdck/mqdefault.jpg",
-          "title": "满足"
+          "thumbnail": "https://i.ytimg.com/vi/uRoYlWBFdck/mqdefault.jpg"
         },
         {
+          "title": "踩影子",
           "url": "https://www.youtube.com/watch?app=desktop&v=St0Ls3fufqQ",
-          "thumbnail": "https://i.ytimg.com/vi/St0Ls3fufqQ/mqdefault.jpg",
-          "title": "踩影子"
+          "thumbnail": "https://i.ytimg.com/vi/St0Ls3fufqQ/mqdefault.jpg"
         }
       ]
     }
   ],
   "featuredVideos": [
+    {
+      "id": "xiao-zhan-29",
+      "year": "2025-10-05",
+      "title": "Xiao Zhan 岁岁年年",
+      "embedUrl": "https://www.youtube.com/embed/eXRtNG3dYg4",
+      "description": "2025 Mid-Autumn Festival Music Video from People's Daily\n人民日报中秋定制MV"
+    },
     {
       "id": "xiao-zhan-27",
       "year": "2025-09-28",
@@ -588,7 +598,7 @@
       "id": "xiao-zhan-2-2",
       "year": "2019-12-31",
       "title": "Xiao Zhan 余年2",
-      "embedUrl": "https://em.iq.com/player.html?id=19rwgj221g&sh_pltf=4&autoplay=0",
+      "embedUrl": "https://www.youtube.com/embed/kMUOBhd7reg",
       "description": "SMG Countdown Party <br>2020 东方卫视跨年盛典"
     },
     {
