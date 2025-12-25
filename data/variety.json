@@ -217,7 +217,7 @@
           "thumbnail": "https://i.ytimg.com/vi/KWdVUOvo9hE/mqdefault.jpg"
         },
         {
-          "title": "20250124中国网络视听盛典<br>和合之家",
+          "title": "20250124中国网络视听盛典：和合之家",
           "url": "https://www.youtube.com/watch?v=P4M6pJvpNe0",
           "thumbnail": "https://i.ytimg.com/vi/P4M6pJvpNe0/mqdefault.jpg"
         },
@@ -229,14 +229,19 @@
       ],
       "allEpisodes": [
         {
-          "title": "20240628国家宝藏第四季<br>肖战这样介绍家乡国宝",
+          "title": "20240628国家宝藏第四季：肖战这样介绍家乡国宝",
           "url": "https://www.youtube.com/watch?v=LWCj43mwM6c",
           "thumbnail": "https://i.ytimg.com/vi/LWCj43mwM6c/mqdefault.jpg"
         },
         {
-          "title": "20240203中国网络视听年度盛典<br>不负韶华",
+          "title": "20240203中国网络视听年度盛典：不负韶华",
           "url": "https://www.youtube.com/watch?v=Zub8vgKd3tI",
           "thumbnail": "https://i.ytimg.com/vi/Zub8vgKd3tI/mqdefault.jpg"
+        },
+        {
+          "title": "20251224人民日报盘点2025",
+          "url": "https://www.youtube.com/watch?v=pzuN4foKafs",
+          "thumbnail": "https://i.ytimg.com/vi/pzuN4foKafs/mqdefault.jpg"
         }
       ]
     },
