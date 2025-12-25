@@ -18,8 +18,8 @@
         },
         {
           "title": "灯塔",
-          "url": "https://www.youtube.com/watch?v=GUJy4QTe2_k",
-          "thumbnail": "https://i.ytimg.com/vi/GUJy4QTe2_k/mqdefault.jpg"
+          "url": "https://www.youtube.com/watch?v=U96V72sGGDc",
+          "thumbnail": "https://i.ytimg.com/vi/U96V72sGGDc/mqdefault.jpg"
         },
         {
           "title": "这世界那么多人",
@@ -411,13 +411,6 @@
   "featuredVideos": [
     {
       "id": "xiao-zhan-27",
-      "year": "2025-10-05",
-      "title": "Xiao Zhan 岁岁年年",
-      "embedUrl": "https://www.youtube.com/embed/eXRtNG3dYg4",
-      "description": "The Mid-Autumn Festival MV produced by People's Daily<br>2025 人民日报新媒体中秋定制MV：岁岁年年"
-    },
-    {
-      "id": "xiao-zhan-27",
       "year": "2025-09-28",
       "title": "Xiao Zhan 整晚的音乐",
       "embedUrl": "https://www.youtube.com/embed/g-foS_WUDoQ",
@@ -427,7 +420,7 @@
       "id": "xiao-zhan",
       "year": "2025-01-29",
       "title": "Xiao Zhan 灯塔",
-      "embedUrl": "https://em.iq.com/player.html?id=15lulj5zwyg&sh_pltf=4&autoplay=0",
+      "embedUrl": "https://www.youtube.com/embed/U96V72sGGDc",
       "description": "Beijing Spring Festival Gala<br> 2025 北京春晚舞台"
     },
     {
