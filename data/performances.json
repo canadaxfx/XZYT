@@ -312,6 +312,16 @@
       "description": "",
       "previewEpisodes": [
         {
+          "title": "得闲谨制电影官方MV",
+          "url": "https://www.youtube.com/watch?v=yE7ZkW93x-Y",
+          "thumbnail": "https://i.ytimg.com/vi/yE7ZkW93x-Y/mqdefault.jpg"
+        },
+        {
+          "title": "得闲谨制纯享完整版",
+          "url": "https://www.youtube.com/watch?v=gtSJnQpiZww",
+          "thumbnail": "https://i.ytimg.com/vi/gtSJnQpiZww/mqdefault.jpg."
+        },
+        {
           "title": "岁岁年年",
           "url": "https://www.youtube.com/watch?v=eXRtNG3dYg4",
           "thumbnail": "https://i.ytimg.com/vi/eXRtNG3dYg4/mqdefault.jpg"
@@ -330,7 +340,9 @@
           "title": "都一样 Anonymous",
           "url": "https://www.youtube.com/watch?v=_u6IH4ZqAyc",
           "thumbnail": "https://i.ytimg.com/vi/_u6IH4ZqAyc/mqdefault.jpg"
-        },
+        }
+      ],
+      "allEpisodes": [
         {
           "title": "漂流 Life of Us",
           "url": "https://www.youtube.com/watch?v=GmuwqCqKqGU",
@@ -340,9 +352,7 @@
           "title": "不要回头<br>Go ahead",
           "url": "https://www.youtube.com/watch?v=RF2rT_hkYLg",
           "thumbnail": "https://i.ytimg.com/vi/RF2rT_hkYLg/mqdefault.jpg"
-        }
-      ],
-      "allEpisodes": [
+        },
         {
           "title": "我们 Wild",
           "url": "https://www.youtube.com/watch?v=T0BhjJuyI1g",
@@ -412,6 +422,13 @@
     }
   ],
   "featuredVideos": [
+    {
+      "id": "mv-2",
+      "year": "2025-12-15",
+      "title": "得闲谨制电影版MV",
+      "embedUrl": "https://www.youtube.com/embed/yE7ZkW93x-Y",
+      "description": "得闲谨制主题曲MV官方电影版<br>\n2025 Official MV for the Theme Song of the Film \"Gezhi Town\""
+    },
     {
       "id": "xiao-zhan-29",
       "year": "2025-10-05",
