@@ -12,6 +12,11 @@
       "description": "",
       "previewEpisodes": [
         {
+          "title": "得闲谨制+不要回头+现在不跳舞要干嘛",
+          "url": "https://www.youtube.com/watch?v=Q8BcttLX9zo",
+          "thumbnail": "https://i.ytimg.com/vi/Q8BcttLX9zo/mqdefault.jpg"
+        },
+        {
           "title": "整晚的音乐",
           "url": "https://www.youtube.com/watch?v=g-foS_WUDoQ",
           "thumbnail": "https://i.ytimg.com/vi/g-foS_WUDoQ/mqdefault.jpg"
@@ -35,14 +40,14 @@
           "title": "往事随风",
           "url": "https://www.youtube.com/watch?v=i-s5h4o2rmo",
           "thumbnail": "https://i.ytimg.com/vi/i-s5h4o2rmo/mqdefault.jpg"
-        },
+        }
+      ],
+      "allEpisodes": [
         {
           "title": "月亮代表我的心",
           "url": "https://www.youtube.com/watch?v=ARChdSyNrvw",
           "thumbnail": "https://i.ytimg.com/vi/ARChdSyNrvw/mqdefault.jpg"
-        }
-      ],
-      "allEpisodes": [
+        },
         {
           "title": "如愿",
           "url": "https://www.iq.com/play/%E8%82%96%E6%88%98%E6%AD%8C%E6%9B%B2%E3%80%8A%E5%A6%82%E6%84%BF%E3%80%8B-2024-1hqd7mcdfp8?lang=en_us",
@@ -297,7 +302,7 @@
     },
     {
       "id": "mv",
-      "year": "Updated 2025.05",
+      "year": "Updated 2026",
       "title": "MVs of Xiao Zhan",
       "titleShort": "",
       "role": "",
@@ -418,9 +423,16 @@
   ],
   "featuredVideos": [
     {
+      "id": "xiao-zhan-30",
+      "year": "2025-12-31",
+      "title": "Xiao Zhan 得闲谨制 不要回头 现在不跳舞要干嘛",
+      "embedUrl": "https://www.youtube.com/embed/Q8BcttLX9zo",
+      "description": "SMG Countdown Party 2026<br>\n2026 东方卫视跨年盛典"
+    },
+    {
       "id": "mv-2",
       "year": "2025-12-15",
-      "title": "得闲谨制电影版MV",
+      "title": "Xiao Zhan 得闲谨制电影版MV",
       "embedUrl": "https://www.youtube.com/embed/yE7ZkW93x-Y",
       "description": "得闲谨制主题曲MV官方电影版<br>\n2025 Official MV for the Theme Song of the Film \"Gezhi Town\""
     },
