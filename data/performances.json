@@ -12,6 +12,11 @@
       "description": "",
       "previewEpisodes": [
         {
+          "title": "岁岁年年",
+          "url": "https://www.youtube.com/watch?v=dbw1fJ3R-yE",
+          "thumbnail": "https://i.ytimg.com/vi/dbw1fJ3R-yE/mqdefault.jpg."
+        },
+        {
           "title": "得闲谨制+不要回头+现在不跳舞要干嘛",
           "url": "https://www.youtube.com/watch?v=Q8BcttLX9zo",
           "thumbnail": "https://i.ytimg.com/vi/Q8BcttLX9zo/mqdefault.jpg"
@@ -35,14 +40,14 @@
           "title": "这世界那么多人",
           "url": "https://www.youtube.com/watch?v=8GpqCj9EECQ",
           "thumbnail": "https://i.ytimg.com/vi/8GpqCj9EECQ/mqdefault.jpg"
-        },
+        }
+      ],
+      "allEpisodes": [
         {
           "title": "往事随风",
           "url": "https://www.youtube.com/watch?v=i-s5h4o2rmo",
           "thumbnail": "https://i.ytimg.com/vi/i-s5h4o2rmo/mqdefault.jpg"
-        }
-      ],
-      "allEpisodes": [
+        },
         {
           "title": "月亮代表我的心",
           "url": "https://www.youtube.com/watch?v=ARChdSyNrvw",
@@ -422,6 +427,13 @@
     }
   ],
   "featuredVideos": [
+    {
+      "id": "xiao-zhan-32",
+      "year": "2026-02-17",
+      "title": "Xiao Zhan 岁岁年年 北京春晚",
+      "embedUrl": "https://www.youtube.com/embed/dbw1fJ3R-yE",
+      "description": "Beijing Spring Festival Gala\n2026 北京春晚舞台"
+    },
     {
       "id": "xiao-zhan-30",
       "year": "2025-12-31",
