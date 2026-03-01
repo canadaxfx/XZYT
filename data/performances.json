@@ -14,7 +14,7 @@
         {
           "title": "岁岁年年",
           "url": "https://www.youtube.com/watch?v=dbw1fJ3R-yE",
-          "thumbnail": "https://i.ytimg.com/vi/dbw1fJ3R-yE/mqdefault.jpg"
+          "thumbnail": "https://i.ytimg.com/vi/dbw1fJ3R-yE/mqdefault.jpg."
         },
         {
           "title": "得闲谨制+不要回头+现在不跳舞要干嘛",
@@ -427,13 +427,6 @@
     }
   ],
   "featuredVideos": [
-    {
-      "id": "xiao-zhan-32",
-      "year": "2026-02-17",
-      "title": "Xiao Zhan 岁岁年年 北京春晚",
-      "embedUrl": "https://www.youtube.com/embed/dbw1fJ3R-yE",
-      "description": "Beijing Spring Festival Gala\n2026 北京春晚舞台"
-    },
     {
       "id": "xiao-zhan-30",
       "year": "2025-12-31",
