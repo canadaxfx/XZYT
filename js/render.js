@@ -1,3 +1,22 @@
+// === VIDEO MODAL REGISTRY ===
+window._vmVideos = {};
+window._vmCounter = 0;
+
+function _regVideo(title, ytUrl, r2Url) {
+    var key = 'v' + (window._vmCounter++);
+    window._vmVideos[key] = { title: title, ytUrl: ytUrl || null, r2Url: r2Url || null };
+    return key;
+}
+
+function _getYtId(url) {
+    if (!url) return null;
+    var m = url.match(/[?&]v=([^&]+)/);
+    if (m) return m[1];
+    m = url.match(/\/embed\/([^?&]+)/);
+    if (m) return m[1];
+    return null;
+}
+
 // ======================
 // DRAMA TEMPLATES
 // ======================
@@ -40,13 +59,20 @@ function createDramaCard(drama) {
 }
 
 function createEpisodePreview(episode) {
+    var ytUrl = episode.url || null;
+    var r2Url = episode.r2_url || null;
+    var key = _regVideo(episode.title, ytUrl, r2Url);
+    var ytId = _getYtId(ytUrl);
+    var thumb = episode.thumbnail || (ytId ? 'https://i.ytimg.com/vi/' + ytId + '/mqdefault.jpg' : '');
     return `
-        <a href="${episode.url}" target="_blank" class="episode-preview">
+        <div class="episode-preview" onclick="openVideoModal('${key}')" role="button" tabindex="0"
+             onkeydown="if(event.key==='Enter')openVideoModal('${key}')">
             <div class="episode-thumbnail">
-                <img src="${episode.thumbnail}" alt="${episode.title}">
+                <img src="${thumb}" alt="${episode.title}" loading="lazy">
                 <span class="episode-number">${episode.title}</span>
+                <span class="ep-play-overlay"></span>
             </div>
-        </a>
+        </div>
     `;
 }
 
@@ -91,13 +117,15 @@ function createPlaylistCard(playlist) {
 // FEATURED VIDEO TEMPLATE
 // ======================
 function createFeaturedVideo(video) {
+    var ytId = _getYtId(video.embedUrl);
+    var thumb = ytId ? 'https://i.ytimg.com/vi/' + ytId + '/hqdefault.jpg' : '';
+    var r2Url = video.r2_url || null;
+    var key = _regVideo(video.title.replace(/<br>/g, ' '), video.embedUrl, r2Url);
     return `
-        <div class="video-item">
-            <div class="video-container">
-                <iframe src="${video.embedUrl}" title="${video.title.replace(/<br>/g, ' ')}" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen loading="lazy"></iframe>
+        <div class="video-item" data-title="${video.title.replace(/<br>/g, ' ')}">
+            <div class="video-facade" onclick="openVideoModal('${key}')">
+                <img src="${thumb}" alt="${video.title.replace(/<br>/g, ' ')}" loading="lazy">
+                <div class="facade-play"><div class="facade-yt-btn"></div></div>
             </div>
             <div class="video-info">
                 <h3 class="video-title">${video.title}</h3>
