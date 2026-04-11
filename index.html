@@ -595,6 +595,13 @@ display:inline
 .video-facade:hover .facade-yt-btn{background:rgba(204,0,0,.82);transform:scale(1.08)}
 .facade-yt-btn::after{content:'';width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:16px solid #fff;margin-left:3px}
 
+/* === EPISODE PAGINATION === */
+.ep-page-controls{display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 0;flex-wrap:wrap}
+.ep-page-btn{background:var(--primary-color);color:#fff;border:none;border-radius:5px;padding:6px 16px;cursor:pointer;font-size:.82rem;font-weight:600;transition:background .2s}
+.ep-page-btn:hover{background:var(--accent-color)}
+.ep-page-btn:disabled{background:#ccc;cursor:default}
+.ep-page-info{font-size:.8rem;color:#666;font-weight:600}
+
 /* === EPISODE PLAY OVERLAY === */
 .episode-preview{cursor:pointer}
 .ep-play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0);transition:background .2s;pointer-events:none}
@@ -1280,10 +1287,19 @@ grid-template-rows:repeat(2,auto)
             const episodesContainer = document.getElementById(`${dramaId}-episodes`);
             toggleButton.classList.toggle('expanded');
             episodesContainer.classList.toggle('expanded');
+            const previewStrip = toggleButton.previousElementSibling; // .episodes-preview
             if (episodesContainer.classList.contains('expanded')) {
+                initEpisodePagination(dramaId);
+                if (previewStrip && previewStrip.classList.contains('episodes-preview')) {
+                    previewStrip.style.display = 'none';
+                }
                 setTimeout(() => {
                     episodesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }, 100);
+            } else {
+                if (previewStrip && previewStrip.classList.contains('episodes-preview')) {
+                    previewStrip.style.display = '';
+                }
             }
         }
     });
