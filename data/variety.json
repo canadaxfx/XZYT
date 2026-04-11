@@ -10,7 +10,7 @@
       "poster": "zy.jpg",
       "playlistUrl": "https://youtube.com/playlist?list=PLxbgQdcnIafhwAYD7Rzq9ZUTxrF4yiCam&si=ZPfIk9LXV-smAYvS",
       "description": "",
-      "previewEpisodes": [
+      "episodes": [
         {
           "title": "20251213电影频道融媒体专访得闲谨制主演",
           "url": "https://www.youtube.com/watch?v=7bAMTUnvAfc",
@@ -40,9 +40,7 @@
           "title": "20251209中国电影报道：得闲谨制",
           "url": "https://www.youtube.com/watch?v=mDQemipi2uY",
           "thumbnail": "https://i.ytimg.com/vi/mDQemipi2uY/mqdefault.jpg"
-        }
-      ],
-      "allEpisodes": [
+        },
         {
           "title": "20250527剧说很好看<br>肖战专访",
           "url": "https://www.youtube.com/watch?v=7fk1h9jC4_8",
@@ -195,7 +193,7 @@
       "poster": "voice.jpg",
       "playlistUrl": "https://youtube.com/playlist?list=PLxbgQdcnIafjrbVREHLjUzMwlZtdSU9eT&si=_RDn9flaSH91dt-0",
       "description": "",
-      "previewEpisodes": [
+      "episodes": [
         {
           "title": "20251224人民日报盘点2025",
           "url": "https://www.youtube.com/watch?v=pzuN4foKafs",
@@ -225,9 +223,7 @@
           "title": "20250124中国网络视听盛典：和合之家",
           "url": "https://www.youtube.com/watch?v=P4M6pJvpNe0",
           "thumbnail": "https://i.ytimg.com/vi/P4M6pJvpNe0/mqdefault.jpg"
-        }
-      ],
-      "allEpisodes": [
+        },
         {
           "title": "20241226央视早安问候人",
           "url": "https://www.youtube.com/watch?v=BvNOF8kfQvQ",
@@ -255,7 +251,7 @@
       "poster": "sinainterview.jpg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLxbgQdcnIafijcYmDHWC-wFZamTEXcqcW",
       "description": "",
-      "previewEpisodes": [
+      "episodes": [
         {
           "title": "20251212新浪娱情实验室：肖战得闲谨制",
           "url": "https://www.youtube.com/watch?v=u391WRsAHnU",
@@ -285,9 +281,7 @@
           "title": "20230327微博之夜专访",
           "url": "https://www.youtube.com/watch?v=tF9umgmARJo",
           "thumbnail": "https://i.ytimg.com/vi/tF9umgmARJo/mqdefault.jpg"
-        }
-      ],
-      "allEpisodes": [
+        },
         {
           "title": "20221207微博视界大会专访",
           "url": "https://www.youtube.com/watch?v=BZTFVxyXsHI",
