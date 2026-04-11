@@ -17,10 +17,54 @@ function _getYtId(url) {
     return null;
 }
 
+// === EPISODE PAGINATION ===
+window._dramaEps = {};  // dramaId → episodes[]
+window._epPages  = {};  // dramaId → currentPage
+
+var EP_PER_PAGE   = 24;
+var EP_PREVIEW    = 6;   // shown in the horizontal strip
+
+function renderEpisodesPage(dramaId, page) {
+    var eps = window._dramaEps[dramaId] || [];
+    var totalPages = Math.ceil(eps.length / EP_PER_PAGE);
+    page = Math.max(0, Math.min(page, totalPages - 1));
+    window._epPages[dramaId] = page;
+
+    var start   = page * EP_PER_PAGE;
+    var pageEps = eps.slice(start, start + EP_PER_PAGE);
+
+    var grid = document.getElementById(dramaId + '-grid');
+    if (grid) grid.innerHTML = pageEps.map(function(ep) { return createEpisodePreview(ep); }).join('');
+
+    var navHtml = totalPages <= 1 ? '' :
+        '<div class="ep-page-controls">' +
+            '<button class="ep-page-btn" onclick="renderEpisodesPage(\'' + dramaId + '\',' + (page - 1) + ')" ' + (page === 0 ? 'disabled' : '') + '>‹ Prev</button>' +
+            '<span class="ep-page-info">Page ' + (page + 1) + ' of ' + totalPages + ' &nbsp;·&nbsp; ' + eps.length + ' videos</span>' +
+            '<button class="ep-page-btn" onclick="renderEpisodesPage(\'' + dramaId + '\',' + (page + 1) + ')" ' + (page >= totalPages - 1 ? 'disabled' : '') + '>Next ›</button>' +
+        '</div>';
+
+    var topEl = document.getElementById(dramaId + '-pag-top');
+    var botEl = document.getElementById(dramaId + '-pag-bot');
+    if (topEl) topEl.innerHTML = navHtml;
+    if (botEl) botEl.innerHTML = navHtml;
+}
+
+// Called by the toggle handler in index.html on first expand
+function initEpisodePagination(dramaId) {
+    if (!window._epPages.hasOwnProperty(dramaId)) {
+        window._epPages[dramaId] = 0;
+        renderEpisodesPage(dramaId, 0);
+    }
+}
+
 // ======================
 // DRAMA TEMPLATES
 // ======================
 function createDramaCard(drama) {
+    var eps     = drama.episodes || [];
+    var preview = eps.slice(0, EP_PREVIEW);
+    window._dramaEps[drama.id] = eps;
+
     return `
         <div class="drama-card" data-year="${drama.year}" data-title="${drama.title}" data-role="${drama.role}">
             <div class="drama-poster">
@@ -39,17 +83,17 @@ function createDramaCard(drama) {
                 </div>
                 <div class="drama-episodes">
                     <div class="episodes-preview">
-                        ${drama.previewEpisodes.map(ep => createEpisodePreview(ep)).join('')}
+                        ${preview.map(ep => createEpisodePreview(ep)).join('')}
                     </div>
-                    ${drama.allEpisodes.length > 0 ? `
+                    ${eps.length > 0 ? `
                         <span class="toggle-episodes-btn" data-drama-id="${drama.id}">
-                            <span class="view-text">View All Episodes 展开全集</span>
+                            <span class="view-text">View All ${eps.length} Episodes 展开全集</span>
                             <span class="close-text">Hide Episodes 收起全集</span>
                         </span>
                         <div class="all-episodes-container" id="${drama.id}-episodes">
-                            <div class="all-episodes-grid">
-                                ${drama.allEpisodes.map(ep => createEpisodePreview(ep)).join('')}
-                            </div>
+                            <div id="${drama.id}-pag-top"></div>
+                            <div class="all-episodes-grid" id="${drama.id}-grid"></div>
+                            <div id="${drama.id}-pag-bot"></div>
                         </div>
                     ` : ''}
                 </div>
@@ -61,8 +105,8 @@ function createDramaCard(drama) {
 function createEpisodePreview(episode) {
     var ytUrl = episode.url || null;
     var r2Url = episode.r2_url || null;
-    var key = _regVideo(episode.title, ytUrl, r2Url);
-    var ytId = _getYtId(ytUrl);
+    var key   = _regVideo(episode.title, ytUrl, r2Url);
+    var ytId  = _getYtId(ytUrl);
     var thumb = episode.thumbnail || (ytId ? 'https://i.ytimg.com/vi/' + ytId + '/mqdefault.jpg' : '');
     return `
         <div class="episode-preview" onclick="openVideoModal('${key}')" role="button" tabindex="0"
@@ -80,6 +124,10 @@ function createEpisodePreview(episode) {
 // PLAYLIST CARD TEMPLATE
 // ======================
 function createPlaylistCard(playlist) {
+    var eps     = playlist.episodes || [];
+    var preview = eps.slice(0, EP_PREVIEW);
+    window._dramaEps[playlist.id] = eps;
+
     return `
         <div class="drama-card" data-year="${playlist.year}" data-title="${playlist.title}" data-role="Xiao Zhan">
             <div class="drama-poster">
@@ -94,17 +142,17 @@ function createPlaylistCard(playlist) {
                 <h3 class="drama-title">${playlist.title}</h3>
                 <div class="drama-episodes">
                     <div class="episodes-preview">
-                        ${playlist.previewEpisodes.map(ep => createEpisodePreview(ep)).join('')}
+                        ${preview.map(ep => createEpisodePreview(ep)).join('')}
                     </div>
-                    ${playlist.allEpisodes.length > 0 ? `
+                    ${eps.length > 0 ? `
                         <span class="toggle-episodes-btn" data-drama-id="${playlist.id}">
-                            <span class="view-text">View All Episodes 展开全集</span>
-                            <span class="close-text">Hide Episodes 收起全集</span>
+                            <span class="view-text">View All ${eps.length} Videos 展开全集</span>
+                            <span class="close-text">Hide 收起全集</span>
                         </span>
                         <div class="all-episodes-container" id="${playlist.id}-episodes">
-                            <div class="all-episodes-grid">
-                                ${playlist.allEpisodes.map(ep => createEpisodePreview(ep)).join('')}
-                            </div>
+                            <div id="${playlist.id}-pag-top"></div>
+                            <div class="all-episodes-grid" id="${playlist.id}-grid"></div>
+                            <div id="${playlist.id}-pag-bot"></div>
                         </div>
                     ` : ''}
                 </div>
@@ -117,10 +165,10 @@ function createPlaylistCard(playlist) {
 // FEATURED VIDEO TEMPLATE
 // ======================
 function createFeaturedVideo(video) {
-    var ytId = _getYtId(video.embedUrl);
+    var ytId  = _getYtId(video.embedUrl);
     var thumb = ytId ? 'https://i.ytimg.com/vi/' + ytId + '/hqdefault.jpg' : '';
     var r2Url = video.r2_url || null;
-    var key = _regVideo(video.title.replace(/<br>/g, ' '), video.embedUrl, r2Url);
+    var key   = _regVideo(video.title.replace(/<br>/g, ' '), video.embedUrl, r2Url);
     return `
         <div class="video-item" data-title="${video.title.replace(/<br>/g, ' ')}">
             <div class="video-facade" onclick="openVideoModal('${key}')">
