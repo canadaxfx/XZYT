@@ -567,6 +567,47 @@ display:none
 display:inline
 }
 
+/* === VIDEO MODAL === */
+.vm-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9000;display:flex;align-items:center;justify-content:center;padding:16px}
+.vm-overlay.hidden{display:none}
+.vm-dialog{background:#111;border-radius:12px;width:100%;max-width:860px;box-shadow:0 24px 64px rgba(0,0,0,.9);overflow:hidden;display:flex;flex-direction:column}
+.vm-header{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:#1a1a1a}
+.vm-title{color:#e8e8e8;font-size:.85rem;font-weight:600;flex:1;line-height:1.4}
+.vm-close{background:none;border:none;color:#888;font-size:1.8rem;cursor:pointer;line-height:1;padding:0;flex-shrink:0;margin-top:-2px}
+.vm-close:hover{color:#fff}
+.vm-player{position:relative;padding-bottom:56.25%;height:0;background:#000;flex-shrink:0}
+.vm-player iframe,.vm-player video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vm-player video{object-fit:contain;background:#000}
+.vm-footer{display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 14px;background:#1a1a1a;flex-wrap:wrap;min-height:42px}
+.vm-btn{padding:5px 13px;border-radius:5px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;transition:opacity .15s;white-space:nowrap}
+.vm-btn:hover{opacity:.82}
+.vm-btn-switch{background:#333;color:#ddd}
+.vm-btn-ext{background:#cc0000;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.vm-source-label{color:#777;font-size:.75rem}
+
+/* === FEATURED VIDEO FACADE === */
+.video-facade{position:relative;padding-bottom:56.25%;height:0;cursor:pointer;background:#000;overflow:hidden}
+.video-facade img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.video-facade:hover img{transform:scale(1.04)}
+.facade-play{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;padding:8px;background:rgba(0,0,0,.05);transition:background .2s}
+.video-facade:hover .facade-play{background:rgba(0,0,0,.18)}
+.facade-yt-btn{width:52px;height:36px;background:rgba(204,0,0,.60);border-radius:10px;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s}
+.video-facade:hover .facade-yt-btn{background:rgba(204,0,0,.82);transform:scale(1.08)}
+.facade-yt-btn::after{content:'';width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:16px solid #fff;margin-left:3px}
+
+/* === EPISODE PLAY OVERLAY === */
+.episode-preview{cursor:pointer}
+.ep-play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0);transition:background .2s;pointer-events:none}
+.episode-preview:hover .ep-play-overlay{background:rgba(0,0,0,.38)}
+.ep-play-overlay::after{content:'';width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:14px solid rgba(255,255,255,0);transition:border-left-color .2s;margin-left:3px}
+.episode-preview:hover .ep-play-overlay::after{border-left-color:rgba(255,255,255,.92)}
+
+@media(max-width:600px){
+.vm-dialog{border-radius:8px}
+.vm-footer{gap:6px;padding:6px 10px}
+.vm-btn{font-size:.74rem;padding:4px 10px}
+}
+
 .video-grid {
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
@@ -1159,6 +1200,18 @@ grid-template-rows:repeat(2,auto)
         <div class="text">TOP<br>回顶部</div>
     </div>
 
+    <!-- Video Modal -->
+    <div id="videoModal" class="vm-overlay hidden" onclick="if(event.target===this)closeVideoModal()">
+        <div class="vm-dialog">
+            <div class="vm-header">
+                <span id="vmTitle" class="vm-title"></span>
+                <button class="vm-close" onclick="closeVideoModal()" aria-label="Close">&times;</button>
+            </div>
+            <div id="vmPlayer" class="vm-player"></div>
+            <div id="vmFooter" class="vm-footer"></div>
+        </div>
+    </div>
+
     <!-- Load external JS files -->
     <script src="js/render.js"></script>
     <script src="js/data-loader.js"></script>
@@ -1375,14 +1428,78 @@ grid-template-rows:repeat(2,auto)
         }
     }
 
-    // Lazy loading for iframes
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('iframe').forEach(function(iframe) {
-            if (iframe.allow) {
-                iframe.allow = iframe.allow.replace(/autoplay[^;]*/g, '').trim();
-            }
-        });
-    });
+    // === VIDEO MODAL ===
+    function _vmEmbedUrl(ytUrl) {
+        if (!ytUrl) return null;
+        var id = null;
+        var m = ytUrl.match(/[?&]v=([^&]+)/);
+        if (m) id = m[1];
+        if (!id) { m = ytUrl.match(/\/embed\/([^?&]+)/); if (m) id = m[1]; }
+        if (!id) return null;
+        return 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+    }
+
+    function openVideoModal(key) {
+        var data = window._vmVideos[key];
+        if (!data) return;
+        document.getElementById('vmTitle').textContent = data.title || '';
+        var modal = document.getElementById('videoModal');
+        modal.classList.remove('hidden');
+        modal._curData = data;
+        document.body.style.overflow = 'hidden';
+        document.addEventListener('keydown', _vmKeyHandler);
+        _vmLoad(data, data.r2Url ? 'r2' : 'yt');
+        _vmUpdateFooter(modal);
+    }
+
+    function _vmLoad(data, src) {
+        var player = document.getElementById('vmPlayer');
+        var modal = document.getElementById('videoModal');
+        modal._curSrc = src;
+        if (src === 'r2' && data.r2Url) {
+            player.innerHTML = '<video src="' + data.r2Url + '" controls autoplay playsinline></video>';
+        } else {
+            var embed = _vmEmbedUrl(data.ytUrl);
+            if (embed) player.innerHTML = '<iframe src="' + embed + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+        }
+    }
+
+    function _vmUpdateFooter(modal) {
+        var data = modal._curData;
+        var footer = document.getElementById('vmFooter');
+        var html = '';
+        if (data.r2Url) {
+            html += '<span class="vm-source-label">Source: </span><span id="vmSrcLabel" class="vm-source-label" style="color:#bbb;font-weight:600">' + (data.r2Url ? 'Backup' : 'YouTube') + '</span>';
+        }
+        if (data.r2Url && data.ytUrl) {
+            html += '<button class="vm-btn vm-btn-switch" onclick="_vmSwitch()">Switch source</button>';
+        }
+        if (data.ytUrl) {
+            var id = null, m = data.ytUrl.match(/[?&]v=([^&]+)/);
+            if (m) id = m[1];
+            if (!id) { m = data.ytUrl.match(/\/embed\/([^?&]+)/); if (m) id = m[1]; }
+            var watchUrl = id ? 'https://www.youtube.com/watch?v=' + id : data.ytUrl;
+            html += '<a class="vm-btn vm-btn-ext" href="' + watchUrl + '" target="_blank" rel="noopener">YouTube ↗</a>';
+        }
+        footer.innerHTML = html;
+    }
+
+    function _vmSwitch() {
+        var modal = document.getElementById('videoModal');
+        var newSrc = (modal._curSrc === 'r2') ? 'yt' : 'r2';
+        _vmLoad(modal._curData, newSrc);
+        var lbl = document.getElementById('vmSrcLabel');
+        if (lbl) lbl.textContent = newSrc === 'r2' ? 'Backup' : 'YouTube';
+    }
+
+    function closeVideoModal() {
+        document.getElementById('vmPlayer').innerHTML = '';
+        document.getElementById('videoModal').classList.add('hidden');
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', _vmKeyHandler);
+    }
+
+    function _vmKeyHandler(e) { if (e.key === 'Escape') closeVideoModal(); }
     </script>
 </body>
 </html>
