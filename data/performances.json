@@ -10,7 +10,7 @@
       "poster": "allstage.jpg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLxbgQdcnIafgy2d95lKn_QVqNxtvgkXmX",
       "description": "",
-      "episodes": [
+      "previewEpisodes": [
         {
           "title": "得闲谨制+不要回头+现在不跳舞要干嘛",
           "url": "https://www.youtube.com/watch?v=Q8BcttLX9zo",
@@ -40,7 +40,9 @@
           "title": "往事随风",
           "url": "https://www.youtube.com/watch?v=i-s5h4o2rmo",
           "thumbnail": "https://i.ytimg.com/vi/i-s5h4o2rmo/mqdefault.jpg"
-        },
+        }
+      ],
+      "allEpisodes": [
         {
           "title": "月亮代表我的心",
           "url": "https://www.youtube.com/watch?v=ARChdSyNrvw",
@@ -308,7 +310,7 @@
       "poster": "wm.webp",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLxbgQdcnIafilPb623TecynKrRGbt_zp9",
       "description": "",
-      "episodes": [
+      "previewEpisodes": [
         {
           "title": "得闲谨制电影官方MV",
           "url": "https://www.youtube.com/watch?v=yE7ZkW93x-Y",
@@ -338,7 +340,9 @@
           "title": "都一样 Anonymous",
           "url": "https://www.youtube.com/watch?v=_u6IH4ZqAyc",
           "thumbnail": "https://i.ytimg.com/vi/_u6IH4ZqAyc/mqdefault.jpg"
-        },
+        }
+      ],
+      "allEpisodes": [
         {
           "title": "漂流 Life of Us",
           "url": "https://www.youtube.com/watch?v=GmuwqCqKqGU",
@@ -515,13 +519,6 @@
       "title": "Xiao Zhan 我们都将奔赴美好未来",
       "embedUrl": "https://www.youtube.com/embed/T2f0LjV29Rs",
       "description": "One-year Countdown to Hangzhou Asian Games<br>2022 杭州亚运会倒计时一周年"
-    },
-    {
-      "id": "xiao-zhan-3-2",
-      "year": "2021-05-31",
-      "title": "Xiao Zhan 竹石3",
-      "embedUrl": "https://v.qq.com/txp/iframe/player.html?vid=n3251xpi3sg",
-      "description": "Ignite the Night: JD.com's 618 Extravaganza<br>2021 618沸腾之夜"
     },
     {
       "id": "xiao-zhan-2020-2021",
