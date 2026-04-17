@@ -17,9 +17,13 @@
     <meta name="copyright" content="Content curation and organization © 2026 CanadaXFX. Unauthorized AI training prohibited.">
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Preload first hero still -->
+    <link rel="preload" as="image" href="images/stills/xiao-zhan1-1.jpg">
 
     <!-- ALL YOUR EXISTING CSS STAYS EXACTLY THE SAME -->
 <style>
@@ -93,11 +97,11 @@ box-shadow:0 4px 20px #e53e3e4d
 </style>
 <style>
 :root {
---primary-color:#3f3f7d;
---secondary-color:#f8f8ff;
---accent-color:#7f3a7f;
---text-color:#333;
---light-gray:#f5f5f5;
+--primary-color:#1a1a24;
+--secondary-color:#faf8f3;
+--accent-color:#c9a86a;
+--text-color:#1a1a1a;
+--light-gray:#efece4;
 --card-shadow:0 3px 15px #00000014;
 --hover-shadow:0 10px 25px #0000001f
 }
@@ -850,7 +854,7 @@ Responsive Styles - Organized by breakpoint
 ========================================================================== */
 /* Small Mobile Devices (up to 360px) */
 @media (max-width: 360px) {
-.nav-linkfont-size:.75rem;
+.nav-link{font-size:.75rem;
 padding:8px 2px
 }
 
@@ -1103,19 +1107,332 @@ grid-template-rows:repeat(2,auto)
 }
 }
     </style>
+
+<!-- ========================================================================
+     CINEMATIC HEADER — overrides previous .site-header / .main-nav rules
+     ======================================================================== -->
+<style>
+.site-header{
+  position:relative;
+  height:380px;
+  background:#0b0b12;
+  color:#fff;
+  text-align:left;
+  padding:0;
+  overflow:hidden;
+}
+.site-header::before{display:none}
+
+/* Slim top utility bar */
+.hero-utility{
+  position:relative;z-index:5;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;
+  gap:16px;flex-wrap:wrap;
+  font-size:13px;color:rgba(255,255,255,0.92);letter-spacing:.04em;
+  background:linear-gradient(to bottom,rgba(0,0,0,.4),transparent);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.hero-utility .left{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hero-utility .wordmark{
+  font-family:'Fraunces',serif;font-weight:500;font-size:15px;
+  letter-spacing:.02em;color:#fff;
+}
+.hero-utility .dot{opacity:.5;font-size:14px}
+.hero-utility .kicker-small{
+  font-family:'Noto Sans SC','Noto Sans',sans-serif;
+  font-size:15px;font-weight:400;letter-spacing:.08em;
+  color:rgba(255,255,255,.85);
+}
+.hero-utility .links{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.hero-utility a{
+  color:#fff;text-decoration:none;transition:all .2s;
+  padding:6px 12px;border-radius:100px;
+  display:inline-flex;align-items:center;gap:6px;
+  font-weight:500;
+}
+.hero-utility a:hover{background:rgba(255,255,255,.14);color:#fff}
+.hero-utility .back{
+  font-size:12px;text-transform:uppercase;letter-spacing:.12em;
+  border:1px solid rgba(255,255,255,.5);padding:6px 12px;border-radius:100px;
+  margin-left:6px;
+  color:#fff;
+}
+.hero-utility .back:hover{background:rgba(255,255,255,.18);border-color:#fff}
+
+/* Drifting film strip */
+.hero-strip-wrap{
+  position:absolute;inset:0;z-index:1;overflow:hidden;
+}
+.hero-strip{
+  position:absolute;top:50%;transform:translateY(-50%);
+  display:flex;gap:0;height:92%;
+  animation:hero-drift 80s linear infinite;
+  will-change:transform;
+  padding:0;
+  background:#3a2a18;
+  border-top:6px solid #3a2a18;
+  border-bottom:6px solid #3a2a18;
+}
+.hero-strip::before,
+.hero-strip::after{
+  content:'';position:absolute;left:0;right:0;height:28px;
+  background-color:#3a2a18;
+  background-image:repeating-linear-gradient(to right,
+      transparent 0 6px,
+      #f3e3c2 6px 20px,
+      transparent 20px 26px);
+  background-size:100% 12px;
+  background-repeat:no-repeat;
+  background-position:center;
+  z-index:3;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,0.2);
+}
+.hero-strip::before{top:0}
+.hero-strip::after{bottom:0}
+.hero-strip .still{margin:34px 6px}
+.hero-strip .still{
+  flex:0 0 auto;aspect-ratio:2/3;height:calc(100% - 72px);
+  border-radius:2px;overflow:hidden;
+  position:relative;
+  background:#1a1a24;
+  box-shadow:inset 0 0 0 1px rgba(243,227,194,0.18),0 4px 18px rgba(0,0,0,.4);
+}
+.hero-strip .still img{
+  width:100%;height:100%;object-fit:cover;
+  object-position:center 15%;
+  filter:saturate(.92) contrast(.96);
+  display:block;
+}
+@keyframes hero-drift{
+  from{transform:translate(0,-50%)}
+  to{transform:translate(-50%,-50%)}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-strip{animation:none}
+}
+
+/* Cinematic overlay */
+.hero-overlay{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(11,11,18,.55) 0%, rgba(11,11,18,.25) 35%, rgba(11,11,18,.95) 100%),
+    linear-gradient(90deg, rgba(11,11,18,.55) 0%, rgba(11,11,18,0) 30%, rgba(11,11,18,0) 70%, rgba(11,11,18,.55) 100%);
+}
+
+/* Hero content anchored bottom-left */
+.hero-content{
+  position:absolute;left:0;right:0;bottom:0;z-index:3;
+  padding:0 40px 36px;
+  text-align:left;
+}
+.hero-kicker{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:13px;letter-spacing:.2em;text-transform:uppercase;
+  color:#c9a86a;margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-kicker::before{content:'';width:28px;height:1px;background:#c9a86a}
+.hero-title{
+  font-family:'Fraunces',serif;
+  font-size:44px;font-weight:400;color:#fff;
+  letter-spacing:-.015em;line-height:1.05;margin:0 0 10px;
+  max-width:780px;
+}
+.hero-title em{font-style:italic;font-weight:400;color:#e8d4a8}
+.hero-zh{
+  font-family:'Noto Sans',sans-serif;font-size:15px;
+  color:rgba(255,255,255,.75);font-weight:400;letter-spacing:.04em;
+  margin:0 0 14px;max-width:780px;
+}
+.hero-sublinks{
+  font-size:13px;color:rgba(255,255,255,.65);line-height:1.7;
+  max-width:780px;
+}
+.hero-sublinks a{
+  color:#fff;text-decoration:none;border-bottom:1px solid rgba(201,168,106,.5);
+  transition:border-color .2s,color .2s;padding-bottom:1px;
+  white-space:nowrap;
+}
+.hero-sublinks a:hover{border-bottom-color:#c9a86a;color:#e8d4a8}
+.hero-sublinks .sep{opacity:.35;margin:0 10px}
+
+/* Override nav to match dark header */
+.main-nav{
+  background:#0b0b12;
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  box-shadow:none;
+}
+.nav-container{padding:0 20px}
+.nav-link{
+  color:rgba(255,255,255,.6);
+  padding:16px 22px;
+  font-weight:500;font-size:14px;letter-spacing:.02em;
+  border-bottom:2px solid transparent;
+  transition:color .2s,border-color .2s,background .2s;
+  line-height:1.35;
+}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,.03)}
+.nav-link.active{
+  color:#fff;
+  border-bottom:2px solid #c9a86a;
+  background:transparent;
+}
+
+/* Override body background to match premium tone below header */
+body{background-color:#faf8f3}
+
+/* Mobile */
+@media (max-width:768px){
+  .site-header{height:auto;min-height:380px}
+  .hero-utility{padding:10px 14px;font-size:11px;gap:8px;flex-wrap:wrap}
+  .hero-utility .links{gap:10px;flex-wrap:wrap;justify-content:flex-end}
+  .hero-utility .back{padding:4px 8px;font-size:10px}
+  .hero-strip{height:52%}
+  .hero-strip::before,.hero-strip::after{height:18px;background-size:100% 8px}
+  .hero-strip .still{height:calc(100% - 52px);margin:26px 4px}
+  .hero-content{padding:0 18px 22px}
+  .hero-kicker{font-size:12px;letter-spacing:.16em;margin-bottom:6px}
+  .hero-title{font-size:30px;line-height:1.08;margin-bottom:6px}
+  .hero-zh{font-size:13px;margin-bottom:8px}
+  .hero-sublinks{font-size:11.5px;line-height:1.55}
+  .hero-sublinks .sep{display:none}
+  .hero-sublinks a{display:inline-block;margin:2px 8px 2px 0}
+  .nav-container{padding:0}
+  .nav-link{padding:12px 10px;font-size:12px;min-height:52px}
+}
+@media (max-width:480px){
+  .site-header{min-height:340px}
+  .hero-utility{padding:10px 12px;font-size:10.5px}
+  .hero-utility .wordmark{font-size:13px}
+  .hero-utility .kicker-small{font-size:13px}
+  .hero-utility .links a:not(.back){display:none}
+  .hero-title{font-size:26px}
+  .hero-kicker{font-size:11px;letter-spacing:.16em}
+  .hero-strip::before,.hero-strip::after{height:14px;background-size:100% 6px;
+    background-image:repeating-linear-gradient(to right,transparent 0 4px,#f3e3c2 4px 14px,transparent 14px 18px)}
+  .hero-strip .still{height:calc(100% - 40px);margin:20px 3px}
+}
+</style>
+
+<!-- Palette harmony overrides for the new ink/gold theme -->
+<style>
+.nav-link.active{border-bottom:2px solid var(--accent-color)}
+.nav-link:hover,.nav-link.active{background-color:rgba(201,168,106,0.06);color:#fff}
+.drama-card{background:#fff;border:1px solid rgba(26,26,36,0.06)}
+.drama-cards{border:none}
+.drama-title{color:#1a1a24;font-weight:600}
+.drama-role{color:#8a6a30;font-style:italic}
+.year-label,.episode-count{background-color:rgba(26,26,36,0.88);color:#fff}
+.watch-button,.search-button,.ep-page-btn,.tab-button.active{background:#1a1a24;color:#fff}
+.watch-button:hover,.search-button:hover,.ep-page-btn:hover{background:#c9a86a;color:#1a1a24}
+.toggle-episodes-btn{color:#8a6a30}
+.toggle-episodes-btn:hover{color:#1a1a24}
+.video-title{color:#1a1a24}
+.site-footer{background:#0b0b12;color:#fff}
+.site-footer .copyright-notice{border-top-color:rgba(255,255,255,0.12)}
+#terms-toggle{background:#c9a86a;color:#1a1a24}
+#terms-toggle:hover{background:#fff;color:#1a1a24}
+.search-results-count{color:#8a6a30}
+.no-results h3,.divider-heading{color:#1a1a24}
+.section-divider{background:#f2efe7}
+.section-divider::before,.section-divider::after{background:linear-gradient(to right,transparent,#c9a86a,transparent)}
+.highlight{background-color:rgba(201,168,106,0.25)}
+#back-to-top{color:#1a1a24;border-color:#1a1a24;-webkit-text-stroke:2px #1a1a24}
+#back-to-top .text{color:#1a1a24;-webkit-text-fill-color:#1a1a24}
+#back-to-top:hover{box-shadow:0 6px 25px rgba(201,168,106,0.4)}
+.episodes-preview::-webkit-scrollbar-thumb{background-color:#c9a86a}
+.platform-link{background:#1a1a24;color:#fff}
+.platform-link:hover{background:#c9a86a;color:#1a1a24}
+</style>
 </head>
 <body>
-    <!-- HEADER - Stays exactly the same -->
+    <!-- HEADER — cinematic drifting film strip -->
     <header class="site-header">
-        <div class="back-button-container">
-            <a href="https://canadaxfx.github.io/XZworks/" class="back-button">
-                <span class="back-arrow">←</span> Back to Main Site<br>回主页
-            </a>
+        <!-- slim utility bar (top) -->
+        <div class="hero-utility">
+            <div class="left">
+                <span class="wordmark">Xiao Zhan</span>
+                <span class="dot">·</span>
+                <span class="kicker-small">肖战</span>
+            </div>
+            <div class="links">
+                <a href="https://canadaxfx.github.io/XZworks/" target="_blank" rel="noopener">Main site ↗</a>
+                <a href="https://www.youtube.com/@CanadaXFX" target="_blank" rel="noopener">YouTube ↗</a>
+                <a href="https://xz-studio-gallery.com/" target="_blank" rel="noopener">Studio Gallery ↗</a>
+                <a href="https://canadaxfx.github.io/XZworks/" class="back">← Back 回主页</a>
+            </div>
         </div>
-        <div class="header-content">
-            <img src="logo.jpg" alt="Xiao Zhan" class="profile-img">
-            <h1 class="site-title">XZ Screen Universe on YouTube<br>肖战作品YouTube聚合站</h1>
-            <p class="site-subtitle">Explore Xiao Zhan's shows on YouTube<br>For the complete collection from various streaming platforms, please refer to: <br><a href="https://canadaxfx.github.io/XZworks/" target="_blank" style="color: white; text-decoration: underline; font-style: italic; font-weight: 500">the main site: Screen Arts of Xiao Zhan</a><br>Also welcome to visit:<br><a href="https://www.youtube.com/@CanadaXFX" target="_blank" style="color: white; text-decoration: underline; font-style: italic; font-weight: 500">CanadaXFX YouTube Channel</a>&nbsp; &nbsp; &nbsp; &nbsp; <a href="https://xz-studio-gallery.com/" target="_blank" style="color: white; text-decoration: underline; font-style: italic; font-weight: 500">Xiao Zhan Studio Gallery</a></p>
+
+        <!-- drifting film strip, all 25 stills in debut order -->
+        <div class="hero-strip-wrap" aria-hidden="true">
+            <div class="hero-strip">
+                <div class="still"><img src="images/stills/xiao-zhan1-1.jpg" alt="" loading="eager" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-2.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-3.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-4.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-5.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-6.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-7.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-8.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-9.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-10.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-11.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-12.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-13.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-14.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-15.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-16.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-17.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-18.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-19.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan2-1.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan2-2.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan2-3.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan2-4.png" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan2-5.jpeg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan3-1.jpg" alt="" loading="lazy" decoding="async"></div>
+                <!-- duplicate set for seamless loop -->
+                <div class="still"><img src="images/stills/xiao-zhan1-1.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-2.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-3.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-4.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-5.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-6.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-7.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-8.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-9.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-10.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-11.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-12.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-13.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-14.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-15.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-16.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-17.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-18.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan1-19.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan2-1.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan2-2.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan2-3.jpg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan2-4.png" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan2-5.jpeg" alt="" loading="lazy" decoding="async"></div>
+                <div class="still"><img src="images/stills/xiao-zhan3-1.jpg" alt="" loading="lazy" decoding="async"></div>
+            </div>
+        </div>
+
+        <div class="hero-overlay"></div>
+
+        <!-- hero content anchored bottom-left -->
+        <div class="hero-content">
+            <div class="hero-kicker">Xiao Zhan · A YouTube Aggregation</div>
+            <h1 class="hero-title">Screen Universe <em>on YouTube</em></h1>
+            <p class="hero-zh">肖战作品 YouTube 聚合站 · dramas, stages &amp; variety in one place</p>
+            <p class="hero-sublinks">
+                For the complete cross-platform collection, visit
+                <a href="https://canadaxfx.github.io/XZworks/" target="_blank" rel="noopener">Screen Arts of Xiao Zhan</a>.
+            </p>
         </div>
     </header>
     
