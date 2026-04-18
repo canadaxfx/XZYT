@@ -1308,8 +1308,9 @@ body{background-color:#faf8f3}
   .hero-utility{padding:10px 12px;font-size:10.5px}
   .hero-utility .wordmark{font-size:13px}
   .hero-utility .kicker-small{font-size:13px}
-  .hero-utility .links a:not(.back){display:none}
-  .hero-title{font-size:26px}
+  .hero-utility .links{gap:6px;font-size:10px;flex-wrap:wrap}
+  .hero-utility .links .back{order:-1;width:100%}
+  .hero-title{font-size:clamp(17px,5.5vw,26px);white-space:nowrap}
   .hero-kicker{font-size:11px;letter-spacing:.16em}
   .hero-strip::before,.hero-strip::after{height:14px;background-size:100% 6px;
     background-image:repeating-linear-gradient(to right,transparent 0 4px,#f3e3c2 4px 14px,transparent 14px 18px)}
@@ -1427,7 +1428,7 @@ body{background-color:#faf8f3}
 
         <!-- hero content anchored bottom-left -->
         <div class="hero-content">
-            <div class="hero-kicker">Xiao Zhan · A YouTube Aggregation</div>
+            <div class="hero-kicker"><strong>Xiao Zhan</strong> · A YouTube Aggregation</div>
             <h1 class="hero-title">Screen Universe <em>on YouTube</em></h1>
             <p class="hero-zh">肖战作品 YouTube 聚合站 · dramas, stages &amp; variety in one place</p>
             <p class="hero-sublinks">
