@@ -17,6 +17,17 @@ function _getYtId(url) {
     return null;
 }
 
+// Derive R2 thumbnail from video URL using the autosync convention:
+// https://domain/full/filename.mp4  →  https://domain/thumbs/filename_m.jpg
+function _getR2Thumb(r2Url) {
+    if (!r2Url) return null;
+    try {
+        var u = new URL(r2Url);
+        var basename = u.pathname.split('/').pop().replace(/\.[^.]+$/, '');
+        return u.origin + '/thumbs/' + basename + '_m.jpg';
+    } catch(e) { return null; }
+}
+
 // === EPISODE PAGINATION ===
 window._dramaEps = {};  // dramaId → episodes[]
 window._epPages  = {};  // dramaId → currentPage
@@ -107,7 +118,7 @@ function createEpisodePreview(episode) {
     var r2Url = episode.r2_url || null;
     var key   = _regVideo(episode.title, ytUrl, r2Url);
     var ytId  = _getYtId(ytUrl);
-    var thumb = episode.thumbnail || (ytId ? 'https://i.ytimg.com/vi/' + ytId + '/mqdefault.jpg' : '');
+    var thumb = episode.thumbnail || (ytId ? 'https://i.ytimg.com/vi/' + ytId + '/mqdefault.jpg' : _getR2Thumb(r2Url) || '');
     return `
         <div class="episode-preview" onclick="openVideoModal('${key}')" role="button" tabindex="0"
              onkeydown="if(event.key==='Enter')openVideoModal('${key}')">
@@ -166,8 +177,8 @@ function createPlaylistCard(playlist) {
 // ======================
 function createFeaturedVideo(video) {
     var ytId  = _getYtId(video.embedUrl);
-    var thumb = ytId ? 'https://i.ytimg.com/vi/' + ytId + '/hqdefault.jpg' : '';
     var r2Url = video.r2_url || null;
+    var thumb = ytId ? 'https://i.ytimg.com/vi/' + ytId + '/hqdefault.jpg' : (_getR2Thumb(r2Url) || '');
     var key   = _regVideo(video.title.replace(/<br>/g, ' '), video.embedUrl, r2Url);
     return `
         <div class="video-item" data-title="${video.title.replace(/<br>/g, ' ')}">
