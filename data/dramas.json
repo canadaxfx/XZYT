@@ -7,7 +7,7 @@
       "titleShort": "Legend of Zang Hai 藏海传",
       "role": "Zang Hai 藏海",
       "episodeCount": "40 Episodes",
-      "poster": "zh.jpg",
+      "poster": "images/posters/zh.jpg",
       "playlistUrl": "https://youtube.com/playlist?list=PLxbgQdcnIafjZhKxxnSFLZuHmQzEF9Zb7&si=uSb_9xFUedGk9i8a",
       "description": "The series tells the story of the son of the Chief Astronomer of the Great Yong Kingdom, who experienced the destruction of his entire family. Ten years later, he returns to the capital under the alias \"Zang Hai,\" using the architectural skills and strategic prowess he has honed over the years to outwit the corrupt officials, uncover the conspiracy, and join forces with his beloved friends to defend the nation.",
       "episodes": [
@@ -465,7 +465,7 @@
       "titleShort": "Sunshine by My Side 骄阳伴我",
       "role": "Sheng Yang 盛阳",
       "episodeCount": "36 Episodes",
-      "poster": "sy.jpeg",
+      "poster": "images/posters/sy.jpeg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLQqbdnAgoRmbSsGj7qT3ARvqvXe3SOWwM",
       "description": "This drama tells the story of an advertising director \"Jian Bing\" (played by Bai Baihe) and a newcomer designer \"Sheng Yang\" (played by Xiao Zhan) who meet by chance. The two people with completely different personalities gradually develop feelings for each other in their daily interactions.",
       "episodes": [
@@ -683,7 +683,7 @@
       "titleShort": "The Youth Memories 梦中的那片海",
       "role": "Xiao Chunsheng 肖春生",
       "episodeCount": "38 Episodes",
-      "poster": "xcs.jpg",
+      "poster": "images/posters/xcs.jpg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLRBClVey5BqwM9E2uvd2rVf_mekyic98m",
       "description": "The Youth Memories is a show about a group of youths and their struggles as they chase their dreams in 1970's Beijing.",
       "episodes": [
@@ -911,7 +911,7 @@
       "titleShort": "The Oath of Love 余生，请多指教",
       "role": "Gu Wei 顾魏",
       "episodeCount": "29 Episodes",
-      "poster": "gw.jpg",
+      "poster": "images/posters/gw.jpg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLMX26aiIvX5pKLsGYgPFP0gDFVVjGbf0k",
       "description": "Gu Wei is a very solemn surgeon, although glimpses of his warm heart can be seen from time to time. As Zhi Xiao's father progresses through treatment, she and Dr. Gu become close—she helps him learn how to enjoy life, and he helps her focus on what she truly wants in life.",
       "episodes": [
@@ -1084,7 +1084,7 @@
       "titleShort": "Ace Troops 王牌部队",
       "role": "Gu Yiye 顾一野",
       "episodeCount": "40 Episodes",
-      "poster": "gyy.jpeg",
+      "poster": "images/posters/gyy.jpeg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLlCrV9TCfzMYAXQEBxvu6aoqBlXFLVs6x",
       "description": "From humble beginnings to forged bonds, two recruits - miner's son Gao Liang and military family scion Gu Yiye - clash over their differences, only to become comrades-in-arms. Through battles, demining in Guangxi, Hong Kong garrison, and the '98 flood relief, they weathered the military's transformation from mechanization to informatization. Their story is one of rivalry, camaraderie, and the unbreakable spirit of soldiers.",
       "episodes": [
@@ -1317,7 +1317,7 @@
       "titleShort": "Douluo Continent 斗罗大陆",
       "role": "Tang San 唐三",
       "episodeCount": "40 Episodes",
-      "poster": "ts.jpg",
+      "poster": "images/posters/ts.jpg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLMX26aiIvX5qJotAhNmifeoRaw0Vj6kDn",
       "description": "A gifted young man, Tang San (played by Xiao Zhan), and his alcoholic father, Tang Hao, forge an unbreakable bond. As Tang San's martial soul awakens, his father reveals a secret about his mother. Determined to fulfill his promise, Tang San enrolls at Nuoding Academy and Shrek Academy, where he and six other talented youths form the Shrek Seven Devils. Through trials and tribulations, they uncover a sinister plot by the Martial Soul Hall, ultimately emerging victorious and becoming the pinnacle of the Douluo Continent.",
       "episodes": [
@@ -1555,7 +1555,7 @@
       "titleShort": "The Wolf 狼殿下",
       "role": "Ji Chong 疾冲",
       "episodeCount": "49 Episodes",
-      "poster": "jc.jpeg",
+      "poster": "images/posters/jc.jpeg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLpghCOjR4QqrKjwKw-jkbWAbH6g08q1SR",
       "description": "A young wolf raised in the pack is mistaken for a murderer and hunted relentlessly. Though the truth is uncovered, a sibling's interference leads the wolf to believe the noblewoman has betrayed him. He vanishes, only to be secretly adopted by a passing traveler. Years later, they reunite, their past misunderstandings unraveling a new tale.",
       "episodes": [
@@ -1813,7 +1813,7 @@
       "titleShort": "Heroes in Harm's Way: Happiness Community 最美逆行者：幸福社区",
       "role": "Cai Ding 蔡丁",
       "episodeCount": "2 Episodes",
-      "poster": "cd.jpg",
+      "poster": "images/posters/cd.jpg",
       "playlistUrl": "",
       "description": "The COVID-19 pandemic in China serves as the backdrop for this 7-part series.",
       "episodes": [
@@ -1841,7 +1841,7 @@
       "titleShort": "Joy of Life 庆余年",
       "role": "Yan Bingyun 言冰云",
       "episodeCount": "46 Episodes",
-      "poster": "yby.jpeg",
+      "poster": "images/posters/yby.jpeg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLTB73Ibi_X3H0oT42WnzzY_6lo3pQjNMW",
       "description": "The story follows a young man of mysterious origins, who sets out from his coastal hometown to face a series of trials and tribulations in his family, the city streets, the martial world, and the imperial court.",
       "episodes": [
@@ -2084,7 +2084,7 @@
       "titleShort": "The Untamed (Distilled Version) Ep 1-30 陈情令精华版 前30集",
       "role": "Wei Wuxian / Mo Xuanyu 魏无羡 / 莫玄羽",
       "episodeCount": "First 30 episodes",
-      "poster": "wwx.jpg",
+      "poster": "images/posters/wwx.jpg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLxbgQdcnIafjjiwq6qDaIpt0BVUmxEXpT",
       "description": "A fantasy drama based on the novel \"Mo Dao Zu Shi\" by Mo Xiang Tong Xiu. The story follows Wei Wuxian and Lan Wangji as they solve mysteries, face ghosts, and uncover dark secrets in the cultivation world.",
       "episodes": [
@@ -2252,7 +2252,7 @@
       "titleShort": "Battle Through the Heavens 斗破苍穹",
       "role": "Lin Xiuya 林修崖",
       "episodeCount": "45 episodes",
-      "poster": "lxy.jpg",
+      "poster": "images/posters/lxy.jpg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLpghCOjR4QqrN8DTJsVFY3wDLjYZX8A7H",
       "description": "A fantasy drama based on the novel \"Battle Through the Heavens\" by Heavenly Silkworm Potato. The story follows Xiao Yan, a former genius, who embarks on a journey to regain his powers and avenge his mother's death.",
       "episodes": [
@@ -2490,7 +2490,7 @@
       "titleShort": "Oh! My Emperor S2 哦！我的皇帝陛下 第二季",
       "role": "Bei Tang Mo Ran 北堂墨染",
       "episodeCount": "21 episodes",
-      "poster": "btmr.jpg",
+      "poster": "images/posters/btmr.jpg",
       "playlistUrl": "https://youtube.com/playlist?list=PLxbgQdcnIafgZWz4BvNf_FXcfmXS_g0BK&si=zmuPa6eLL97LvA6j",
       "description": "A captivating celestial romance unfolds in the enigmatic realm of Zodiac Nation, where star-powered abilities reign supreme.",
       "episodes": [
@@ -2608,7 +2608,7 @@
       "titleShort": "Oh! My Emperor S1 哦！我的皇帝陛下 第一季",
       "role": "Bei Tang Mo Ran 北堂墨染",
       "episodeCount": "21 episodes",
-      "poster": "btmr1.jpg",
+      "poster": "images/posters/btmr1.jpg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLs3DOuT3JlGTWokDapX8D6D-S9s9qbrgI",
       "description": "A captivating celestial romance unfolds in the enigmatic realm of Zodiac Nation, where star-powered abilities reign supreme.",
       "episodes": [
@@ -2726,7 +2726,7 @@
       "titleShort": "Super Star Academy 超星星学园",
       "role": "Fang Tianze 方天泽",
       "episodeCount": "30 episodes",
-      "poster": "ftz.jpg",
+      "poster": "images/posters/ftz.jpg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLMX26aiIvX5r4DsfYoltPM1SmUC-FMcRr",
       "description": "In a parallel world where star sign abilities reign supreme, Cheng Zhier is recruited by the prestigious \"Super Star Academy.\" There, she embarks on a captivating journey alongside the heir to the star sign legacy, Fang Tianze.",
       "episodes": [

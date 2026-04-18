@@ -7,7 +7,7 @@
       "titleShort": "",
       "role": "",
       "episodeCount": "All Stages",
-      "poster": "allstage.jpg",
+      "poster": "images/posters/allstage.jpg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLxbgQdcnIafgy2d95lKn_QVqNxtvgkXmX",
       "description": "",
       "episodes": [
@@ -305,7 +305,7 @@
       "titleShort": "",
       "role": "",
       "episodeCount": "All MVs",
-      "poster": "wm.webp",
+      "poster": "images/posters/wm.webp",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLxbgQdcnIafilPb623TecynKrRGbt_zp9",
       "description": "",
       "episodes": [

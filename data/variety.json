@@ -7,7 +7,7 @@
       "titleShort": "",
       "role": "",
       "episodeCount": "All Variety Shows",
-      "poster": "zy.jpg",
+      "poster": "images/posters/zy.jpg",
       "playlistUrl": "https://youtube.com/playlist?list=PLxbgQdcnIafhwAYD7Rzq9ZUTxrF4yiCam&si=ZPfIk9LXV-smAYvS",
       "description": "",
       "episodes": [
@@ -190,7 +190,7 @@
       "titleShort": "",
       "role": "",
       "episodeCount": "All Voice Actings",
-      "poster": "voice.jpg",
+      "poster": "images/posters/voice.jpg",
       "playlistUrl": "https://youtube.com/playlist?list=PLxbgQdcnIafjrbVREHLjUzMwlZtdSU9eT&si=_RDn9flaSH91dt-0",
       "description": "",
       "episodes": [
@@ -248,7 +248,7 @@
       "titleShort": "",
       "role": "",
       "episodeCount": "All Interview Series",
-      "poster": "sinainterview.jpg",
+      "poster": "images/posters/sinainterview.jpg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLxbgQdcnIafijcYmDHWC-wFZamTEXcqcW",
       "description": "",
       "episodes": [
