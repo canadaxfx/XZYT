@@ -1128,13 +1128,15 @@ grid-template-rows:repeat(2,auto)
 .hero-utility{
   position:relative;z-index:5;
   display:flex;align-items:center;
-  padding:14px 28px;
-  gap:16px;flex-wrap:wrap;
+  padding:8px 28px;
+  gap:12px;flex-wrap:wrap;
   font-size:13px;color:rgba(255,255,255,0.92);letter-spacing:.04em;
   background:linear-gradient(to bottom,rgba(0,0,0,.4),transparent);
   border-bottom:1px solid rgba(255,255,255,.08);
 }
-.hero-utility .left{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hero-utility .left{display:flex;align-items:center;gap:10px;flex-wrap:wrap;order:1}
+.hero-utility .links{order:2}
+.hero-utility .back{order:3}
 .hero-utility .wordmark{
   font-family:'Fraunces',serif;font-weight:500;font-size:15px;
   letter-spacing:.02em;color:#fff;
@@ -1289,7 +1291,7 @@ body{background-color:#faf8f3}
   .hero-utility{padding:10px 14px;font-size:11px;gap:8px;flex-wrap:wrap}
   .hero-utility .links{gap:10px;flex-wrap:wrap;justify-content:flex-end}
   .hero-utility .back{padding:4px 8px;font-size:10px}
-  .hero-strip{height:52%}
+  .hero-strip{height:52%;top:41%}
   .hero-strip::before,.hero-strip::after{height:18px;background-size:100% 8px}
   .hero-strip .still{height:calc(100% - 52px);margin:26px 4px}
   .hero-content{padding:0 18px 22px}
@@ -1307,10 +1309,12 @@ body{background-color:#faf8f3}
   .hero-utility{padding:10px 12px;font-size:10.5px}
   .hero-utility .wordmark{font-size:13px}
   .hero-utility .kicker-small{font-size:13px}
-  .hero-utility .left{flex:1}
-  .hero-utility .links{flex-basis:100%;justify-content:flex-end;gap:6px;font-size:10px}
+  .hero-utility .left{flex:1;order:1}
+  .hero-utility .back{order:2}
+  .hero-utility .links{order:3;flex-basis:100%;justify-content:flex-end;gap:6px;font-size:10px}
   .hero-title{font-size:clamp(17px,5.5vw,26px);white-space:nowrap}
   .hero-kicker{font-size:11px;letter-spacing:.16em}
+  .hero-strip{height:65%;top:43%}
   .hero-strip::before,.hero-strip::after{height:14px;background-size:100% 6px;
     background-image:repeating-linear-gradient(to right,transparent 0 4px,#f3e3c2 4px 14px,transparent 14px 18px)}
   .hero-strip .still{height:calc(100% - 40px);margin:20px 3px}
