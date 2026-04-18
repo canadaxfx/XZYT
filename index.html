@@ -1308,8 +1308,9 @@ body{background-color:#faf8f3}
   .hero-utility{padding:10px 12px;font-size:10.5px}
   .hero-utility .wordmark{font-size:13px}
   .hero-utility .kicker-small{font-size:13px}
-  .hero-utility .links{gap:6px;font-size:10px;flex-wrap:wrap}
-  .hero-utility .links .back{order:-1;width:100%}
+  .hero-utility .links{gap:6px;font-size:10px;flex-wrap:wrap;justify-content:flex-end}
+  .hero-utility .links .back{order:-1}
+  .hero-utility .links a:not(.back){order:0}
   .hero-title{font-size:clamp(17px,5.5vw,26px);white-space:nowrap}
   .hero-kicker{font-size:11px;letter-spacing:.16em}
   .hero-strip::before,.hero-strip::after{height:14px;background-size:100% 6px;
