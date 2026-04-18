@@ -1127,7 +1127,7 @@ grid-template-rows:repeat(2,auto)
 /* Slim top utility bar */
 .hero-utility{
   position:relative;z-index:5;
-  display:flex;align-items:center;justify-content:space-between;
+  display:flex;align-items:center;
   padding:14px 28px;
   gap:16px;flex-wrap:wrap;
   font-size:13px;color:rgba(255,255,255,0.92);letter-spacing:.04em;
@@ -1156,7 +1156,7 @@ grid-template-rows:repeat(2,auto)
 .hero-utility .back{
   font-size:12px;text-transform:uppercase;letter-spacing:.12em;
   border:1px solid rgba(255,255,255,.5);padding:6px 12px;border-radius:100px;
-  margin-left:6px;
+  margin-left:auto;
   color:#fff;
 }
 .hero-utility .back:hover{background:rgba(255,255,255,.18);border-color:#fff}
@@ -1308,9 +1308,8 @@ body{background-color:#faf8f3}
   .hero-utility{padding:10px 12px;font-size:10.5px}
   .hero-utility .wordmark{font-size:13px}
   .hero-utility .kicker-small{font-size:13px}
-  .hero-utility .links{gap:6px;font-size:10px;flex-wrap:wrap;justify-content:flex-end}
-  .hero-utility .links .back{order:-1}
-  .hero-utility .links a:not(.back){order:0}
+  .hero-utility .left{flex:1}
+  .hero-utility .links{flex-basis:100%;justify-content:flex-end;gap:6px;font-size:10px}
   .hero-title{font-size:clamp(17px,5.5vw,26px);white-space:nowrap}
   .hero-kicker{font-size:11px;letter-spacing:.16em}
   .hero-strip::before,.hero-strip::after{height:14px;background-size:100% 6px;
@@ -1360,11 +1359,11 @@ body{background-color:#faf8f3}
                 <span class="dot">·</span>
                 <span class="kicker-small">肖战</span>
             </div>
+            <a href="https://canadaxfx.github.io/XZworks/" class="back">← Back 回主页</a>
             <div class="links">
                 <a href="https://canadaxfx.github.io/XZworks/" target="_blank" rel="noopener">Main site ↗</a>
                 <a href="https://www.youtube.com/@CanadaXFX" target="_blank" rel="noopener">YouTube ↗</a>
                 <a href="https://xz-studio-gallery.com/" target="_blank" rel="noopener">Studio Gallery ↗</a>
-                <a href="https://canadaxfx.github.io/XZworks/" class="back">← Back 回主页</a>
             </div>
         </div>
 
