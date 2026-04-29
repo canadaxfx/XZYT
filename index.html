@@ -1164,7 +1164,7 @@ grid-template-rows:repeat(2,auto)
 .hero-strip{
   position:absolute;top:50%;transform:translateY(-50%);
   display:flex;gap:0;height:92%;
-  animation:hero-drift 60s linear infinite;
+  animation:hero-drift 40s linear infinite;
   will-change:transform;
   padding:0;
   background:#3a2a18;
@@ -1283,7 +1283,9 @@ body{background-color:#faf8f3}
 @media (max-width:768px){
   .toggle-episodes-btn{font-size:.8rem;font-weight:600}
   .site-header{height:auto;min-height:300px}
-  .hero-utility{padding:8px 14px;gap:8px;}
+  .cross-text{display:none}
+  .hero-utility{padding:6px 14px;gap:6px;}
+  .hero-utility a{padding:4px 6px;font-size:10px;}
   .hero-strip{height:65%;top:43%}
   .hero-strip::before,.hero-strip::after{height:12px;background-size:100% 6px}
   .hero-strip .still{height:calc(100% - 24px);margin:12px 4px}
@@ -1296,10 +1298,9 @@ body{background-color:#faf8f3}
 }
 @media (max-width:480px){
   .site-header{min-height:260px}
-  .hero-utility{padding:6px 10px;gap:0;}
+  .hero-utility{padding:4px 10px;gap:0;}
   .util-left{gap:0;}
   .util-right{flex-direction:row;align-items:center;gap:0;}
-  .cross-text{display:none;}
   .hero-title{font-size:clamp(17px,5.5vw,26px);white-space:nowrap}
   .hero-kicker{font-size:11px;letter-spacing:.16em}
   .hero-strip::before,.hero-strip::after{height:14px;background-size:100% 6px;
