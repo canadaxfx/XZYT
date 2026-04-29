@@ -263,7 +263,7 @@ padding:40px 0
 
 .search-container {
   max-width:560px;
-  margin:0 auto 40px;
+  margin:30px auto 20px;
   display:flex;
   gap:8px;
   align-items:center;
@@ -1457,17 +1457,14 @@ body{background-color:#faf8f3}
     
     <!-- MAIN CONTENT -->
     <main class="main-content">
-        <div class="container">
-            
-            <!-- SEARCH - Stays exactly the same -->
-            <div class="search-container">
-                <input type="text" id="search-input" class="search-input" placeholder="Search by title, role, or year...">
-                <button id="search-button" class="search-button">Search</button>
-                <button id="clear-search-button" class="clear-button">Clear</button>
-            </div>
-            
-            <div id="search-results-count" class="search-results-count"></div>
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-input" placeholder="Search by title, role, or year...">
+            <button id="search-button" class="search-button">Search</button>
+            <button id="clear-search-button" class="clear-button">Clear</button>
+        </div>
+        <div id="search-results-count" class="search-results-count"></div>
 
+        <div class="container">
             <div class="tab-container">
                 
                 <!-- TAB 1: TV DRAMAS -->
