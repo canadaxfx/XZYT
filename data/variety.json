@@ -2,15 +2,25 @@
   "playlists": [
     {
       "id": "variety",
-      "year": "2018 - 2025",
-      "title": "2018 - 2025 Variety Shows of Xiao Zhan",
+      "year": "2018 - 2026",
+      "title": "2018 - 2026 Variety Shows of Xiao Zhan",
       "titleShort": "",
       "role": "",
       "episodeCount": "All Variety Shows",
-      "poster": "images/posters/zy.jpg",
+      "poster": "zy.jpg",
       "playlistUrl": "https://youtube.com/playlist?list=PLxbgQdcnIafhwAYD7Rzq9ZUTxrF4yiCam&si=ZPfIk9LXV-smAYvS",
       "description": "",
       "episodes": [
+        {
+          "title": "20260503BRTV<br>大影节红毯+获奖",
+          "url": "https://www.youtube.com/watch?v=2oncKNu-Zps",
+          "thumbnail": "https://i.ytimg.com/vi/2oncKNu-Zps/mqdefault.jpg"
+        },
+        {
+          "title": "20260503新华社/BRTV<br>大影节专访及实拍",
+          "url": "https://www.youtube.com/watch?v=7tvtyLOk2oA",
+          "thumbnail": "https://i.ytimg.com/vi/7tvtyLOk2oA/mqdefault.jpg"
+        },
         {
           "title": "20251213电影频道融媒体专访得闲谨制主演",
           "url": "https://www.youtube.com/watch?v=7bAMTUnvAfc",
@@ -119,7 +129,7 @@
         {
           "title": "20210305冬梦之约<br>冰球运动",
           "url": "https://w.yangshipin.cn/video?type=0&vid=h000016zrzb",
-          "thumbnail": "images/thumbnails/dmzy.jpeg"
+          "thumbnail": "dmzy.jpeg"
         },
         {
           "title": "20210205斗罗大陆发布会",
@@ -190,7 +200,7 @@
       "titleShort": "",
       "role": "",
       "episodeCount": "All Voice Actings",
-      "poster": "images/posters/voice.jpg",
+      "poster": "voice.jpg",
       "playlistUrl": "https://youtube.com/playlist?list=PLxbgQdcnIafjrbVREHLjUzMwlZtdSU9eT&si=_RDn9flaSH91dt-0",
       "description": "",
       "episodes": [
@@ -248,7 +258,7 @@
       "titleShort": "",
       "role": "",
       "episodeCount": "All Interview Series",
-      "poster": "images/posters/sinainterview.jpg",
+      "poster": "sinainterview.jpg",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLxbgQdcnIafijcYmDHWC-wFZamTEXcqcW",
       "description": "",
       "episodes": [
