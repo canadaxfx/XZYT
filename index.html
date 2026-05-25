@@ -1339,6 +1339,50 @@ body{background-color:#faf8f3}
 .platform-link{background:#1a1a24;color:#fff}
 .platform-link:hover{background:#DDB820;color:#1a1a24}
 </style>
+<style>
+/* ── Magnolia watermark ── */
+#mgLayer { position:absolute; inset:0; pointer-events:none; z-index:4; }
+.mg-slot { position:absolute; inset:0; display:none; }
+.mg-slot.active { display:block; }
+.mg-img { position:absolute; mix-blend-mode:screen; object-fit:contain; display:block; }
+.slot-A .mg-l { width:100px; height:100px; top:50%; left:10px;  transform:translateY(-50%) rotate(-6deg); }
+.slot-A .mg-r { width:100px; height:100px; top:50%; right:10px; transform:translateY(-50%) scaleX(-1) rotate(-6deg); }
+.slot-P { position:fixed; inset:0; z-index:0; pointer-events:none; display:none; overflow:hidden; }
+.slot-P.active { display:block; }
+.mg-p-tile { position:absolute; width:50px; height:50px; object-fit:contain; mix-blend-mode:screen; }
+@media (max-width:600px) {
+  .slot-A .mg-l { width:75px; height:75px; }
+  .slot-A .mg-r { width:75px; height:75px; }
+  .mg-p-tile    { width:20px; height:20px; }
+}
+#mgBtnWrap { display:inline-flex; align-items:center; }
+#mgBtn {
+  display:inline-flex; align-items:center;
+  padding:4px 10px; border-radius:100px; cursor:pointer;
+  background:rgba(221,184,32,.1); color:rgba(255,255,255,.75);
+  border:1px solid rgba(221,184,32,.25); font-size:11px; font-weight:500;
+  transition:all .2s; line-height:1; white-space:nowrap;
+}
+#mgBtn:hover { background:rgba(221,184,32,.2); color:#DDB820; }
+#mgBtn.mg-active { background:rgba(221,184,32,.18); color:#DDB820; border-color:rgba(221,184,32,.5); }
+#mgPanel {
+  position:fixed; z-index:9999;
+  background:#0f0f1a; border:1px solid rgba(221,184,32,.3);
+  border-radius:10px; padding:14px 16px; width:250px;
+  display:none; box-shadow:0 6px 24px rgba(0,0,0,.6);
+}
+#mgPanel.open { display:block; }
+.mg-ptitle { color:#DDB820; font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin-bottom:8px; }
+.mg-prow { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:12px; }
+.mg-prow:last-child { margin-bottom:0; }
+.mg-pbtn {
+  padding:5px 8px; font-size:.75rem; border-radius:6px; cursor:pointer;
+  background:rgba(255,255,255,.06); color:rgba(255,255,255,.6);
+  border:1px solid rgba(221,184,32,.15); transition:all .15s; white-space:nowrap;
+}
+.mg-pbtn:hover { background:rgba(255,255,255,.1); color:#fff; }
+.mg-pbtn.active { background:rgba(221,184,32,.15); color:#DDB820; border-color:rgba(221,184,32,.4); }
+</style>
 </head>
 <body>
     <!-- HEADER — cinematic drifting film strip -->
@@ -1352,6 +1396,23 @@ body{background-color:#faf8f3}
             <div class="util-right">
                 <span class="cross-text">For the complete cross-platform collection, visit</span>
                 <a href="https://canadaxfx.github.io/XZworks/" class="back">Screen Arts of Xiao Zhan ↗</a>
+                <div id="mgBtnWrap">
+                    <button id="mgBtn" aria-label="Magnolia watermark">❁</button>
+                    <div id="mgPanel">
+                        <div class="mg-ptitle">图案 · Source</div>
+                        <div class="mg-prow">
+                            <button class="mg-pbtn active" data-src="0">Sketch</button>
+                            <button class="mg-pbtn" data-src="1">Branch</button>
+                            <button class="mg-pbtn" data-src="2">Flower</button>
+                        </div>
+                        <div class="mg-ptitle">版式 · Layout</div>
+                        <div class="mg-prow">
+                            <button class="mg-pbtn active" data-layout="none">None</button>
+                            <button class="mg-pbtn" data-layout="A">Twin Corners</button>
+                            <button class="mg-pbtn" data-layout="P">Full Page</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -1413,6 +1474,14 @@ body{background-color:#faf8f3}
         </div>
 
         <div class="hero-overlay"></div>
+
+        <div id="mgLayer">
+            <div class="mg-slot slot-A" data-slot="A">
+                <img class="mg-img mg-l" alt="">
+                <img class="mg-img mg-r" alt="">
+            </div>
+            <div class="mg-slot slot-P" data-slot="P"></div>
+        </div>
 
         <!-- hero content anchored bottom-left -->
         <div class="hero-content">
@@ -1816,6 +1885,118 @@ body{background-color:#faf8f3}
     }
 
     function _vmKeyHandler(e) { if (e.key === 'Escape') closeVideoModal(); }
+    </script>
+
+    <script>
+    /* ─── Magnolia Watermark ─────────────────────────────────── */
+    (function () {
+      const SOURCES = [
+        { file: 'magnolia/magnolia-line-sketch.png',        baseFilter: 'invert(1)' },
+        { file: 'magnolia/magnolia-illustrated-branch.png', baseFilter: 'grayscale(1)' },
+        { file: 'magnolia/magnolia-single-flower.png',      baseFilter: 'grayscale(1)' }
+      ];
+      const TONE_FILTER = 'sepia(.6) hue-rotate(5deg) saturate(2.2)'; // gold — matches site palette
+      const LAYOUT_BRIGHTNESS = { A: 'brightness(0.8)', P: 'brightness(0.2)' };
+      const LAYOUT_OPACITY    = { A: 0.55, P: 0.40 };
+      const TILE_IMG = 50,     TILE_STEP = 120;
+      const TILE_IMG_MOB = 20, TILE_STEP_MOB = 90;
+
+      let mgSrc = 0, mgLayout = 'none';
+
+      function mgCombined() {
+        const br = LAYOUT_BRIGHTNESS[mgLayout] || 'brightness(0.6)';
+        return [SOURCES[mgSrc].baseFilter, br, TONE_FILTER].filter(Boolean).join(' ');
+      }
+
+      function mgBuildTiles() {
+        const slot = document.querySelector('.slot-P');
+        slot.innerHTML = '';
+        const isMob = window.innerWidth < 600;
+        const sz   = isMob ? TILE_IMG_MOB : TILE_IMG;
+        const step = isMob ? TILE_STEP_MOB : TILE_STEP;
+        const W = window.innerWidth, H = window.innerHeight;
+        const f  = mgCombined();
+        const op = LAYOUT_OPACITY['P'];
+        for (let y = 0; y < H + step; y += step) {
+          for (let x = 0; x < W + step; x += step) {
+            const img = document.createElement('img');
+            img.src = SOURCES[mgSrc].file;
+            img.className = 'mg-p-tile';
+            img.alt = '';
+            img.style.cssText = `left:${x}px;top:${y}px;width:${sz}px;height:${sz}px;filter:${f};opacity:${op}`;
+            slot.appendChild(img);
+          }
+        }
+      }
+
+      function mgApply() {
+        const f  = mgCombined();
+        const op = LAYOUT_OPACITY[mgLayout] ?? 0.40;
+        document.querySelectorAll('.slot-A .mg-img').forEach(img => {
+          img.src = SOURCES[mgSrc].file;
+          img.style.filter  = f;
+          img.style.opacity = op;
+        });
+        document.querySelectorAll('.mg-p-tile').forEach(img => {
+          img.style.filter  = f;
+          img.style.opacity = LAYOUT_OPACITY['P'];
+        });
+      }
+
+      function mgSetLayout(layout) {
+        mgLayout = layout;
+        document.querySelectorAll('.mg-slot').forEach(s => s.classList.remove('active'));
+        if (layout !== 'none') {
+          const slot = document.querySelector('.slot-' + layout);
+          if (slot) slot.classList.add('active');
+        }
+        if (layout === 'P') mgBuildTiles();
+        mgApply();
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const btn   = document.getElementById('mgBtn');
+        const panel = document.getElementById('mgPanel');
+
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          panel.classList.toggle('open');
+          btn.classList.toggle('mg-active', panel.classList.contains('open'));
+          if (panel.classList.contains('open')) {
+            const r = btn.getBoundingClientRect();
+            panel.style.top   = (r.bottom + 4) + 'px';
+            panel.style.right = (window.innerWidth - r.right) + 'px';
+          }
+        });
+
+        document.addEventListener('click', e => {
+          if (!panel.contains(e.target) && e.target !== btn) {
+            panel.classList.remove('open');
+            btn.classList.remove('mg-active');
+          }
+        });
+
+        panel.addEventListener('click', e => {
+          const srcBtn = e.target.closest('[data-src]');
+          if (srcBtn) {
+            panel.querySelectorAll('[data-src]').forEach(b => b.classList.remove('active'));
+            srcBtn.classList.add('active');
+            mgSrc = +srcBtn.dataset.src;
+            if (mgLayout === 'P') mgBuildTiles();
+            mgApply();
+            return;
+          }
+          const layBtn = e.target.closest('[data-layout]');
+          if (layBtn) {
+            panel.querySelectorAll('[data-layout]').forEach(b => b.classList.remove('active'));
+            layBtn.classList.add('active');
+            mgSetLayout(layBtn.dataset.layout);
+          }
+        });
+      });
+
+      window.addEventListener('resize', () => { if (mgLayout === 'P') mgBuildTiles(); });
+    })();
     </script>
 </body>
 </html>
