@@ -1355,11 +1355,12 @@ body{background-color:#faf8f3}
   .slot-A .mg-r { width:75px; height:75px; }
   .mg-p-tile    { width:20px; height:20px; }
 }
-#mgBtnWrap { display:inline-flex; align-items:center; }
+#mgBtnWrap { display:inline-flex; align-items:center; gap:5px; }
+#styleLabel { font-size:10px; color:rgba(255,255,255,.75); letter-spacing:.06em; white-space:nowrap; pointer-events:none; user-select:none; }
 #mgBtn {
   display:inline-flex; align-items:center;
   padding:4px 10px; border-radius:100px; cursor:pointer;
-  background:rgba(221,184,32,.1); color:rgba(255,255,255,.75);
+  background:rgba(221,184,32,.1); color:rgba(255,255,255,.82);
   border:1px solid rgba(221,184,32,.25); font-size:11px; font-weight:500;
   transition:all .2s; line-height:1; white-space:nowrap;
 }
@@ -1397,7 +1398,8 @@ body{background-color:#faf8f3}
                 <span class="cross-text">For the complete cross-platform collection, visit</span>
                 <a href="https://canadaxfx.github.io/XZworks/" class="back">Screen Arts of XZ ↗</a>
                 <div id="mgBtnWrap">
-                    <button id="mgBtn" aria-label="Magnolia watermark">❁</button>
+                    <span id="styleLabel">Style 装饰</span>
+                    <button id="mgBtn" aria-label="Magnolia watermark" title="玉兰水印 Magnolia watermark">❁</button>
                     <div id="mgPanel">
                         <div class="mg-ptitle">Source · 图案</div>
                         <div class="mg-prow">
