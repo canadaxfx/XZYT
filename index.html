@@ -1369,15 +1369,21 @@ body{background-color:#faf8f3}
 #mgPanel {
   position:fixed; z-index:9999;
   background:#0f0f1a; border:1px solid rgba(221,184,32,.3);
-  border-radius:10px; padding:14px 16px; width:250px;
+  border-radius:10px; padding:10px 12px; width:210px;
   display:none; box-shadow:0 6px 24px rgba(0,0,0,.6);
 }
 #mgPanel.open { display:block; }
-.mg-ptitle { color:#DDB820; font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin-bottom:8px; }
-.mg-prow { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:12px; }
+.mg-pheader { display:flex; justify-content:space-between; align-items:center; font-size:11px; font-weight:700; letter-spacing:.08em; color:#DDB820; margin:0 0 6px; padding-bottom:5px; border-bottom:1px solid rgba(221,184,32,.2); }
+.mg-close { background:none; border:none; cursor:pointer; font-size:15px; color:rgba(221,184,32,.45); line-height:1; padding:0 2px; transition:color .15s; }
+.mg-close:hover { color:#DDB820; }
+.mg-onoff { display:flex; border-radius:8px; overflow:hidden; border:1px solid rgba(221,184,32,.25); margin-bottom:6px; }
+.mg-onoff-btn { flex:1; padding:3px 10px; font-size:11px; font-weight:600; cursor:pointer; border:none; background:transparent; color:rgba(255,255,255,.6); transition:all .2s; letter-spacing:.05em; }
+.mg-onoff-btn.active { background:rgba(221,184,32,.18); color:#DDB820; }
+.mg-ptitle { color:#DDB820; font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
+.mg-prow { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:6px; }
 .mg-prow:last-child { margin-bottom:0; }
 .mg-pbtn {
-  padding:5px 8px; font-size:.75rem; border-radius:6px; cursor:pointer;
+  padding:3px 8px; font-size:.75rem; border-radius:6px; cursor:pointer;
   background:rgba(255,255,255,.06); color:rgba(255,255,255,.6);
   border:1px solid rgba(221,184,32,.15); transition:all .15s; white-space:nowrap;
 }
@@ -1401,6 +1407,11 @@ body{background-color:#faf8f3}
                     <span id="styleLabel">Style 装饰</span>
                     <button id="mgBtn" aria-label="Magnolia watermark" title="玉兰水印 Magnolia watermark">❁</button>
                     <div id="mgPanel">
+                        <div class="mg-pheader"><span>❁ Watermark · 水印</span><button class="mg-close" id="mgCloseBtn">×</button></div>
+                        <div class="mg-onoff">
+                          <button class="mg-onoff-btn active" data-mgstate="off">OFF 关</button>
+                          <button class="mg-onoff-btn" data-mgstate="on">ON 开</button>
+                        </div>
                         <div class="mg-ptitle">Source · 图案</div>
                         <div class="mg-prow">
                             <button class="mg-pbtn active" data-src="0">Sketch</button>
@@ -1409,8 +1420,7 @@ body{background-color:#faf8f3}
                         </div>
                         <div class="mg-ptitle">Layout · 版式</div>
                         <div class="mg-prow">
-                            <button class="mg-pbtn active" data-layout="none">None</button>
-                            <button class="mg-pbtn" data-layout="A">Twin Corners</button>
+                            <button class="mg-pbtn active" data-layout="A">Twin Corners</button>
                             <button class="mg-pbtn" data-layout="P">Full Page</button>
                         </div>
                     </div>
@@ -1903,7 +1913,7 @@ body{background-color:#faf8f3}
       const TILE_IMG = 50,     TILE_STEP = 120;
       const TILE_IMG_MOB = 20, TILE_STEP_MOB = 90;
 
-      let mgSrc = 0, mgLayout = 'none';
+      let mgSrc = 0, mgLayout = 'A', mgOn = false;
 
       function mgCombined() {
         const br = LAYOUT_BRIGHTNESS[mgLayout] || 'brightness(0.6)';
@@ -1948,11 +1958,11 @@ body{background-color:#faf8f3}
       function mgSetLayout(layout) {
         mgLayout = layout;
         document.querySelectorAll('.mg-slot').forEach(s => s.classList.remove('active'));
-        if (layout !== 'none') {
+        if (mgOn && layout !== 'none') {
           const slot = document.querySelector('.slot-' + layout);
           if (slot) slot.classList.add('active');
         }
-        if (layout === 'P') mgBuildTiles();
+        if (mgOn && layout === 'P') mgBuildTiles();
         mgApply();
       }
 
@@ -1978,13 +1988,25 @@ body{background-color:#faf8f3}
           }
         });
 
+        panel.querySelector('#mgCloseBtn').addEventListener('click', () => {
+          panel.classList.remove('open');
+          btn.classList.remove('mg-active');
+        });
+        panel.querySelectorAll('.mg-onoff-btn').forEach(b => {
+          b.addEventListener('click', () => {
+            mgOn = b.dataset.mgstate === 'on';
+            panel.querySelectorAll('.mg-onoff-btn').forEach(x => x.classList.remove('active'));
+            b.classList.add('active');
+            mgSetLayout(mgLayout);
+          });
+        });
         panel.addEventListener('click', e => {
           const srcBtn = e.target.closest('[data-src]');
           if (srcBtn) {
             panel.querySelectorAll('[data-src]').forEach(b => b.classList.remove('active'));
             srcBtn.classList.add('active');
             mgSrc = +srcBtn.dataset.src;
-            if (mgLayout === 'P') mgBuildTiles();
+            if (mgOn && mgLayout === 'P') mgBuildTiles();
             mgApply();
             return;
           }
@@ -1997,7 +2019,7 @@ body{background-color:#faf8f3}
         });
       });
 
-      window.addEventListener('resize', () => { if (mgLayout === 'P') mgBuildTiles(); });
+      window.addEventListener('resize', () => { if (mgOn && mgLayout === 'P') mgBuildTiles(); });
     })();
     </script>
 </body>
