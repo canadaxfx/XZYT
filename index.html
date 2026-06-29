@@ -741,6 +741,20 @@ background-color:#fff3;
 text-decoration:underline;
 transform:translateY(-2px)
 }
+.hub-card { position:relative; display:inline-flex; flex-direction:column; padding:14px 22px; text-decoration:none; color:inherit; transition:opacity .2s,transform .15s; max-width:300px; cursor:pointer; }
+.hub-card:hover { opacity:.9; transform:translateY(-3px); }
+.hub-card:hover .hc-corner { border-color:rgba(var(--accent-rgb),.95); }
+.hub-card:hover .hub-cta { color:rgba(var(--accent-rgb),.95); }
+.hub-card:active { transform:scale(0.97); opacity:.75; }
+.hub-card:active .hc-corner { border-color:rgba(var(--accent-rgb),.95); }
+.hc-corner { position:absolute; width:13px; height:13px; border-color:rgba(var(--accent-rgb),.6); border-style:solid; transition:border-color .2s; }
+.hc-tl { top:0; left:0; border-width:2px 0 0 2px; }
+.hc-tr { top:0; right:0; border-width:2px 2px 0 0; }
+.hc-bl { bottom:0; left:0; border-width:0 0 2px 2px; }
+.hc-br { bottom:0; right:0; border-width:0 2px 2px 0; }
+.hub-title { font-size:14px; font-weight:700; color:rgba(255,255,255,.95); margin-bottom:3px; }
+.hub-subtitle { color:rgba(var(--accent-rgb),.85); }
+.hub-cta { color:rgba(var(--accent-rgb),.8); }
 
 .copyright {
 font-size:.7rem;
@@ -1556,10 +1570,15 @@ body{background-color:#faf8f3}
     <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
-                <div style="margin-bottom:10px;font-weight:700; text-align: center;">Explore more</div>
-                <div class="footer-links">
-                    <a href="https://www.youtube.com/@xzstudio-1005" target="_blank" class="footer-link">XZ.Studio on YouTube</a>
-                    <a href="https://canadaxfx.github.io/contact-us/" class="footer-link">Contact Us</a>
+                <a class="hub-card" href="https://canadaxfx.github.io/xzhub/" target="_blank" rel="noopener">
+                    <span class="hc-corner hc-tl"></span><span class="hc-corner hc-tr"></span>
+                    <div class="hub-title">🌐 Xiao Zhan Universe ↗</div>
+                    <div class="hub-subtitle" style="font-size:12px;margin-bottom:6px">肖战粉丝站 · 全站导航</div>
+                    <div class="hub-cta" style="font-size:12px;line-height:1.6;transition:color .2s">Galleries · Video · Articles · Social Media<br>Explore all 8 fan sites →</div>
+                    <span class="hc-corner hc-bl"></span><span class="hc-corner hc-br"></span>
+                </a>
+                <div class="footer-links" style="margin-top:12px">
+                    <a href="https://canadaxfx.github.io/contact-us/" target="_blank" class="footer-link">Contact Us</a>
                 </div>
                 <div class="copyright-notice">&copy; 2026 CanadaXFX. All rights reserved.</div>
                 <div class="copyright-notice">
