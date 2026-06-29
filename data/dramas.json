@@ -1,6 +1,39 @@
 {
   "dramas": [
     {
+      "id": "the-infinite-10-days",
+      "year": "2027",
+      "title": "THE INFINITE 10 DAYS 十日终焉",
+      "titleShort": "",
+      "role": "Qi Xia 齐夏(Lead)",
+      "episodeCount": "",
+      "poster": "images/posters/srzy,jpg",
+      "playlistUrl": "https://www.youtube.com/playlist?list=PLxbgQdcnIafj_bBGglIIpMnBuqGDyQBoN",
+      "description": "A group of strangers from vastly different backgrounds wake up in the mysterious \"Land of the End\", where they are trapped in a deadly time loop that resets every ten days, each cycle erasing their memories. To escape, they must survive a series of perilous trials based on the twelve zodiac signs. As the cycles repeat, some begin to awaken supernatural powers known as \"Echoes.\" Led by the brilliant Qi Xia, the group uses their unique abilities to battle enemies, unravel the truth behind the Land of the End, and fight for a way back home.",
+      "episodes": [
+        {
+          "title": "Trailer 3",
+          "url": "https://www.youtube.com/watch?v=YsaD1P0oq40",
+          "thumbnail": "https://i.ytimg.com/vi/YsaD1P0oq40/mqdefault.jpg"
+        },
+        {
+          "title": "Trailer 2",
+          "url": "https://www.youtube.com/watch?v=7Rgrzh0G0Ag",
+          "thumbnail": "https://i.ytimg.com/vi/7Rgrzh0G0Ag/mqdefault.jpg"
+        },
+        {
+          "title": "Production commencement",
+          "url": "https://www.youtube.com/watch?v=B8J1Hk-_tXs",
+          "thumbnail": "https://i.ytimg.com/vi/B8J1Hk-_tXs/mqdefault.jpg"
+        },
+        {
+          "title": "Trailer 1",
+          "url": "https://www.youtube.com/watch?v=UZcndn28mqc",
+          "thumbnail": "https://i.ytimg.com/vi/UZcndn28mqc/mqdefault.jpg"
+        }
+      ]
+    },
+    {
       "id": "zanghai",
       "year": "2025",
       "title": "2025 Legend of Zang Hai 藏海传",
@@ -2879,35 +2912,6 @@
           "url": "https://www.youtube.com/watch?v=hUoHncDrFjQ",
           "thumbnail": "https://i.ytimg.com/vi/hUoHncDrFjQ/mqdefault.jpg",
           "title": "EP 30"
-        }
-      ]
-    },
-    {
-      "id": "the-infinite-10-days",
-      "year": "2027",
-      "title": "THE INFINITE 10 DAYS 十日终焉",
-      "titleShort": "",
-      "role": "Qi Xia 齐夏(Lead)",
-      "episodeCount": "",
-      "poster": "images/posters/srzy,jpg",
-      "playlistUrl": "https://www.youtube.com/playlist?list=PLxbgQdcnIafj_bBGglIIpMnBuqGDyQBoN",
-      "description": "A group of strangers from vastly different backgrounds wake up in the mysterious \"Land of the End\", where they are trapped in a deadly time loop that resets every ten days, each cycle erasing their memories. To escape, they must survive a series of perilous trials based on the twelve zodiac signs. As the cycles repeat, some begin to awaken supernatural powers known as \"Echoes.\" Led by the brilliant Qi Xia, the group uses their unique abilities to battle enemies, unravel the truth behind the Land of the End, and fight for a way back home.",
-      "episodes": [
-        {
-          "title": "Trailer 3",
-          "url": "https://youtu.be/YsaD1P0oq40?si=Zf7EugSsUPYkd4kg"
-        },
-        {
-          "title": "Trailer 2",
-          "url": "https://youtu.be/7Rgrzh0G0Ag?si=PZ5QAtb21_x1NQeu"
-        },
-        {
-          "title": "Production commencement",
-          "url": "https://youtu.be/B8J1Hk-_tXs?si=u_PlxrJ1V7SDoKJb"
-        },
-        {
-          "title": "Trailer 1",
-          "url": "https://youtu.be/UZcndn28mqc?si=4iwZIUArn2K-hAFS"
         }
       ]
     }
