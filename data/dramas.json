@@ -44,6 +44,64 @@
       ]
     },
     {
+      "id": "spying",
+      "year": "2027",
+      "title": "Spying 谍报上不封顶",
+      "titleShort": "",
+      "role": "Ren Shaobai 任少白",
+      "episodeCount": "",
+      "poster": "images/posters/dbsbfd.jpg",
+      "playlistUrl": "https://youtube.com/playlist?list=PLxbgQdcnIafhfF3Cqmcq19JvNHXjRKuTr&si=QuHuz0z5tyMlU3sS",
+      "description": "Set in Nanjing around 1948, the story revolves around Ren Shaobai (Xiao Zhan), an underground Communist Party member who has long been hiding. After his contact is sacrificed, he resurfaces inside the Ministry of National Defense, goes deep into the intelligence network, and becomes an aide in the intelligence department. Meanwhile, Lan Youyin, the widow of a lost comrade and a mathematical genius, secretly plans assassination missions for unknown motives. Their paths cross, evolve from hostility to cooperation, and Ren Shaobai must navigate loyalty, moral ambiguity, secrets and danger",
+      "episodes": [
+        {
+          "title": "BTS for Mid-Autumn",
+          "url": "https://www.youtube.com/watch?v=13IfvFppNdk",
+          "thumbnail": "https://i.ytimg.com/vi/13IfvFppNdk/mqdefault.jpg"
+        },
+        {
+          "title": "Birthday Special",
+          "url": "https://www.youtube.com/watch?v=sXlmyLXRGBc",
+          "thumbnail": "https://i.ytimg.com/vi/sXlmyLXRGBc/mqdefault.jpg"
+        },
+        {
+          "title": "BTS of Ren 1005",
+          "url": "https://www.youtube.com/watch?v=YDMcroa036s",
+          "thumbnail": "https://i.ytimg.com/vi/YDMcroa036s/mqdefault.jpg"
+        },
+        {
+          "title": "Trailer 2",
+          "url": "https://www.youtube.com/watch?v=SdT8OgGznEw",
+          "thumbnail": "https://i.ytimg.com/vi/SdT8OgGznEw/mqdefault.jpg"
+        },
+        {
+          "title": "Wrap-up Special 3",
+          "url": "https://www.youtube.com/watch?v=OJGwtXtGLjs",
+          "thumbnail": "https://i.ytimg.com/vi/OJGwtXtGLjs/mqdefault.jpg"
+        },
+        {
+          "title": "Wrap-up Special 2",
+          "url": "https://www.youtube.com/watch?v=IGJcNl6G17s",
+          "thumbnail": "https://i.ytimg.com/vi/IGJcNl6G17s/mqdefault.jpg"
+        },
+        {
+          "title": "Wrap-up Special 1",
+          "url": "https://www.youtube.com/watch?v=8w2BOOKqDd0",
+          "thumbnail": "https://i.ytimg.com/vi/8w2BOOKqDd0/mqdefault.jpg"
+        },
+        {
+          "title": "BTS of Ren",
+          "url": "https://www.youtube.com/watch?v=5wfxk1DEdTw",
+          "thumbnail": "https://i.ytimg.com/vi/5wfxk1DEdTw/mqdefault.jpg"
+        },
+        {
+          "title": "Trailer 1",
+          "url": "https://www.youtube.com/watch?v=860W-l6wocE",
+          "thumbnail": "https://i.ytimg.com/vi/860W-l6wocE/mqdefault.jpg"
+        }
+      ]
+    },
+    {
       "id": "the-flying-doctors-small-town-remedy",
       "year": "2027",
       "title": "The Flying Doctors /  Small Town Remedy 小城良方",
@@ -2940,6 +2998,75 @@
           "url": "https://www.youtube.com/watch?v=hUoHncDrFjQ",
           "thumbnail": "https://i.ytimg.com/vi/hUoHncDrFjQ/mqdefault.jpg",
           "title": "EP 30"
+        }
+      ]
+    },
+    {
+      "id": "spying-2",
+      "year": "2027",
+      "title": "Spying 谍报上不封顶",
+      "titleShort": "",
+      "role": "Ren Shaobai 任少白",
+      "episodeCount": "",
+      "poster": "images/posters/dbsbfd.jpg",
+      "playlistUrl": "https://youtube.com/playlist?list=PLxbgQdcnIafhfF3Cqmcq19JvNHXjRKuTr&si=QuHuz0z5tyMlU3sS",
+      "description": "Set in Nanjing around 1948, the story revolves around Ren Shaobai (Xiao Zhan), an underground Communist Party member who has long been hiding. After his contact is sacrificed, he resurfaces inside the Ministry of National Defense, goes deep into the intelligence network, and becomes an aide in the intelligence department. Meanwhile, Lan Youyin, the widow of a lost comrade and a mathematical genius, secretly plans assassination missions for unknown motives. Their paths cross, evolve from hostility to cooperation, and Ren Shaobai must navigate loyalty, moral ambiguity, secrets and danger",
+      "episodes": [
+        {
+          "title": "BTS of Ren",
+          "url": "https://www.youtube.com/watch?v=5wfxk1DEdTw",
+          "thumbnail": "https://i.ytimg.com/vi/5wfxk1DEdTw/mqdefault.jpg"
+        }
+      ]
+    },
+    {
+      "id": "spying-3",
+      "year": "2027",
+      "title": "Spying 谍报上不封顶",
+      "titleShort": "",
+      "role": "Ren Shaobai 任少白",
+      "episodeCount": "",
+      "poster": "images/posters/dbsbfd.jpg",
+      "playlistUrl": "https://youtube.com/playlist?list=PLxbgQdcnIafhfF3Cqmcq19JvNHXjRKuTr&si=QuHuz0z5tyMlU3sS",
+      "description": "Set in Nanjing around 1948, the story revolves around Ren Shaobai (Xiao Zhan), an underground Communist Party member who has long been hiding. After his contact is sacrificed, he resurfaces inside the Ministry of National Defense, goes deep into the intelligence network, and becomes an aide in the intelligence department. Meanwhile, Lan Youyin, the widow of a lost comrade and a mathematical genius, secretly plans assassination missions for unknown motives. Their paths cross, evolve from hostility to cooperation, and Ren Shaobai must navigate loyalty, moral ambiguity, secrets and danger",
+      "episodes": [
+        {
+          "title": "Wrap-up Special 1",
+          "url": "https://www.youtube.com/watch?v=OJGwtXtGLjs",
+          "thumbnail": "https://i.ytimg.com/vi/OJGwtXtGLjs/mqdefault.jpg"
+        },
+        {
+          "title": "BTS of Ren",
+          "url": "https://www.youtube.com/watch?v=5wfxk1DEdTw",
+          "thumbnail": "https://i.ytimg.com/vi/5wfxk1DEdTw/mqdefault.jpg"
+        }
+      ]
+    },
+    {
+      "id": "spying-4",
+      "year": "2027",
+      "title": "Spying 谍报上不封顶",
+      "titleShort": "",
+      "role": "Ren Shaobai 任少白",
+      "episodeCount": "",
+      "poster": "images/posters/dbsbfd.jpg",
+      "playlistUrl": "https://youtube.com/playlist?list=PLxbgQdcnIafhfF3Cqmcq19JvNHXjRKuTr&si=QuHuz0z5tyMlU3sS",
+      "description": "Set in Nanjing around 1948, the story revolves around Ren Shaobai (Xiao Zhan), an underground Communist Party member who has long been hiding. After his contact is sacrificed, he resurfaces inside the Ministry of National Defense, goes deep into the intelligence network, and becomes an aide in the intelligence department. Meanwhile, Lan Youyin, the widow of a lost comrade and a mathematical genius, secretly plans assassination missions for unknown motives. Their paths cross, evolve from hostility to cooperation, and Ren Shaobai must navigate loyalty, moral ambiguity, secrets and danger",
+      "episodes": [
+        {
+          "title": "Wrap-up Special 2",
+          "url": "https://www.youtube.com/watch?v=IGJcNl6G17s",
+          "thumbnail": "https://i.ytimg.com/vi/IGJcNl6G17s/mqdefault.jpg"
+        },
+        {
+          "title": "Wrap-up Special 1",
+          "url": "https://www.youtube.com/watch?v=OJGwtXtGLjs",
+          "thumbnail": "https://i.ytimg.com/vi/OJGwtXtGLjs/mqdefault.jpg"
+        },
+        {
+          "title": "BTS of Ren",
+          "url": "https://www.youtube.com/watch?v=5wfxk1DEdTw",
+          "thumbnail": "https://i.ytimg.com/vi/5wfxk1DEdTw/mqdefault.jpg"
         }
       ]
     }
