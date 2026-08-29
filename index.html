@@ -1635,7 +1635,7 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
         <div class="pl-panel-hint">Tap <b>+</b> on any video to add it here<br>点击视频上的 + 号加入播放列表</div>
         <div id="plList" class="pl-list"></div>
         <div class="pl-panel-footer">
-            <button class="vm-btn vm-btn-switch" onclick="plPlayAll()">▶ Play All</button>
+            <button class="vm-btn vm-btn-switch" id="plDirBtn" onclick="plPlayAll()">▶ Play All</button>
             <button class="vm-btn vm-btn-switch" onclick="plShufflePlay()">🔀 Shuffle</button>
             <button class="vm-btn" style="background:#5a1a1a;color:#fff" onclick="plClearAll()">Clear</button>
         </div>
