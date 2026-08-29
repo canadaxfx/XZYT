@@ -28,80 +28,39 @@
 
     <!-- ALL YOUR EXISTING CSS STAYS EXACTLY THE SAME -->
 <style>
-#back-to-top {
-position:fixed;
-bottom:20px;
-left:20px;
-background:#fff;
-color:#e53e3e;
-width:80px;
-height:60px;
-border-radius:60px;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-box-shadow:0 4px 20px #00000026;
-opacity:0;
-visibility:hidden;
-transition:all .3s ease;
-z-index:9999;
-border:3px solid #e53e3e;
-font-size:30px;
-font-weight:600;
--webkit-text-stroke:2px #e53e3e;
-text-stroke:2px #e53e3e;
-padding:4px
+/* === FLOATING BUTTON GROUP: playlist + back-to-top, joined & draggable together (ported from the galleries) === */
+#floatBtnGroup{position:fixed;right:20px;bottom:90px;display:flex;flex-direction:column;align-items:center;gap:10px;z-index:9000;touch-action:none;cursor:grab}
+.float-btn{width:58px;height:58px;border-radius:50%;border:3px solid var(--accent-color);background:var(--primary-color);color:var(--accent-color);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.35);font-size:22px;font-weight:600;transition:transform .18s,box-shadow .18s,opacity .3s,visibility .3s;position:relative;flex-shrink:0;user-select:none;overflow:hidden}
+.float-btn:hover{transform:scale(1.08);box-shadow:0 6px 24px rgba(0,0,0,.5)}
+/* Play is the hero action: warm bronze-gradient fill, dark ink icon. Back-to-top is a quiet
+   secondary: dark glass with a barely-there border. Two different treatments on purpose —
+   twin identical gold-ringed medallions read as heavy/dated. (Site accent moved from gold
+   to bronze site-wide — see --accent-color — this button just follows the same accent.) */
+#plFloatBtn{width:68px;height:68px;font-size:20px;overflow:visible;background:linear-gradient(135deg,#E8A672,#B5652E);border:none;color:#2b1a0a;box-shadow:0 10px 26px rgba(181,101,46,.5)}
+#plFloatBtn:hover{box-shadow:0 14px 34px rgba(181,101,46,.65)}
+#plFloatBtn .float-top-text{color:#2b1a0a}
+#backToTopFloat{opacity:0;visibility:hidden;font-size:18px;line-height:1;background:rgba(26,26,36,.7);border:1px solid rgba(255,255,255,.14);color:rgba(232,166,114,.9);box-shadow:0 6px 18px rgba(0,0,0,.35)}
+#backToTopFloat:hover{box-shadow:0 8px 22px rgba(0,0,0,.45)}
+#backToTopFloat.visible{opacity:.88;visibility:visible}
+#backToTopFloat .float-top-text{color:rgba(232,166,114,.85)}
+.float-top-text{font-size:9px;font-weight:700;line-height:1.1;margin-top:1px;text-align:center;color:var(--accent-color)}
+.float-badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:#cc0000;color:#fff;font-size:10px;font-weight:700;align-items:center;justify-content:center;line-height:1}
+#plToast{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);background:#1f2937;color:#fff;padding:8px 18px;border-radius:8px;font-size:13px;line-height:1.5;text-align:center;z-index:9999;pointer-events:none;opacity:0;transition:opacity .3s}
+#plToast.show{opacity:1}
+/* #plFloatBtn is NOT resized here — matches the galleries, where the ID selector's own
+   width/height beats this class rule at any specificity, so the play button stays full
+   size and only the plain .float-btn size (i.e. back-to-top) shrinks on mobile. */
+@media(max-width:768px){
+#floatBtnGroup{right:8px}
+.float-btn{width:50px;height:50px;font-size:18px}
 }
-
-#back-to-top .arrow {
-line-height:1
-}
-
-#back-to-top .text {
-font-size:9px;
-font-weight:600;
-margin-top:0;
-text-align:center;
-line-height:1;
-color:#e53e3e;
--webkit-text-stroke:0;
-text-stroke:0;
--webkit-text-fill-color:#e53e3e;
-position:relative;
-z-index:1
-}
-
-#back-to-top.visible {
-opacity:.8;
-visibility:visible;
-animation:subtle-pulse-white 2s infinite ease-in-out
-}
-
-#back-to-top:hover {
-transform:scale(1.15);
-box-shadow:0 6px 25px #e53e3e66;
-opacity:1
-}
-
-@keyframes subtle-pulse-white {
-0%,100% {
-box-shadow:0 4px 20px #00000026
-}
-
-50% {
-box-shadow:0 4px 20px #e53e3e4d
-}
-}
-
 </style>
 <style>
 :root {
 --primary-color:#1a1a24;
 --secondary-color:#faf8f3;
---accent-color:#DDB820;
---accent-rgb:221,184,32;
+--accent-color:#C97B3D;
+--accent-rgb:201,123,61;
 --text-color:#1a1a1a;
 --light-gray:#efece4;
 --card-shadow:0 3px 15px #00000014;
@@ -602,15 +561,59 @@ display:inline
 .vm-title{color:#e8e8e8;font-size:.85rem;font-weight:600;flex:1;line-height:1.4}
 .vm-close{background:none;border:none;color:#888;font-size:1.8rem;cursor:pointer;line-height:1;padding:0;flex-shrink:0;margin-top:-2px}
 .vm-close:hover{color:#fff}
+.vm-fs-btn{background:none;border:none;color:#888;font-size:1.25rem;cursor:pointer;line-height:1;padding:0 2px;flex-shrink:0;margin-top:0}
+.vm-fs-btn:hover{color:#fff}
 .vm-player{position:relative;padding-bottom:56.25%;height:0;background:#000;flex-shrink:0}
 .vm-player iframe,.vm-player video{position:absolute;inset:0;width:100%;height:100%;border:0}
 .vm-player video{object-fit:contain;background:#000}
 .vm-footer{display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 14px;background:#1a1a1a;flex-wrap:wrap;min-height:42px}
+/* Fullscreen: fullscreen the WHOLE dialog (header+player+footer), not just the <video>/iframe,
+   so Prev/Next (and the source-switch / add-to-playlist buttons) stay visible and clickable. */
+.vm-dialog:fullscreen{width:100vw;height:100vh;max-width:100vw;max-height:100vh;border-radius:0}
+.vm-dialog:fullscreen .vm-player{flex:1;padding-bottom:0;height:auto;min-height:0}
+.vm-dialog:-webkit-full-screen{width:100vw;height:100vh;max-width:100vw;max-height:100vh;border-radius:0}
+.vm-dialog:-webkit-full-screen .vm-player{flex:1;padding-bottom:0;height:auto;min-height:0}
 .vm-btn{padding:5px 13px;border-radius:5px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;transition:opacity .15s;white-space:nowrap}
 .vm-btn:hover{opacity:.82}
 .vm-btn-switch{background:#333;color:#ddd}
 .vm-btn-ext{background:#cc0000;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
 .vm-source-label{color:#777;font-size:.75rem}
+.vm-btn-nav{background:#333;color:#ddd}
+.vm-btn-nav:disabled{opacity:.3;cursor:default}
+
+/* === PLAYLIST: ADD BUTTON ON CARDS === */
+.episode-thumbnail,.video-facade{position:relative}
+.pl-card-add{position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;border:none;font-size:15px;font-weight:700;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;transition:background .15s,transform .15s;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.pl-card-add:hover{background:linear-gradient(135deg,#E8A672,#B5652E);color:#2b1a0a;transform:scale(1.1)}
+.pl-card-add.pl-added{background:linear-gradient(135deg,#E8A672,#B5652E);color:#2b1a0a;box-shadow:0 2px 8px rgba(181,101,46,.5)}
+
+/* === PLAYLIST: ADD-ALL-EPISODES BUTTON (per drama/playlist card) === */
+.ep-actions-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 12px}
+.pl-add-all-btn{background:linear-gradient(135deg,#E8A672,#B5652E);border:none;color:#2b1a0a;border-radius:6px;padding:5px 14px;font-size:.74rem;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;box-shadow:0 3px 10px rgba(181,101,46,.35);transition:box-shadow .15s,transform .15s}
+.pl-add-all-btn:hover{box-shadow:0 5px 16px rgba(181,101,46,.5);transform:translateY(-1px)}
+
+/* === PLAYLIST: PANEL (position set dynamically by plPositionPanel(), relative to #floatBtnGroup) === */
+.pl-panel{position:fixed;right:24px;top:120px;width:300px;max-height:400px;background:#161616;border:1px solid #333;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.6);z-index:8500;display:flex;flex-direction:column;overflow:hidden}
+.pl-panel.hidden{display:none}
+.pl-panel-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#1e1e1e;color:#e8e8e8;font-size:.82rem;font-weight:600}
+.pl-panel-hint{padding:7px 14px;font-size:.72rem;line-height:1.4;color:#a49dae;background:#191921;border-bottom:1px solid #262626}
+.pl-panel-hint b{color:#E8A672}
+.pl-panel-close{background:none;border:none;color:#888;font-size:1.4rem;cursor:pointer;line-height:1}
+.pl-panel-close:hover{color:#fff}
+.pl-list{overflow-y:auto;flex:1;min-height:60px}
+.pl-empty{padding:24px 16px;text-align:center;color:#777;font-size:.78rem;line-height:1.6}
+.pl-item{display:flex;align-items:center;gap:8px;padding:8px 12px;cursor:pointer;transition:background .15s;border-bottom:1px solid #262626}
+.pl-item:hover{background:#232323}
+.pl-item img{width:52px;height:32px;object-fit:cover;border-radius:4px;flex-shrink:0;background:#000}
+.pl-item-title{flex:1;color:#ddd;font-size:.76rem;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.pl-item-remove{background:none;border:none;color:#777;font-size:1.1rem;cursor:pointer;line-height:1;flex-shrink:0}
+.pl-item-remove:hover{color:#fff}
+.pl-panel-footer{display:flex;gap:6px;padding:8px 10px;background:#1e1e1e;flex-wrap:wrap}
+.pl-panel-footer .vm-btn{flex:1;text-align:center}
+
+@media(max-width:600px){
+.pl-panel{right:10px!important;left:10px!important;width:auto!important}
+}
 
 /* === FEATURED VIDEO FACADE === */
 .video-facade{position:relative;padding-bottom:56.25%;height:0;cursor:pointer;background:#000;overflow:hidden}
@@ -994,17 +997,6 @@ justify-content:center;
 min-height:60px
 }
 
-#back-to-top {
-bottom:8px;
-left:8px;
-width:60px;
-padding:2px
-}
-
-#back-to-top .text {
-font-size:7px
-}
-
 .search-input { padding:9px 12px 9px 40px; font-size:.9rem; }
 .search-button,.clear-button { padding:9px 14px; font-size:.9rem; }
 
@@ -1168,9 +1160,9 @@ grid-template-rows:repeat(2,auto)
 }
 .hero-utility a:hover{background:rgba(255,255,255,.14);color:#fff}
 .hero-utility .back{
-  color:#E8C040;white-space:nowrap;font-weight:700;
+  color:#E0955A;white-space:nowrap;font-weight:700;
 }
-.hero-utility .back:hover{background:rgba(255,255,255,.14);color:#E8C040}
+.hero-utility .back:hover{background:rgba(255,255,255,.14);color:#E0955A}
 
 /* Drifting film strip */
 .hero-strip-wrap{
@@ -1241,7 +1233,7 @@ grid-template-rows:repeat(2,auto)
 .hero-kicker{
   font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:13px;letter-spacing:.2em;text-transform:uppercase;
-  color:#DDB820;margin-bottom:14px;
+  color:#C97B3D;margin-bottom:14px;
   display:flex;align-items:center;gap:10px;
 }
 .hero-title{
@@ -1250,7 +1242,7 @@ grid-template-rows:repeat(2,auto)
   letter-spacing:-.015em;line-height:1.05;margin:0 0 10px;
   max-width:780px;
 }
-.hero-title em{font-style:italic;font-weight:400;color:#E8C040}
+.hero-title em{font-style:italic;font-weight:400;color:#E0955A}
 .hero-zh{
   font-family:'Noto Sans',sans-serif;font-size:15px;
   color:rgba(255,255,255,.75);font-weight:400;letter-spacing:.04em;
@@ -1261,11 +1253,11 @@ grid-template-rows:repeat(2,auto)
   max-width:780px;
 }
 .hero-sublinks a{
-  color:#fff;text-decoration:none;border-bottom:1px solid rgba(221,184,32,.5);
+  color:#fff;text-decoration:none;border-bottom:1px solid rgba(201,123,61,.5);
   transition:border-color .2s,color .2s;padding-bottom:1px;
   white-space:nowrap;
 }
-.hero-sublinks a:hover{border-bottom-color:#DDB820;color:#E8C040}
+.hero-sublinks a:hover{border-bottom-color:#C97B3D;color:#E0955A}
 .hero-sublinks .sep{opacity:.35;margin:0 10px}
 
 /* Override nav to match dark header */
@@ -1285,7 +1277,7 @@ grid-template-rows:repeat(2,auto)
 .nav-link:hover{color:#fff;background:rgba(255,255,255,.03)}
 .nav-link.active{
   color:#fff;
-  border-bottom:2px solid #DDB820;
+  border-bottom:2px solid #C97B3D;
   background:transparent;
 }
 
@@ -1323,35 +1315,32 @@ body{background-color:#faf8f3}
 }
 </style>
 
-<!-- Palette harmony overrides for the new ink/gold theme -->
+<!-- Palette harmony overrides for the ink/bronze theme -->
 <style>
 .nav-link.active{border-bottom:2px solid var(--accent-color)}
-.nav-link:hover,.nav-link.active{background-color:rgba(221,184,32,0.06);color:#fff}
+.nav-link:hover,.nav-link.active{background-color:rgba(201,123,61,0.06);color:#fff}
 .drama-card{background:#fff;border:1px solid rgba(26,26,36,0.06)}
 .drama-cards{border:none}
 .drama-title{color:#1a1a24;font-weight:600}
 .drama-role{color:#8a6a30;font-style:italic}
 .year-label,.episode-count{background-color:rgba(26,26,36,0.88);color:#fff}
 .watch-button,.search-button,.ep-page-btn,.tab-button.active{background:#1a1a24;color:#fff}
-.watch-button:hover,.search-button:hover,.ep-page-btn:hover{background:#DDB820;color:#1a1a24}
+.watch-button:hover,.search-button:hover,.ep-page-btn:hover{background:#C97B3D;color:#1a1a24}
 .toggle-episodes-btn{color:#8a6a30}
 .toggle-episodes-btn:hover{color:#1a1a24}
 .video-title{color:#1a1a24}
 .site-footer{background:#0b0b12;color:#fff}
 .site-footer .copyright-notice{border-top-color:rgba(255,255,255,0.12)}
-#terms-toggle{background:#DDB820;color:#1a1a24}
+#terms-toggle{background:#C97B3D;color:#1a1a24}
 #terms-toggle:hover{background:#fff;color:#1a1a24}
 .search-results-count{color:#8a6a30}
 .no-results h3,.divider-heading{color:#1a1a24}
 .section-divider{background:#f2efe7}
-.section-divider::before,.section-divider::after{background:linear-gradient(to right,transparent,#DDB820,transparent)}
-.highlight{background-color:rgba(221,184,32,0.25)}
-#back-to-top{color:#1a1a24;border-color:#1a1a24;-webkit-text-stroke:2px #1a1a24}
-#back-to-top .text{color:#1a1a24;-webkit-text-fill-color:#1a1a24}
-#back-to-top:hover{box-shadow:0 6px 25px rgba(221,184,32,0.4)}
-.episodes-preview::-webkit-scrollbar-thumb{background-color:#DDB820}
+.section-divider::before,.section-divider::after{background:linear-gradient(to right,transparent,#C97B3D,transparent)}
+.highlight{background-color:rgba(201,123,61,0.25)}
+.episodes-preview::-webkit-scrollbar-thumb{background-color:#C97B3D}
 .platform-link{background:#1a1a24;color:#fff}
-.platform-link:hover{background:#DDB820;color:#1a1a24}
+.platform-link:hover{background:#C97B3D;color:#1a1a24}
 </style>
 <style>
 /* ── Magnolia watermark ── */
@@ -1374,35 +1363,35 @@ body{background-color:#faf8f3}
 #mgBtn {
   display:inline-flex; align-items:center;
   padding:4px 10px; border-radius:100px; cursor:pointer;
-  background:rgba(221,184,32,.1); color:rgba(255,255,255,.82);
-  border:1px solid rgba(221,184,32,.25); font-size:11px; font-weight:500;
+  background:rgba(201,123,61,.1); color:rgba(255,255,255,.82);
+  border:1px solid rgba(201,123,61,.25); font-size:11px; font-weight:500;
   transition:all .2s; line-height:1; white-space:nowrap;
 }
-#mgBtn:hover { background:rgba(221,184,32,.2); color:#DDB820; }
-#mgBtn.mg-active { background:rgba(221,184,32,.18); color:#DDB820; border-color:rgba(221,184,32,.5); }
+#mgBtn:hover { background:rgba(201,123,61,.2); color:#C97B3D; }
+#mgBtn.mg-active { background:rgba(201,123,61,.18); color:#C97B3D; border-color:rgba(201,123,61,.5); }
 #mgPanel {
   position:fixed; z-index:9999;
-  background:#0f0f1a; border:1px solid rgba(221,184,32,.3);
+  background:#0f0f1a; border:1px solid rgba(201,123,61,.3);
   border-radius:10px; padding:10px 12px; width:210px;
   display:none; box-shadow:0 6px 24px rgba(0,0,0,.6);
 }
 #mgPanel.open { display:block; }
-.mg-pheader { display:flex; justify-content:space-between; align-items:center; font-size:11px; font-weight:700; letter-spacing:.08em; color:#DDB820; margin:0 0 6px; padding-bottom:5px; border-bottom:1px solid rgba(221,184,32,.2); }
-.mg-close { background:none; border:none; cursor:pointer; font-size:15px; color:rgba(221,184,32,.45); line-height:1; padding:0 2px; transition:color .15s; }
-.mg-close:hover { color:#DDB820; }
-.mg-onoff { display:flex; border-radius:8px; overflow:hidden; border:1px solid rgba(221,184,32,.25); margin-bottom:6px; }
+.mg-pheader { display:flex; justify-content:space-between; align-items:center; font-size:11px; font-weight:700; letter-spacing:.08em; color:#C97B3D; margin:0 0 6px; padding-bottom:5px; border-bottom:1px solid rgba(201,123,61,.2); }
+.mg-close { background:none; border:none; cursor:pointer; font-size:15px; color:rgba(201,123,61,.45); line-height:1; padding:0 2px; transition:color .15s; }
+.mg-close:hover { color:#C97B3D; }
+.mg-onoff { display:flex; border-radius:8px; overflow:hidden; border:1px solid rgba(201,123,61,.25); margin-bottom:6px; }
 .mg-onoff-btn { flex:1; padding:3px 10px; font-size:11px; font-weight:600; cursor:pointer; border:none; background:transparent; color:rgba(255,255,255,.6); transition:all .2s; letter-spacing:.05em; }
-.mg-onoff-btn.active { background:rgba(221,184,32,.18); color:#DDB820; }
-.mg-ptitle { color:#DDB820; font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
+.mg-onoff-btn.active { background:rgba(201,123,61,.18); color:#C97B3D; }
+.mg-ptitle { color:#C97B3D; font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
 .mg-prow { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:6px; }
 .mg-prow:last-child { margin-bottom:0; }
 .mg-pbtn {
   padding:3px 8px; font-size:.75rem; border-radius:6px; cursor:pointer;
   background:rgba(255,255,255,.06); color:rgba(255,255,255,.6);
-  border:1px solid rgba(221,184,32,.15); transition:all .15s; white-space:nowrap;
+  border:1px solid rgba(201,123,61,.15); transition:all .15s; white-space:nowrap;
 }
 .mg-pbtn:hover { background:rgba(255,255,255,.1); color:#fff; }
-.mg-pbtn.active { background:rgba(221,184,32,.15); color:#DDB820; border-color:rgba(221,184,32,.4); }
+.mg-pbtn.active { background:rgba(201,123,61,.15); color:#C97B3D; border-color:rgba(201,123,61,.4); }
 </style>
 </head>
 <body>
@@ -1609,17 +1598,12 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
         </div>
     </footer>
     
-    <!-- BACK TO TOP BUTTON - Stays exactly the same -->
-    <div id="back-to-top">
-        <div class="arrow">▲</div>
-        <div class="text">TOP<br>回顶部</div>
-    </div>
-
     <!-- Video Modal -->
     <div id="videoModal" class="vm-overlay hidden" onclick="if(event.target===this)closeVideoModal()">
         <div class="vm-dialog">
             <div class="vm-header">
                 <span id="vmTitle" class="vm-title"></span>
+                <button class="vm-fs-btn" id="vmFsBtn" onclick="_vmToggleFullscreen()" title="Fullscreen 全屏" aria-label="Fullscreen">⛶</button>
                 <button class="vm-close" onclick="closeVideoModal()" aria-label="Close">&times;</button>
             </div>
             <div id="vmPlayer" class="vm-player"></div>
@@ -1627,10 +1611,41 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
         </div>
     </div>
 
+    <!-- Floating button group: playlist (bigger) + back-to-top (smaller), joined, draggable vertically together -->
+    <div id="floatBtnGroup">
+        <button id="plFloatBtn" class="float-btn" onclick="plTogglePanel()" title="Playlist 播放列表">
+            <span>🎬</span>
+            <span class="float-top-text">Play<br>播放</span>
+            <span id="plFabBadge" class="float-badge">0</span>
+        </button>
+        <button id="backToTopFloat" class="float-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top 回顶部">
+            <span class="arrow">▲</span>
+            <span class="float-top-text">TOP<br>回顶部</span>
+        </button>
+    </div>
+
+    <div id="plToast"></div>
+
+    <!-- Playlist panel -->
+    <div id="plPanel" class="pl-panel hidden">
+        <div class="pl-panel-header">
+            <span>🎬 My Playlist 播放列表 (<span id="plPanelCount">0</span>)</span>
+            <button class="pl-panel-close" onclick="plTogglePanel()" aria-label="Close">&times;</button>
+        </div>
+        <div class="pl-panel-hint">Tap <b>+</b> on any video to add it here<br>点击视频上的 + 号加入播放列表</div>
+        <div id="plList" class="pl-list"></div>
+        <div class="pl-panel-footer">
+            <button class="vm-btn vm-btn-switch" onclick="plPlayAll()">▶ Play All</button>
+            <button class="vm-btn vm-btn-switch" onclick="plShufflePlay()">🔀 Shuffle</button>
+            <button class="vm-btn" style="background:#5a1a1a;color:#fff" onclick="plClearAll()">Clear</button>
+        </div>
+    </div>
+
     <!-- Load external JS files -->
     <script src="js/render.js"></script>
     <script src="js/data-loader.js"></script>
-    
+    <script src="https://www.youtube.com/iframe_api"></script>
+
     <!-- ALL YOUR EXISTING JAVASCRIPT - Keep everything -->
     <script>
     // ALL your existing JavaScript functionality stays here:
@@ -1651,7 +1666,6 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
         // THEN initialize all your existing functionality
         initializeTabNavigation();
         initializeSearch();
-        initializeBackToTop();
         initializeTermsToggle();
     });
 
@@ -1695,7 +1709,10 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
             const episodesContainer = document.getElementById(`${dramaId}-episodes`);
             toggleButton.classList.toggle('expanded');
             episodesContainer.classList.toggle('expanded');
-            const previewStrip = toggleButton.previousElementSibling; // .episodes-preview
+            // Looked up via the common .drama-episodes ancestor (not previousElementSibling) because
+            // the toggle button now shares a row with the "+ Add all to Playlist" button.
+            const episodesGroup = toggleButton.closest('.drama-episodes');
+            const previewStrip = episodesGroup ? episodesGroup.querySelector('.episodes-preview') : null;
             if (episodesContainer.classList.contains('expanded')) {
                 initEpisodePagination(dramaId);
                 if (previewStrip && previewStrip.classList.contains('episodes-preview')) {
@@ -1813,23 +1830,7 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
         }
     }
 
-    // Back to Top
-    function initializeBackToTop() {
-        const backToTopButton = document.getElementById('back-to-top');
-        if (backToTopButton) {
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
-                    backToTopButton.classList.add('visible');
-                } else {
-                    backToTopButton.classList.remove('visible');
-                }
-            });
-            
-            backToTopButton.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-    }
+    // Back to Top — now handled by setupFloatGroup() in js/render.js (joined with the playlist button)
 
     // Terms Toggle
     function initializeTermsToggle() {
@@ -1864,9 +1865,23 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
         return 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
     }
 
+    // === PLAYLIST QUEUE / CONTINUOUS PLAYBACK ===
+    // playlist[]/plId()/plToggle() come from js/render.js (loaded earlier, global).
+    var _vmQueue = null;       // array of {title,ytUrl,r2Url} while playing the queue; null = single-video mode
+    var _vmQueueIndex = -1;
+    var _ytPlayer = null;      // current YT.Player instance (yt-source videos only)
+    var _ytPendingLoad = null; // {id} queued if the IFrame API script hasn't finished loading yet
+
+    // Called by the YouTube IFrame API script once it's ready (global callback it looks for by name)
+    function onYouTubeIframeAPIReady() {
+        if (_ytPendingLoad) { var info = _ytPendingLoad; _ytPendingLoad = null; _vmLoadYt(info); }
+    }
+
     function openVideoModal(key) {
         var data = window._vmVideos[key];
         if (!data) return;
+        _vmQueue = null;
+        _vmQueueIndex = -1;
         document.getElementById('vmTitle').textContent = data.title || '';
         var modal = document.getElementById('videoModal');
         modal.classList.remove('hidden');
@@ -1877,28 +1892,101 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
         _vmUpdateFooter(modal);
     }
 
+    // Opens the modal in continuous-playback mode over a playlist queue.
+    function _vmOpenQueue(queue, index) {
+        if (!queue || !queue.length) return;
+        _vmQueue = queue;
+        _vmQueueIndex = index;
+        var data = _vmQueue[index];
+        document.getElementById('vmTitle').textContent = data.title || '';
+        var modal = document.getElementById('videoModal');
+        modal.classList.remove('hidden');
+        modal._curData = data;
+        document.body.style.overflow = 'hidden';
+        document.addEventListener('keydown', _vmKeyHandler);
+        _vmLoad(data, data.r2Url ? 'r2' : 'yt');
+        _vmUpdateFooter(modal);
+        var panel = document.getElementById('plPanel');
+        if (panel) panel.classList.add('hidden');
+    }
+
+    function _vmGoTo(index) {
+        if (!_vmQueue || index < 0 || index >= _vmQueue.length) return;
+        _vmQueueIndex = index;
+        var data = _vmQueue[index];
+        var modal = document.getElementById('videoModal');
+        document.getElementById('vmTitle').textContent = data.title || '';
+        modal._curData = data;
+        _vmLoad(data, data.r2Url ? 'r2' : 'yt');
+        _vmUpdateFooter(modal);
+    }
+
+    function _vmNext() { _vmGoTo(_vmQueueIndex + 1); }
+    function _vmPrev() { _vmGoTo(_vmQueueIndex - 1); }
+
+    // Advances to the next queued video when the current one finishes playing.
+    // No-op outside queue mode, and stops (doesn't loop) at the end of the queue.
+    function _vmAutoAdvance() {
+        if (!_vmQueue || _vmQueueIndex < 0) return;
+        if (_vmQueueIndex >= _vmQueue.length - 1) return;
+        _vmGoTo(_vmQueueIndex + 1);
+    }
+
     function _vmLoad(data, src) {
         var player = document.getElementById('vmPlayer');
         var modal = document.getElementById('videoModal');
         modal._curSrc = src;
+        _ytPlayer = null;
+        _ytPendingLoad = null;
         if (src === 'r2' && data.r2Url) {
-            player.innerHTML = '<video src="' + data.r2Url + '" controls autoplay playsinline></video>';
+            // controlsList="nofullscreen" (Chrome/Edge) hides the <video>'s own fullscreen button —
+            // fullscreening just the <video> would hide Prev/Next, so we route fullscreen through
+            // our own button (_vmToggleFullscreen) on the whole dialog instead.
+            player.innerHTML = '<video src="' + data.r2Url + '" controls controlsList="nofullscreen" autoplay playsinline></video>';
+            var v = player.querySelector('video');
+            if (v) v.onended = _vmAutoAdvance;
         } else {
             var embed = _vmEmbedUrl(data.ytUrl);
-            if (embed) player.innerHTML = '<iframe src="' + embed + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+            if (!embed) return;
+            player.innerHTML = '<div id="vmYtPlayer"></div>';
+            _vmLoadYt({ id: _getYtId(data.ytUrl) });
         }
+    }
+
+    // Uses the real YouTube IFrame Player API (not a plain <iframe src>) so we get an
+    // onStateChange/ENDED event to drive continuous playback — a bare iframe gives no such hook.
+    function _vmLoadYt(info) {
+        if (!info.id) return;
+        if (!(window.YT && window.YT.Player)) { _ytPendingLoad = info; return; }
+        if (!document.getElementById('vmYtPlayer')) return; // modal moved on before the API finished loading
+        _ytPlayer = new YT.Player('vmYtPlayer', {
+            videoId: info.id,
+            // fs:0 hides YouTube's own fullscreen button, for the same reason as
+            // controlsList="nofullscreen" on the R2 <video> above — see _vmToggleFullscreen.
+            playerVars: { autoplay: 1, rel: 0, fs: 0 },
+            events: {
+                onStateChange: function (e) {
+                    if (e.data === YT.PlayerState.ENDED) _vmAutoAdvance();
+                }
+            }
+        });
     }
 
     function _vmUpdateFooter(modal) {
         var data = modal._curData;
         var footer = document.getElementById('vmFooter');
         var html = '';
+        if (_vmQueue) {
+            html += '<button class="vm-btn vm-btn-nav" onclick="_vmPrev()"' + (_vmQueueIndex <= 0 ? ' disabled' : '') + '>‹ Prev</button>';
+        }
         if (data.r2Url) {
             html += '<span class="vm-source-label">Source: </span><span id="vmSrcLabel" class="vm-source-label" style="color:#bbb;font-weight:600">' + (data.r2Url ? 'Backup' : 'YouTube') + '</span>';
         }
         if (data.r2Url && data.ytUrl) {
             html += '<button class="vm-btn vm-btn-switch" onclick="_vmSwitch()">Switch source</button>';
         }
+        var inList = playlist.some(function (p) { return plId(p) === plId(data); });
+        html += '<button class="vm-btn vm-btn-switch" id="vmPlBtn" onclick="_vmTogglePlaylist()">' + (inList ? '✓ In Playlist' : '+ Add to Playlist') + '</button>';
         if (data.ytUrl) {
             var id = null, m = data.ytUrl.match(/[?&]v=([^&]+)/);
             if (m) id = m[1];
@@ -1906,7 +1994,16 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
             var watchUrl = id ? 'https://www.youtube.com/watch?v=' + id : data.ytUrl;
             html += '<a class="vm-btn vm-btn-ext" href="' + watchUrl + '" target="_blank" rel="noopener">YouTube ↗</a>';
         }
+        if (_vmQueue) {
+            html += '<button class="vm-btn vm-btn-nav" onclick="_vmNext()"' + (_vmQueueIndex >= _vmQueue.length - 1 ? ' disabled' : '') + '>Next ›</button>';
+        }
         footer.innerHTML = html;
+    }
+
+    function _vmTogglePlaylist() {
+        var modal = document.getElementById('videoModal');
+        plToggle(modal._curData);
+        _vmUpdateFooter(modal);
     }
 
     function _vmSwitch() {
@@ -1918,13 +2015,57 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
     }
 
     function closeVideoModal() {
+        if (document.fullscreenElement || document.webkitFullscreenElement) {
+            (document.exitFullscreen || document.webkitExitFullscreen || function () {}).call(document);
+        }
         document.getElementById('vmPlayer').innerHTML = '';
         document.getElementById('videoModal').classList.add('hidden');
         document.body.style.overflow = '';
         document.removeEventListener('keydown', _vmKeyHandler);
+        _vmQueue = null;
+        _vmQueueIndex = -1;
+        _ytPlayer = null;
+        _ytPendingLoad = null;
     }
 
-    function _vmKeyHandler(e) { if (e.key === 'Escape') closeVideoModal(); }
+    function _vmKeyHandler(e) {
+        if (e.key === 'Escape') {
+            // First Escape just exits fullscreen (the browser does that on its own);
+            // only close the modal outright once we're no longer fullscreen.
+            if (document.fullscreenElement || document.webkitFullscreenElement) return;
+            closeVideoModal();
+        }
+        else if (e.key === 'ArrowRight' && _vmQueue) _vmNext();
+        else if (e.key === 'ArrowLeft' && _vmQueue) _vmPrev();
+    }
+
+    // Fullscreens the whole modal dialog (header+player+footer) rather than just the
+    // <video>/YouTube iframe, so Prev/Next stay visible and clickable while fullscreen.
+    function _vmToggleFullscreen() {
+        var dialog = document.querySelector('#videoModal .vm-dialog');
+        if (!dialog) return;
+        var fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+        if (fsEl) {
+            (document.exitFullscreen || document.webkitExitFullscreen || function () {}).call(document);
+            return;
+        }
+        if (dialog.requestFullscreen) { dialog.requestFullscreen(); return; }
+        if (dialog.webkitRequestFullscreen) { dialog.webkitRequestFullscreen(); return; }
+        // Fallback for older iOS Safari, which only supports fullscreen on <video> itself —
+        // Prev/Next won't be reachable in this fallback path, but basic fullscreen still works.
+        var v = document.querySelector('#vmPlayer video');
+        if (v && v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+    }
+
+    function _vmSyncFsBtn() {
+        var btn = document.getElementById('vmFsBtn');
+        if (!btn) return;
+        var isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+        btn.textContent = isFs ? '⤡' : '⛶';
+        btn.title = isFs ? 'Exit fullscreen 退出全屏' : 'Fullscreen 全屏';
+    }
+    document.addEventListener('fullscreenchange', _vmSyncFsBtn);
+    document.addEventListener('webkitfullscreenchange', _vmSyncFsBtn);
     </script>
 
     <script>
