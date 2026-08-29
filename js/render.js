@@ -257,22 +257,20 @@ function plRenderPanel() {
 function plPlayFrom(i) {
     _vmOpenQueue(playlist.slice(), i);
 }
-// Playlist items are stored in add / episode order (episode 1 → N = oldest → newest),
-// and have no date field to sort by. So:
-//   "▶ Play All"     (_plDir === 1)  = newest → oldest  (the stored order, reversed)
-//   "▶ Play Reverse" (_plDir === -1) = oldest → newest  (the stored order as-is)
-// _plDir starts at -1 so the FIRST press flips it to 1 → the natural first press
-// plays "Play All" = newest → oldest, label stays "▶ Play All". Later presses toggle.
-// The label is set BEFORE playback so it always mirrors what just started.
-var _plDir = -1;
+// The label predicts what the NEXT press plays; pressing plays that, then flips the label.
+//   "▶ Play All"     = newest → oldest
+//   "▶ Play Reverse" = oldest → newest
+// Playlist is stored in episode / add order (1 → N = oldest → newest) with no date field,
+// so "Play All" reverses the stored array and "Play Reverse" plays it as-is.
+var _plRev = false;
 function plPlayAll() {
     if (!playlist.length) return;
-    _plDir = -_plDir;
-    var b = document.getElementById('plDirBtn');
-    if (b) b.textContent = _plDir === 1 ? '▶ Play All' : '▶ Play Reverse';
     var q = playlist.slice();
-    if (_plDir === 1) q.reverse();   // "Play All" = newest first
+    if (!_plRev) q.reverse();          // "Play All" = newest first
     _vmOpenQueue(q, 0);
+    _plRev = !_plRev;
+    var b = document.getElementById('plDirBtn');
+    if (b) b.textContent = _plRev ? '▶ Play Reverse' : '▶ Play All';
 }
 function plShufflePlay() {
     if (!playlist.length) return;
