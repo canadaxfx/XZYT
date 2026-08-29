@@ -257,9 +257,19 @@ function plRenderPanel() {
 function plPlayFrom(i) {
     _vmOpenQueue(playlist.slice(), i);
 }
+// ▶ Play All alternates forward / reverse on each press. _plDir starts at 1 so the
+// FIRST press flips it to -1 (reverse) and the label visibly changes to "Play Reverse".
+// The label is updated BEFORE playback, so it always mirrors the direction that just
+// started (倒序 idea ported from the galleries).
+var _plDir = 1;
 function plPlayAll() {
     if (!playlist.length) return;
-    _vmOpenQueue(playlist.slice(), 0);
+    _plDir = -_plDir;
+    var b = document.getElementById('plDirBtn');
+    if (b) b.textContent = _plDir === 1 ? '▶ Play All' : '▶ Play Reverse';
+    var q = playlist.slice();
+    if (_plDir === -1) q.reverse();
+    _vmOpenQueue(q, 0);
 }
 function plShufflePlay() {
     if (!playlist.length) return;
