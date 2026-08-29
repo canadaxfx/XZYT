@@ -257,16 +257,15 @@ function plRenderPanel() {
 function plPlayFrom(i) {
     _vmOpenQueue(playlist.slice(), i);
 }
+// Entries have no dates, so this is purely list order vs. its reverse:
+//   "▶ Play All"     = play the queue as listed (episode 1 → N, drama order as added)
+//   "▶ Play Reverse" = same queue, flipped
 // The label predicts what the NEXT press plays; pressing plays that, then flips the label.
-//   "▶ Play All"     = newest → oldest
-//   "▶ Play Reverse" = oldest → newest
-// Playlist is stored in episode / add order (1 → N = oldest → newest) with no date field,
-// so "Play All" reverses the stored array and "Play Reverse" plays it as-is.
 var _plRev = false;
 function plPlayAll() {
     if (!playlist.length) return;
     var q = playlist.slice();
-    if (!_plRev) q.reverse();          // "Play All" = newest first
+    if (_plRev) q.reverse();          // "Play Reverse" flips the list order
     _vmOpenQueue(q, 0);
     _plRev = !_plRev;
     var b = document.getElementById('plDirBtn');
