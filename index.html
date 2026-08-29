@@ -29,7 +29,7 @@
     <!-- ALL YOUR EXISTING CSS STAYS EXACTLY THE SAME -->
 <style>
 /* === FLOATING BUTTON GROUP: playlist + back-to-top, joined & draggable together (ported from the galleries) === */
-#floatBtnGroup{position:fixed;right:20px;bottom:90px;display:flex;flex-direction:column;align-items:center;gap:10px;z-index:9000;touch-action:none;cursor:grab}
+#floatBtnGroup{position:fixed;right:20px;bottom:90px;display:flex;flex-direction:column;align-items:center;gap:10px;z-index:9700;touch-action:none;cursor:grab}
 .float-btn{width:58px;height:58px;border-radius:50%;border:3px solid var(--accent-color);background:var(--primary-color);color:var(--accent-color);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.35);font-size:22px;font-weight:600;transition:transform .18s,box-shadow .18s,opacity .3s,visibility .3s;position:relative;flex-shrink:0;user-select:none;overflow:hidden}
 .float-btn:hover{transform:scale(1.08);box-shadow:0 6px 24px rgba(0,0,0,.5)}
 /* Play is the hero action: warm bronze-gradient fill, dark ink icon. Back-to-top is a quiet
@@ -593,7 +593,7 @@ display:inline
 .pl-add-all-btn:hover{box-shadow:0 5px 16px rgba(181,101,46,.5);transform:translateY(-1px)}
 
 /* === PLAYLIST: PANEL (position set dynamically by plPositionPanel(), relative to #floatBtnGroup) === */
-.pl-panel{position:fixed;right:24px;top:120px;width:300px;max-height:400px;background:#161616;border:1px solid #333;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.6);z-index:8500;display:flex;flex-direction:column;overflow:hidden}
+.pl-panel{position:fixed;right:24px;top:120px;width:300px;max-height:400px;background:#161616;border:1px solid #333;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.6);z-index:9700;display:flex;flex-direction:column;overflow:hidden}
 .pl-panel.hidden{display:none}
 .pl-panel-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#1e1e1e;color:#e8e8e8;font-size:.82rem;font-weight:600}
 .pl-panel-hint{padding:7px 14px;font-size:.72rem;line-height:1.4;color:#a49dae;background:#191921;border-bottom:1px solid #262626}
