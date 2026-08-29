@@ -320,9 +320,14 @@
       "description": "",
       "episodes": [
         {
-          "title": "从这里闪耀",
+          "title": "从这里闪耀MV",
           "url": "https://www.youtube.com/watch?v=C0kS-De9uNM",
           "thumbnail": "https://i.ytimg.com/vi/C0kS-De9uNM/mqdefault.jpg"
+        },
+        {
+          "title": "从这里闪耀<br>工作室纯享版",
+          "url": "https://www.youtube.com/watch?v=h2Sku9uT87Y",
+          "thumbnail": "https://i.ytimg.com/vi/h2Sku9uT87Y/mqdefault.jpg"
         },
         {
           "title": "得闲谨制电影官方MV",
