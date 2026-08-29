@@ -257,18 +257,21 @@ function plRenderPanel() {
 function plPlayFrom(i) {
     _vmOpenQueue(playlist.slice(), i);
 }
-// ▶ Play All alternates forward / reverse on each press. _plDir starts at 1 so the
-// FIRST press flips it to -1 (reverse) and the label visibly changes to "Play Reverse".
-// The label is updated BEFORE playback, so it always mirrors the direction that just
-// started (倒序 idea ported from the galleries).
-var _plDir = 1;
+// Playlist items are stored in add / episode order (episode 1 → N = oldest → newest),
+// and have no date field to sort by. So:
+//   "▶ Play All"     (_plDir === 1)  = newest → oldest  (the stored order, reversed)
+//   "▶ Play Reverse" (_plDir === -1) = oldest → newest  (the stored order as-is)
+// _plDir starts at -1 so the FIRST press flips it to 1 → the natural first press
+// plays "Play All" = newest → oldest, label stays "▶ Play All". Later presses toggle.
+// The label is set BEFORE playback so it always mirrors what just started.
+var _plDir = -1;
 function plPlayAll() {
     if (!playlist.length) return;
     _plDir = -_plDir;
     var b = document.getElementById('plDirBtn');
     if (b) b.textContent = _plDir === 1 ? '▶ Play All' : '▶ Play Reverse';
     var q = playlist.slice();
-    if (_plDir === -1) q.reverse();
+    if (_plDir === 1) q.reverse();   // "Play All" = newest first
     _vmOpenQueue(q, 0);
 }
 function plShufflePlay() {
