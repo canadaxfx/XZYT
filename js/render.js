@@ -42,18 +42,57 @@ function plToggle(v) {
     plRenderPanel();
 }
 
-// Adds every video in `list` that isn't already queued (used by the drama/playlist
-// card's "+ Add all to Playlist" button).
-function plAddAll(list) {
-    var added = 0;
-    list.forEach(function (v) {
+// Whether every video in `list` is already queued — the drama/playlist card's batch
+// button toggles between add-all/remove-all based on this.
+function _plAllIn(list) {
+    return list.length > 0 && list.every(function (v) {
         var id = plId(v);
-        if (!playlist.some(function (p) { return plId(p) === id; })) { playlist.push(v); added++; }
+        return playlist.some(function (p) { return plId(p) === id; });
     });
-    plSave();
-    plSyncAllCards();
-    plRenderPanel();
-    plToast(added ? ('+' + added + ' added to playlist<br>已加入 ' + added + ' 个视频') : 'Already all in playlist<br>已全部在播放列表中');
+}
+
+// Looks up a drama/playlist card's full episode list (not just the preview strip) and
+// converts it to the same {title,ytUrl,r2Url} shape used everywhere else in the playlist.
+function _plEpsFor(dramaId) {
+    var eps = window._dramaEps[dramaId] || [];
+    return eps.map(function (ep) { return { title: ep.title, ytUrl: ep.url || null, r2Url: ep.r2_url || null }; });
+}
+
+// The drama/playlist card's batch button — adds every episode that isn't already queued,
+// or (once all of them are) removes all of them, mirroring the individual "+"/"✓" toggle.
+function plToggleAll(dramaId) {
+    var list = _plEpsFor(dramaId);
+    if (_plAllIn(list)) {
+        list.forEach(function (v) {
+            var id = plId(v);
+            playlist = playlist.filter(function (p) { return plId(p) !== id; });
+        });
+        plSave();
+        plSyncAllCards();
+        plRenderPanel();
+        plToast('Removed ' + list.length + ' from playlist<br>已移除 ' + list.length + ' 个视频');
+    } else {
+        var added = 0;
+        list.forEach(function (v) {
+            var id = plId(v);
+            if (!playlist.some(function (p) { return plId(p) === id; })) { playlist.push(v); added++; }
+        });
+        plSave();
+        plSyncAllCards();
+        plRenderPanel();
+        plToast(added ? ('+' + added + ' added to playlist<br>已加入 ' + added + ' 个视频') : 'Already all in playlist<br>已全部在播放列表中');
+    }
+}
+
+// Renders the batch button's initial label/state at card-creation time (matches whatever
+// plSyncAllCards() would compute, so a page reload with episodes already queued shows the
+// correct "Remove all" state immediately, not just after the next playlist mutation).
+function plAddAllBtnHtml(dramaId, count) {
+    var allIn = _plAllIn(_plEpsFor(dramaId));
+    return '<button class="pl-add-all-btn' + (allIn ? ' pl-added' : '') + '" data-drama-id="' + _plEscAttr(dramaId) + '" ' +
+        'onclick="plToggleAll(\'' + dramaId + '\')">' +
+        (allIn ? '✓ Remove all ' + count + ' from Playlist' : '＋ Add all ' + count + ' to Playlist') +
+        '</button>';
 }
 
 function plSyncAllCards() {
@@ -63,6 +102,13 @@ function plSyncAllCards() {
         btn.classList.toggle('pl-added', inList);
         btn.innerHTML = inList ? '✓' : '+';
         btn.title = inList ? 'Remove from Playlist' : 'Add to Playlist';
+    });
+    document.querySelectorAll('.pl-add-all-btn[data-drama-id]').forEach(function (btn) {
+        var dramaId = btn.getAttribute('data-drama-id');
+        var list = _plEpsFor(dramaId);
+        var allIn = _plAllIn(list);
+        btn.classList.toggle('pl-added', allIn);
+        btn.textContent = allIn ? ('✓ Remove all ' + list.length + ' from Playlist') : ('＋ Add all ' + list.length + ' to Playlist');
     });
 }
 
@@ -307,7 +353,6 @@ function createDramaCard(drama) {
     var eps     = drama.episodes || [];
     var preview = eps.slice(0, EP_PREVIEW);
     window._dramaEps[drama.id] = eps;
-    var allEpsData = eps.map(function (ep) { return { title: ep.title, ytUrl: ep.url || null, r2Url: ep.r2_url || null }; });
 
     return `
         <div class="drama-card" data-year="${drama.year}" data-title="${drama.title}" data-role="${drama.role}">
@@ -335,7 +380,7 @@ function createDramaCard(drama) {
                                 <span class="view-text">View All ${eps.length} Episodes 展开全集</span>
                                 <span class="close-text">Hide Episodes 收起全集</span>
                             </span>
-                            <button class="pl-add-all-btn" onclick="plAddAll(${jq(allEpsData)})">＋ Add all ${eps.length} to Playlist</button>
+                            ${plAddAllBtnHtml(drama.id, eps.length)}
                         </div>
                         <div class="all-episodes-container" id="${drama.id}-episodes">
                             <div id="${drama.id}-pag-top"></div>
@@ -376,7 +421,6 @@ function createPlaylistCard(playlistData) {
     var eps     = playlistData.episodes || [];
     var preview = eps.slice(0, EP_PREVIEW);
     window._dramaEps[playlistData.id] = eps;
-    var allEpsData = eps.map(function (ep) { return { title: ep.title, ytUrl: ep.url || null, r2Url: ep.r2_url || null }; });
 
     return `
         <div class="drama-card" data-year="${playlistData.year}" data-title="${playlistData.title}" data-role="Xiao Zhan">
@@ -400,7 +444,7 @@ function createPlaylistCard(playlistData) {
                                 <span class="view-text">View All ${eps.length} Videos 展开全集</span>
                                 <span class="close-text">Hide 收起全集</span>
                             </span>
-                            <button class="pl-add-all-btn" onclick="plAddAll(${jq(allEpsData)})">＋ Add all ${eps.length} to Playlist</button>
+                            ${plAddAllBtnHtml(playlistData.id, eps.length)}
                         </div>
                         <div class="all-episodes-container" id="${playlistData.id}-episodes">
                             <div id="${playlistData.id}-pag-top"></div>
