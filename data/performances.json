@@ -12,6 +12,16 @@
       "description": "",
       "episodes": [
         {
+          "title": "春暖花开",
+          "url": "https://www.youtube.com/watch?v=xaZt2nyROpA",
+          "thumbnail": "https://i.ytimg.com/vi/xaZt2nyROpA/mqdefault.jpg"
+        },
+        {
+          "title": "千年一声唱",
+          "url": "https://www.youtube.com/watch?v=VjCQYdevfZ0",
+          "thumbnail": "https://i.ytimg.com/vi/VjCQYdevfZ0/mqdefault.jpg"
+        },
+        {
           "title": "得闲谨制+不要回头+现在不跳舞要干嘛",
           "url": "https://www.youtube.com/watch?v=Q8BcttLX9zo",
           "thumbnail": "https://i.ytimg.com/vi/Q8BcttLX9zo/mqdefault.jpg"
@@ -725,6 +735,20 @@
       "title": "Xiao Zhan 踩影子",
       "embedUrl": "https://www.youtube.com/embed/St0Ls3fufqQ",
       "description": "踩影子（2018）"
+    },
+    {
+      "id": "entry",
+      "year": "2026-08-22",
+      "title": "千年一声唱",
+      "embedUrl": "https://www.youtube.com/embed/VjCQYdevfZ0?si",
+      "description": "那英北京演唱会"
+    },
+    {
+      "id": "entry-2",
+      "year": "2026-08-22",
+      "title": "春暖花开",
+      "embedUrl": "https://www.youtube.com/embed/VjCQYdevfZ0",
+      "description": ""
     }
   ]
 }
