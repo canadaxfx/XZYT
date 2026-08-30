@@ -112,7 +112,7 @@ function plAddAllBtnHtml(dramaId, count) {
     var allIn = _plAllIn(_plEpsFor(dramaId));
     return '<button class="pl-add-all-btn' + (allIn ? ' pl-added' : '') + '" data-drama-id="' + _plEscAttr(dramaId) + '" ' +
         'onclick="plToggleAll(\'' + dramaId + '\')">' +
-        (allIn ? '✓ Remove all ' + count + ' from Playlist' : '＋ Add all ' + count + ' to Playlist') +
+        (allIn ? '－ Remove all ' + count + ' from Playlist 移除' : '＋ Add all ' + count + ' to Playlist 加入列表') +
         '</button>';
 }
 
@@ -122,14 +122,14 @@ function plSyncAllCards() {
         var inList = playlist.some(function (p) { return plId(p) === id; });
         btn.classList.toggle('pl-added', inList);
         btn.innerHTML = inList ? '✓' : '+';
-        btn.title = inList ? 'Remove from Playlist' : 'Add to Playlist';
+        btn.title = inList ? 'Remove from Playlist 移除' : 'Add to Playlist 加入列表';
     });
     document.querySelectorAll('.pl-add-all-btn[data-drama-id]').forEach(function (btn) {
         var dramaId = btn.getAttribute('data-drama-id');
         var list = _plEpsFor(dramaId);
         var allIn = _plAllIn(list);
         btn.classList.toggle('pl-added', allIn);
-        btn.textContent = allIn ? ('✓ Remove all ' + list.length + ' from Playlist') : ('＋ Add all ' + list.length + ' to Playlist');
+        btn.textContent = allIn ? ('－ Remove all ' + list.length + ' from Playlist 移除') : ('＋ Add all ' + list.length + ' to Playlist 加入列表');
     });
 }
 
@@ -138,7 +138,7 @@ function plAddBtnHtml(v) {
     var inList = playlist.some(function (p) { return plId(p) === id; });
     return '<button class="pl-card-add' + (inList ? ' pl-added' : '') + '" data-plid="' + _plEscAttr(id) + '" ' +
         'onclick="event.stopPropagation();plToggle(' + jq(v) + ')" ' +
-        'title="' + (inList ? 'Remove from Playlist' : 'Add to Playlist') + '">' + (inList ? '✓' : '+') + '</button>';
+        'title="' + (inList ? 'Remove from Playlist 移除' : 'Add to Playlist 加入列表') + '">' + (inList ? '✓' : '+') + '</button>';
 }
 
 function plRemoveAt(i) {
@@ -335,7 +335,10 @@ function plEpPickerHtml(dramaId) {
     if (eps.length < 2) return '';
     var did = _plEscAttr(dramaId);
     return '<div class="ep-play-group" data-drama-id="' + did + '">' +
-        '<button type="button" class="ep-play-btn" onclick="plPlayDramaFromWidget(this)">▶ Play from 从此播放</button>' +
+        '<button type="button" class="ep-play-btn" onclick="plPlayDramaFromWidget(this)">' +
+            '<span class="ep-play-lbl">Play from 从此集播放</span>' +
+            '<span class="ep-play-go" aria-hidden="true">▶</span>' +
+        '</button>' +
         '<button type="button" class="ep-dd-trigger" data-i="0" aria-haspopup="listbox" aria-expanded="false" ' +
             'aria-label="Play series starting from / 从此集开始播放" onclick="epddToggle(this)">' +
             '<span class="ep-dd-cur">' + _plEscAttr(_epPickerLabel(eps[0], 0)) + '</span>' +
@@ -405,6 +408,9 @@ function epddToggle(trig) {
     _epddVW = document.documentElement.clientWidth;
     trig.setAttribute('aria-expanded', 'true');
     group.classList.add('ep-dd-on');
+    // while open, the list already shows (and highlights) the current pick — don't repeat it in the trigger
+    var curEl = group.querySelector('.ep-dd-cur');
+    if (curEl) { curEl.textContent = '选择集数 Choose…'; curEl.classList.add('ep-dd-cur-open'); }
     panel.removeAttribute('hidden');
     epddPosition();
     var cur = panel.querySelector('.ep-dd-opt[data-i="' + curI + '"]');
@@ -421,7 +427,20 @@ function epddClose() {
     var group = _epddTrig.closest('.ep-play-group');
     if (group) group.classList.remove('ep-dd-on');
     _epddTrig.setAttribute('aria-expanded', 'false');
+    _epddSyncTrigLabel(_epddTrig);
     _epddTrig = null;
+}
+
+// Restores the trigger's collapsed label from its data-i (used on close / after a pick).
+function _epddSyncTrigLabel(trig) {
+    if (!trig) return;
+    var g = trig.closest('.ep-play-group');
+    var cur = g && g.querySelector('.ep-dd-cur');
+    if (!cur) return;
+    var eps = (window._dramaEps && window._dramaEps[g.getAttribute('data-drama-id')]) || [];
+    var i = parseInt(trig.getAttribute('data-i'), 10) || 0;
+    cur.textContent = eps[i] ? _epPickerLabel(eps[i], i) : String(i + 1);
+    cur.classList.remove('ep-dd-cur-open');
 }
 
 function epddApplyFilter(q) {
@@ -441,7 +460,8 @@ function epddApplyFilter(q) {
 function epddPosition() {
     var panel = document.getElementById('epddPanel');
     if (!panel || !_epddTrig) return;
-    var r = _epddTrig.getBoundingClientRect();
+    // anchor to the whole control, not the trigger (which is hidden while open on mobile)
+    var r = (_epddTrig.closest('.ep-play-group') || _epddTrig).getBoundingClientRect();
     var vw = document.documentElement.clientWidth;
     var vh = document.documentElement.clientHeight;
     var w = Math.min(Math.max(r.width, 240), vw - 16);
@@ -457,12 +477,9 @@ function epddPosition() {
 function epddPick(li) {
     if (!_epddTrig) return;
     var i = parseInt(li.getAttribute('data-i'), 10) || 0;
-    var group = _epddTrig.closest('.ep-play-group');
     _epddTrig.setAttribute('data-i', i);
-    var cur = group && group.querySelector('.ep-dd-cur');
-    if (cur) cur.textContent = li.textContent;
     var t = _epddTrig;
-    epddClose();
+    epddClose();          // restores the trigger label from the new data-i via _epddSyncTrigLabel
     t.focus();
 }
 
