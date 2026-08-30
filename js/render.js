@@ -310,7 +310,7 @@ function plShufflePlay() {
 // === PLAY SERIES / PLAY FROM EPISODE N ===
 // Plays a drama/playlist card's OWN episode list as a throwaway queue (independent of
 // the user's hand-built playlist — same non-mutating pattern as plPlayFrom/plShufflePlay).
-// `fromIndex` (from the card's episode-start <select>) is where playback begins.
+// `fromIndex` (from the card's episode-start picker) is where playback begins.
 function plPlayDrama(dramaId, fromIndex) {
     var eps = _plEpsFor(dramaId);
     if (!eps.length) return;
@@ -319,27 +319,189 @@ function plPlayDrama(dramaId, fromIndex) {
 }
 
 // "<position> · <title>" — position prefix keeps a usable handle even when titles
-// aren't numbered (specials, variety, free-form names); title is truncated for the dropdown.
+// aren't numbered (specials, variety, free-form names); title is truncated for display.
 function _epPickerLabel(ep, i) {
     var t = (ep && ep.title ? String(ep.title) : '').trim();
     if (t.length > 44) t = t.slice(0, 43) + '…';
     return (i + 1) + (t ? ' · ' + t : '');
 }
 
-// The "▶ Play 播放  [ 1 · … ▾ ]" row under a card's action row. Omitted for
-// single-episode collections (nothing to pick a start point in).
+// The "▶ Play from 从此播放  [ 1 · … ⌄ ]" control under a card's action row.
+// The right half is a CUSTOM dropdown (not a native <select>) — a native <select>
+// on a phone opens a full-screen OS picker, unusable for an 80+ episode drama.
+// Omitted for single-episode collections (nothing to pick a start point in).
 function plEpPickerHtml(dramaId) {
     var eps = window._dramaEps[dramaId] || [];
     if (eps.length < 2) return '';
-    var opts = eps.map(function (ep, i) {
-        return '<option value="' + i + '">' + _plEscAttr(_epPickerLabel(ep, i)) + '</option>';
-    }).join('');
-    var selId = dramaId + '-epstart';
-    return '<div class="ep-play-group">' +
-        '<button class="ep-play-btn" onclick="plPlayDrama(\'' + dramaId + '\', document.getElementById(\'' + selId + '\').value)">▶ Play from 从此播放</button>' +
-        '<select id="' + selId + '" class="ep-play-picker" aria-label="Play series starting from / 从此集开始播放">' + opts + '</select>' +
+    var did = _plEscAttr(dramaId);
+    return '<div class="ep-play-group" data-drama-id="' + did + '">' +
+        '<button type="button" class="ep-play-btn" onclick="plPlayDramaFromWidget(this)">▶ Play from 从此播放</button>' +
+        '<button type="button" class="ep-dd-trigger" data-i="0" aria-haspopup="listbox" aria-expanded="false" ' +
+            'aria-label="Play series starting from / 从此集开始播放" onclick="epddToggle(this)">' +
+            '<span class="ep-dd-cur">' + _plEscAttr(_epPickerLabel(eps[0], 0)) + '</span>' +
+            '<span class="ep-dd-caret" aria-hidden="true"></span>' +
+        '</button>' +
         '</div>';
 }
+
+function plPlayDramaFromWidget(btn) {
+    var g = btn.closest('.ep-play-group');
+    if (!g) return;
+    var trig = g.querySelector('.ep-dd-trigger');
+    var i = trig ? (parseInt(trig.getAttribute('data-i'), 10) || 0) : 0;
+    plPlayDrama(g.getAttribute('data-drama-id'), i);
+}
+
+// ---- custom episode-start dropdown (one shared panel, appended to <body> so it
+//      escapes the drama card's overflow:hidden / :hover transform containing block) ----
+var _epddTrig = null;      // trigger button of the open dropdown, or null
+var _epddScrollY = 0;
+var _epddVW = 0;
+
+function _epddPanel() {
+    var p = document.getElementById('epddPanel');
+    if (p) return p;
+    p = document.createElement('div');
+    p.id = 'epddPanel';
+    p.className = 'ep-dd';
+    p.setAttribute('hidden', '');
+    p.innerHTML =
+        '<input type="text" class="ep-dd-filter" placeholder="Number or name… 输入编号或名称" aria-label="Filter by episode number or name">' +
+        '<ul class="ep-dd-list" role="listbox" tabindex="-1"></ul>' +
+        '<div class="ep-dd-empty" hidden>No match 无结果</div>';
+    document.body.appendChild(p);
+    p.querySelector('.ep-dd-filter').addEventListener('input', function () {
+        epddApplyFilter(this.value);
+        epddPosition();
+    });
+    p.addEventListener('click', function (e) {
+        var li = e.target.closest('.ep-dd-opt');
+        if (li) epddPick(li);
+    });
+    return p;
+}
+
+function epddToggle(trig) {
+    var wasOpen = (_epddTrig === trig);
+    epddClose();
+    if (wasOpen) return;
+    var group = trig.closest('.ep-play-group');
+    var dramaId = group.getAttribute('data-drama-id');
+    var eps = (window._dramaEps && window._dramaEps[dramaId]) || [];
+    if (eps.length < 2) return;
+    var panel = _epddPanel();
+    var curI = parseInt(trig.getAttribute('data-i'), 10) || 0;
+    panel.querySelector('.ep-dd-list').innerHTML = eps.map(function (ep, i) {
+        var lbl = _epPickerLabel(ep, i);
+        return '<li role="option" class="ep-dd-opt' + (i === curI ? ' ep-dd-cur-opt' : '') +
+            '" data-i="' + i + '" data-label="' + _plEscAttr(lbl.toLowerCase()) +
+            '" aria-selected="' + (i === curI ? 'true' : 'false') + '">' + _plEscAttr(lbl) + '</li>';
+    }).join('');
+    var filter = panel.querySelector('.ep-dd-filter');
+    filter.value = '';
+    epddApplyFilter('');
+    _epddTrig = trig;
+    _epddScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    _epddVW = document.documentElement.clientWidth;
+    trig.setAttribute('aria-expanded', 'true');
+    group.classList.add('ep-dd-on');
+    panel.removeAttribute('hidden');
+    epddPosition();
+    var cur = panel.querySelector('.ep-dd-opt[data-i="' + curI + '"]');
+    if (cur) cur.scrollIntoView({ block: 'nearest' });
+    if (!('ontouchstart' in window) && !navigator.maxTouchPoints) {
+        setTimeout(function () { filter.focus(); }, 0);
+    }
+}
+
+function epddClose() {
+    if (!_epddTrig) return;
+    var panel = document.getElementById('epddPanel');
+    if (panel) panel.setAttribute('hidden', '');
+    var group = _epddTrig.closest('.ep-play-group');
+    if (group) group.classList.remove('ep-dd-on');
+    _epddTrig.setAttribute('aria-expanded', 'false');
+    _epddTrig = null;
+}
+
+function epddApplyFilter(q) {
+    var panel = document.getElementById('epddPanel');
+    if (!panel) return;
+    q = (q || '').trim().toLowerCase();
+    var any = false;
+    panel.querySelectorAll('.ep-dd-opt').forEach(function (li) {
+        var show = !q || li.getAttribute('data-label').indexOf(q) >= 0;
+        li.hidden = !show;
+        if (show) any = true;
+        li.classList.remove('ep-dd-active');
+    });
+    panel.querySelector('.ep-dd-empty').hidden = any;
+}
+
+function epddPosition() {
+    var panel = document.getElementById('epddPanel');
+    if (!panel || !_epddTrig) return;
+    var r = _epddTrig.getBoundingClientRect();
+    var vw = document.documentElement.clientWidth;
+    var vh = document.documentElement.clientHeight;
+    var w = Math.min(Math.max(r.width, 240), vw - 16);
+    panel.style.width = w + 'px';
+    panel.style.left = Math.max(8, Math.min(r.left, vw - w - 8)) + 'px';
+    panel.style.top = '-9999px';
+    var ph = panel.offsetHeight;
+    var below = vh - r.bottom - 8;
+    if (below >= ph || below >= r.top - 8) panel.style.top = (r.bottom + 6) + 'px';
+    else panel.style.top = Math.max(8, r.top - 6 - ph) + 'px';
+}
+
+function epddPick(li) {
+    if (!_epddTrig) return;
+    var i = parseInt(li.getAttribute('data-i'), 10) || 0;
+    var group = _epddTrig.closest('.ep-play-group');
+    _epddTrig.setAttribute('data-i', i);
+    var cur = group && group.querySelector('.ep-dd-cur');
+    if (cur) cur.textContent = li.textContent;
+    var t = _epddTrig;
+    epddClose();
+    t.focus();
+}
+
+function _epddInit() {
+    document.addEventListener('click', function (e) {
+        if (!_epddTrig) return;
+        if (e.target.closest('.ep-dd') || e.target.closest('.ep-dd-trigger')) return;
+        epddClose();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (!_epddTrig) return;
+        var panel = document.getElementById('epddPanel');
+        if (e.key === 'Escape') { var t = _epddTrig; epddClose(); t.focus(); return; }
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            var opts = Array.prototype.filter.call(panel.querySelectorAll('.ep-dd-opt'), function (o) { return !o.hidden; });
+            if (!opts.length) return;
+            var act = panel.querySelector('.ep-dd-opt.ep-dd-active');
+            var idx = opts.indexOf(act);
+            idx = e.key === 'ArrowDown' ? Math.min(opts.length - 1, idx + 1) : Math.max(0, idx < 0 ? 0 : idx - 1);
+            if (act) act.classList.remove('ep-dd-active');
+            opts[idx].classList.add('ep-dd-active');
+            opts[idx].scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'Enter') {
+            var a = panel.querySelector('.ep-dd-opt.ep-dd-active');
+            if (a) { e.preventDefault(); epddPick(a); }
+        }
+    });
+    window.addEventListener('scroll', function () {
+        if (!_epddTrig) return;
+        var y = window.scrollY || document.documentElement.scrollTop || 0;
+        if (Math.abs(y - _epddScrollY) > 36) epddClose(); else epddPosition();
+    }, true);
+    window.addEventListener('resize', function () {
+        if (!_epddTrig) return;
+        if (document.documentElement.clientWidth !== _epddVW) epddClose(); else epddPosition();
+    });
+}
+document.addEventListener('DOMContentLoaded', _epddInit);
 
 plLoad();
 plRenderPanel();
