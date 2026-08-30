@@ -567,6 +567,14 @@ display:inline
 .vm-player iframe,.vm-player video{position:absolute;inset:0;width:100%;height:100%;border:0}
 .vm-player video{object-fit:contain;background:#000}
 .vm-footer{display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 14px;background:#1a1a1a;flex-wrap:wrap;min-height:42px}
+.vm-resume{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 14px;background:#191919;border-top:1px solid #2a2a2a;color:#ddd;font-size:.8rem;flex-wrap:wrap;text-align:center}
+.vm-resume.hidden{display:none}
+.vm-resume .vm-resume-txt{font-weight:600;color:#e8e8e8;line-height:1.4}
+.vm-resume .vm-resume-txt b{color:var(--accent-color,#C97B3D)}
+.vm-resume button{padding:5px 13px;border-radius:5px;font-size:.78rem;font-weight:700;cursor:pointer;border:none;transition:opacity .15s;white-space:nowrap}
+.vm-resume button:hover{opacity:.82}
+.vm-resume .vm-resume-go{background:linear-gradient(135deg,#E8A672,#B5652E);color:#2b1a0a}
+.vm-resume .vm-resume-skip{background:#333;color:#ddd}
 /* Fullscreen: fullscreen the WHOLE dialog (header+player+footer), not just the <video>/iframe,
    so Prev/Next (and the source-switch / add-to-playlist buttons) stay visible and clickable. */
 .vm-dialog:fullscreen{width:100vw;height:100vh;max-width:100vw;max-height:100vh;border-radius:0}
@@ -589,6 +597,20 @@ display:inline
 
 /* === PLAYLIST: ADD-ALL-EPISODES BUTTON (per drama/playlist card) === */
 .ep-actions-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 12px}
+.ep-play-group{display:flex;align-items:stretch;margin-top:10px;max-width:440px;border:1px solid rgba(var(--accent-rgb,201,123,61),.4);border-radius:10px;overflow:hidden;background:rgba(var(--accent-rgb,201,123,61),.05);transition:border-color .15s,box-shadow .15s}
+.ep-play-group:hover{border-color:rgba(var(--accent-rgb,201,123,61),.75);box-shadow:0 2px 10px rgba(var(--accent-rgb,201,123,61),.16)}
+.ep-play-group:focus-within{border-color:var(--accent-color,#C97B3D);box-shadow:0 0 0 3px rgba(var(--accent-rgb,201,123,61),.2)}
+.ep-play-group .ep-play-btn{flex:0 0 auto;border:none;border-right:1px solid rgba(var(--accent-rgb,201,123,61),.22);border-radius:0;background:transparent;color:var(--accent-color,#C97B3D);font-size:.74rem;font-weight:600;letter-spacing:.01em;text-align:left;padding:8px 14px;line-height:1.35;white-space:nowrap;cursor:pointer;transition:background .15s}
+.ep-play-group .ep-play-btn:hover{background:rgba(var(--accent-rgb,201,123,61),.12)}
+.ep-play-group .ep-play-btn:active{background:rgba(var(--accent-rgb,201,123,61),.2)}
+.ep-play-group .ep-play-picker{flex:1 1 auto;min-width:0;-webkit-appearance:none;-moz-appearance:none;appearance:none;border:none;border-radius:0;outline:none;background-color:transparent;color:#3a3a3a;font-family:inherit;font-size:.74rem;font-weight:500;line-height:1.35;padding:8px 30px 8px 12px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23C97B3D' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;transition:background-color .15s}
+.ep-play-group .ep-play-picker:hover{background-color:rgba(var(--accent-rgb,201,123,61),.06)}
+.ep-play-group .ep-play-picker:focus{background-color:rgba(var(--accent-rgb,201,123,61),.1)}
+.ep-play-group .ep-play-picker option{color:#222;font-weight:400}
+@media (max-width:600px){
+.ep-play-group{flex-direction:column;max-width:none}
+.ep-play-group .ep-play-btn{border-right:none;border-bottom:1px solid rgba(var(--accent-rgb,201,123,61),.22);width:100%}
+}
 .pl-add-all-btn{background:linear-gradient(135deg,#E8A672,#B5652E);border:none;color:#2b1a0a;border-radius:6px;padding:5px 14px;font-size:.74rem;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;box-shadow:0 3px 10px rgba(181,101,46,.35);transition:box-shadow .15s,transform .15s}
 .pl-add-all-btn:hover{box-shadow:0 5px 16px rgba(181,101,46,.5);transform:translateY(-1px)}
 
@@ -598,8 +620,17 @@ display:inline
 .pl-panel-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#1e1e1e;color:#e8e8e8;font-size:.82rem;font-weight:600}
 .pl-panel-hint{padding:7px 14px;font-size:.72rem;line-height:1.4;color:#a49dae;background:#191921;border-bottom:1px solid #262626}
 .pl-panel-hint b{color:#E8A672}
-.pl-panel-close{background:none;border:none;color:#888;font-size:1.4rem;cursor:pointer;line-height:1}
+.pl-panel-close{background:none;border:none;color:#888;font-size:1.4rem;cursor:pointer;line-height:1;margin-left:8px}
 .pl-panel-close:hover{color:#fff}
+.pl-loop-btn{margin-left:auto;flex-shrink:0;width:26px;height:26px;border-radius:6px;border:1px solid rgba(255,255,255,.38);background:transparent;color:#e8e8e8;font-size:13px;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;opacity:.85;transition:background .15s,border-color .15s}
+.pl-loop-btn:hover{background:rgba(255,255,255,.14)}
+.pl-loop-btn.on,.pl-loop-btn.on:hover{background:#fff;border-color:#fff;color:#111;opacity:1}
+.pl-item.pl-item-now{background:#2c2c38;border-left:3px solid var(--accent-color,#C97B3D)}
+.pl-item.pl-item-now .pl-item-title{color:#fff}
+.pl-item-now-tag{color:var(--accent-color,#C97B3D);font-size:.66rem;font-weight:700;display:block;margin-bottom:1px;-webkit-line-clamp:unset}
+.vm-pos{color:#999;font-size:.75rem;font-weight:600;padding:0 2px;white-space:nowrap}
+.vm-nav{display:inline-flex;align-items:center;gap:8px;flex-shrink:0}
+.vm-btn-nav svg{width:15px;height:15px;fill:currentColor;display:block}
 .pl-list{overflow-y:auto;flex:1;min-height:60px}
 .pl-empty{padding:24px 16px;text-align:center;color:#777;font-size:.78rem;line-height:1.6}
 .pl-item{display:flex;align-items:center;gap:8px;padding:8px 12px;cursor:pointer;transition:background .15s;border-bottom:1px solid #262626}
@@ -1607,6 +1638,7 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
                 <button class="vm-close" onclick="closeVideoModal()" aria-label="Close">&times;</button>
             </div>
             <div id="vmPlayer" class="vm-player"></div>
+            <div id="vmResume" class="vm-resume hidden"></div>
             <div id="vmFooter" class="vm-footer"></div>
         </div>
     </div>
@@ -1630,6 +1662,7 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
     <div id="plPanel" class="pl-panel hidden">
         <div class="pl-panel-header">
             <span>🎬 My Playlist 播放列表 (<span id="plPanelCount">0</span>)</span>
+            <button id="plLoopBtn" class="pl-loop-btn" onclick="plToggleLoop()" title="Loop" aria-pressed="false">🔁</button>
             <button class="pl-panel-close" onclick="plTogglePanel()" aria-label="Close">&times;</button>
         </div>
         <div class="pl-panel-hint">Tap <b>+</b> on any video to add it here<br>点击视频上的 + 号加入播放列表</div>
@@ -1865,6 +1898,116 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
         return 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
     }
 
+    // === WATCH PROGRESS / RESUME ("continue watching") ===
+    // Remembers how far into each video the viewer got (localStorage) and offers a
+    // "Resume from mm:ss / Start over" bar the next time that same video is opened.
+    // Positions under _PROG_MIN (barely started) or within _PROG_TAIL of the end
+    // (basically finished) are dropped, so only mid-watch stops are remembered.
+    var _PROG_KEY  = 'xzytProgress';
+    var _PROG_MIN  = 15;    // seconds — ignore the very start
+    var _PROG_TAIL = 30;    // seconds from the end — treat as finished, forget it
+    var _PROG_MAX  = 300;   // cap stored entries; prune oldest by timestamp
+    var _vmProgTimer = null; // interval polling the YT player's position while it plays
+    var _vmAutoAdv = false;  // true only while _vmAutoAdvance() is walking the queue
+
+    function _progKey(data) {
+        if (!data) return null;
+        var y = _getYtId(data.ytUrl);
+        if (y) return 'yt:' + y;
+        if (data.r2Url) return 'r2:' + data.r2Url;
+        return 't:' + (data.title || '');
+    }
+    function _progLoadMap() {
+        try { return JSON.parse(localStorage.getItem(_PROG_KEY) || '{}') || {}; }
+        catch (e) { return {}; }
+    }
+    function _progSaveMap(m) {
+        try { localStorage.setItem(_PROG_KEY, JSON.stringify(m)); } catch (e) {}
+    }
+    function _progGet(data) {
+        var k = _progKey(data); if (!k) return null;
+        var e = _progLoadMap()[k];
+        return (e && e.t > 0) ? e : null;
+    }
+    function _progRecord(data, t, d) {
+        var k = _progKey(data);
+        if (!k || !isFinite(t) || t < _PROG_MIN) return;
+        if (d && d > 0 && t > d - _PROG_TAIL) { _progForget(data); return; }
+        var m = _progLoadMap();
+        m[k] = { t: Math.round(t), d: Math.round(d || 0), ts: Date.now() };
+        var keys = Object.keys(m);
+        if (keys.length > _PROG_MAX) {
+            keys.sort(function (a, b) { return (m[a].ts || 0) - (m[b].ts || 0); });
+            for (var i = 0; i < keys.length - _PROG_MAX; i++) delete m[keys[i]];
+        }
+        _progSaveMap(m);
+    }
+    function _progForget(data) {
+        var k = _progKey(data); if (!k) return;
+        var m = _progLoadMap();
+        if (m.hasOwnProperty(k)) { delete m[k]; _progSaveMap(m); }
+    }
+    function _vmFmtClock(s) {
+        s = Math.max(0, Math.round(s));
+        var h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), ss = s % 60;
+        var mm = (h && m < 10) ? '0' + m : '' + m;
+        return (h ? h + ':' : '') + mm + ':' + (ss < 10 ? '0' + ss : ss);
+    }
+
+    function _vmStopProgTimer() { if (_vmProgTimer) { clearInterval(_vmProgTimer); _vmProgTimer = null; } }
+
+    // Polls the live YT player every 5s and records its position while it's actually playing.
+    function _vmStartYtProgTimer(data) {
+        _vmStopProgTimer();
+        _vmProgTimer = setInterval(function () {
+            if (!_ytPlayer || typeof _ytPlayer.getCurrentTime !== 'function') return;
+            try {
+                if (_ytPlayer.getPlayerState && _ytPlayer.getPlayerState() !== 1) return; // 1 = playing
+                _progRecord(data, _ytPlayer.getCurrentTime(), _ytPlayer.getDuration());
+            } catch (x) {}
+        }, 5000);
+    }
+
+    // Records the position of whichever player is currently live (R2 <video> or YT).
+    function _vmRecordCurrent() {
+        try {
+            var m = document.getElementById('videoModal');
+            var d = m && m._curData;
+            if (!d) return;
+            if (m._curSrc === 'r2') {
+                var v = document.querySelector('#vmPlayer video');
+                if (v) _progRecord(d, v.currentTime, v.duration);
+            } else if (_ytPlayer && typeof _ytPlayer.getCurrentTime === 'function') {
+                _progRecord(d, _ytPlayer.getCurrentTime(), _ytPlayer.getDuration());
+            }
+        } catch (e) {}
+    }
+
+    // Shows the Resume bar for `data`; `seekFn(seconds)` seeks whichever player is live.
+    function _vmShowResume(data, seekFn) {
+        var bar = document.getElementById('vmResume');
+        if (!bar) return;
+        var e = _progGet(data);
+        if (!e) { _vmHideResume(); return; }
+        var clk = _vmFmtClock(e.t);
+        bar.innerHTML =
+            '<span class="vm-resume-txt">Resume from <b>' + clk + '</b>?<br>从 <b>' + clk + '</b> 继续播放？</span>' +
+            '<button class="vm-resume-go">▶ Resume 继续</button>' +
+            '<button class="vm-resume-skip">↺ Start over 从头</button>';
+        bar.classList.remove('hidden');
+        bar.querySelector('.vm-resume-go').onclick = function () { try { seekFn(e.t); } catch (x) {} _vmHideResume(); };
+        bar.querySelector('.vm-resume-skip').onclick = function () { _progForget(data); _vmHideResume(); };
+        clearTimeout(bar._t);
+        bar._t = setTimeout(_vmHideResume, 9000);
+    }
+    function _vmHideResume() {
+        var bar = document.getElementById('vmResume');
+        if (!bar) return;
+        clearTimeout(bar._t);
+        bar.classList.add('hidden');
+        bar.innerHTML = '';
+    }
+
     // === PLAYLIST QUEUE / CONTINUOUS PLAYBACK ===
     // playlist[]/plId()/plToggle() come from js/render.js (loaded earlier, global).
     var _vmQueue = null;       // array of {title,ytUrl,r2Url} while playing the queue; null = single-video mode
@@ -1912,6 +2055,7 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
 
     function _vmGoTo(index) {
         if (!_vmQueue || index < 0 || index >= _vmQueue.length) return;
+        _vmRecordCurrent();   // remember where we left the outgoing video
         _vmQueueIndex = index;
         var data = _vmQueue[index];
         var modal = document.getElementById('videoModal');
@@ -1919,23 +2063,43 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
         modal._curData = data;
         _vmLoad(data, data.r2Url ? 'r2' : 'yt');
         _vmUpdateFooter(modal);
+        if (typeof plRenderPanel === 'function') plRenderPanel();   // move the "Now playing" mark
     }
 
-    function _vmNext() { _vmGoTo(_vmQueueIndex + 1); }
-    function _vmPrev() { _vmGoTo(_vmQueueIndex - 1); }
+    function _vmLoopOn() { return typeof _plLoop !== 'undefined' && _plLoop; }
+    function _vmNext() {
+        if (!_vmQueue) return;
+        var n = _vmQueueIndex + 1;
+        if (n >= _vmQueue.length) { if (!_vmLoopOn()) return; n = 0; }
+        _vmGoTo(n);
+    }
+    function _vmPrev() {
+        if (!_vmQueue) return;
+        var n = _vmQueueIndex - 1;
+        if (n < 0) { if (!_vmLoopOn()) return; n = _vmQueue.length - 1; }
+        _vmGoTo(n);
+    }
 
     // Advances to the next queued video when the current one finishes playing.
-    // No-op outside queue mode, and stops (doesn't loop) at the end of the queue.
+    // No-op outside queue mode; with 循环播放 on it wraps back to the first, otherwise it stops.
     function _vmAutoAdvance() {
         if (!_vmQueue || _vmQueueIndex < 0) return;
-        if (_vmQueueIndex >= _vmQueue.length - 1) return;
-        _vmGoTo(_vmQueueIndex + 1);
+        _vmAutoAdv = true;   // suppress the Resume bar on an auto-started next video
+        if (_vmQueueIndex >= _vmQueue.length - 1) {
+            if (_vmLoopOn() && _vmQueue.length > 1) _vmGoTo(0);
+        } else {
+            _vmGoTo(_vmQueueIndex + 1);
+        }
+        _vmAutoAdv = false;
     }
 
     function _vmLoad(data, src) {
         var player = document.getElementById('vmPlayer');
         var modal = document.getElementById('videoModal');
         modal._curSrc = src;
+        modal._resumeOK = !_vmAutoAdv;   // don't prompt on an auto-advanced next video
+        _vmStopProgTimer();
+        _vmHideResume();
         _ytPlayer = null;
         _ytPendingLoad = null;
         if (src === 'r2' && data.r2Url) {
@@ -1944,7 +2108,20 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
             // our own button (_vmToggleFullscreen) on the whole dialog instead.
             player.innerHTML = '<video src="' + data.r2Url + '" controls controlsList="nofullscreen" autoplay playsinline></video>';
             var v = player.querySelector('video');
-            if (v) v.onended = _vmAutoAdvance;
+            if (v) {
+                var _lastRec = 0;
+                v.onended = function () { _progForget(data); _vmAutoAdvance(); };
+                v.ontimeupdate = function () {
+                    var now = Date.now();
+                    if (now - _lastRec < 5000) return;
+                    _lastRec = now;
+                    _progRecord(data, v.currentTime, v.duration);
+                };
+                v.onpause = function () { _progRecord(data, v.currentTime, v.duration); };
+                v.addEventListener('loadedmetadata', function () {
+                    if (modal._resumeOK) _vmShowResume(data, function (sec) { v.currentTime = sec; });
+                }, { once: true });
+            }
         } else {
             var embed = _vmEmbedUrl(data.ytUrl);
             if (!embed) return;
@@ -1959,25 +2136,45 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
         if (!info.id) return;
         if (!(window.YT && window.YT.Player)) { _ytPendingLoad = info; return; }
         if (!document.getElementById('vmYtPlayer')) return; // modal moved on before the API finished loading
+        var modal = document.getElementById('videoModal');
+        var data = modal._curData;
         _ytPlayer = new YT.Player('vmYtPlayer', {
             videoId: info.id,
             // fs:0 hides YouTube's own fullscreen button, for the same reason as
             // controlsList="nofullscreen" on the R2 <video> above — see _vmToggleFullscreen.
             playerVars: { autoplay: 1, rel: 0, fs: 0 },
             events: {
+                onReady: function () {
+                    if (modal._resumeOK) {
+                        _vmShowResume(data, function (sec) { try { _ytPlayer.seekTo(sec, true); } catch (x) {} });
+                    }
+                    _vmStartYtProgTimer(data);
+                },
                 onStateChange: function (e) {
-                    if (e.data === YT.PlayerState.ENDED) _vmAutoAdvance();
+                    if (e.data === YT.PlayerState.ENDED) { _progForget(data); _vmAutoAdvance(); }
+                    else if (e.data === YT.PlayerState.PAUSED) {
+                        try { _progRecord(data, _ytPlayer.getCurrentTime(), _ytPlayer.getDuration()); } catch (x) {}
+                    }
                 }
             }
         });
     }
 
+    var _VM_PREV_SVG = '<svg viewBox="0 0 24 24"><path d="M5 6h2.4v12H5z M19 6v12l-11-6z"/></svg>';
+    var _VM_NEXT_SVG = '<svg viewBox="0 0 24 24"><path d="M16.6 6H19v12h-2.4z M5 6l11 6-11 6z"/></svg>';
     function _vmUpdateFooter(modal) {
         var data = modal._curData;
         var footer = document.getElementById('vmFooter');
         var html = '';
         if (_vmQueue) {
-            html += '<button class="vm-btn vm-btn-nav" onclick="_vmPrev()"' + (_vmQueueIndex <= 0 ? ' disabled' : '') + '>‹ Prev</button>';
+            var loop = _vmLoopOn();
+            // prev · N/M · next kept together in one no-wrap cluster so Next never
+            // strands itself on its own row on a narrow screen (it used to render last).
+            html += '<span class="vm-nav">' +
+                '<button class="vm-btn vm-btn-nav" onclick="_vmPrev()" title="Previous 上一个"' + ((_vmQueueIndex <= 0 && !loop) ? ' disabled' : '') + '>' + _VM_PREV_SVG + '</button>' +
+                '<span class="vm-pos">' + (_vmQueueIndex + 1) + ' / ' + _vmQueue.length + '</span>' +
+                '<button class="vm-btn vm-btn-nav" onclick="_vmNext()" title="Next 下一个"' + ((_vmQueueIndex >= _vmQueue.length - 1 && !loop) ? ' disabled' : '') + '>' + _VM_NEXT_SVG + '</button>' +
+                '</span>';
         }
         if (data.r2Url) {
             html += '<span class="vm-source-label">Source: </span><span id="vmSrcLabel" class="vm-source-label" style="color:#bbb;font-weight:600">' + (data.r2Url ? 'Backup' : 'YouTube') + '</span>';
@@ -1993,9 +2190,6 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
             if (!id) { m = data.ytUrl.match(/\/embed\/([^?&]+)/); if (m) id = m[1]; }
             var watchUrl = id ? 'https://www.youtube.com/watch?v=' + id : data.ytUrl;
             html += '<a class="vm-btn vm-btn-ext" href="' + watchUrl + '" target="_blank" rel="noopener">YouTube ↗</a>';
-        }
-        if (_vmQueue) {
-            html += '<button class="vm-btn vm-btn-nav" onclick="_vmNext()"' + (_vmQueueIndex >= _vmQueue.length - 1 ? ' disabled' : '') + '>Next ›</button>';
         }
         footer.innerHTML = html;
     }
@@ -2015,6 +2209,9 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
     }
 
     function closeVideoModal() {
+        _vmRecordCurrent();   // remember where we stopped before tearing the player down
+        _vmStopProgTimer();
+        _vmHideResume();
         if (document.fullscreenElement || document.webkitFullscreenElement) {
             (document.exitFullscreen || document.webkitExitFullscreen || function () {}).call(document);
         }
