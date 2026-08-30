@@ -8,6 +8,27 @@ function plLoad() {
 function plSave() { localStorage.setItem(PL_KEY, JSON.stringify(playlist)); }
 function plId(v) { return v.ytUrl || v.r2Url || v.title; }
 
+// 循环播放 — when on, the queue wraps at both ends (auto-advance past the last item loops
+// back to the first; Prev/Next wrap too). Read by _vmAutoAdvance/_vmNext/_vmPrev in index.html.
+var _plLoop = false;
+try { _plLoop = localStorage.getItem('xzytPlaylistLoop') === '1'; } catch (e) {}
+function _plSyncLoopBtn() {
+    var b = document.getElementById('plLoopBtn');
+    if (!b) return;
+    b.classList.toggle('on', _plLoop);
+    b.setAttribute('aria-pressed', _plLoop ? 'true' : 'false');
+    b.title = _plLoop ? '循环播放：开 Loop on' : '循环播放：关 Loop off';
+}
+function plToggleLoop() {
+    _plLoop = !_plLoop;
+    try { localStorage.setItem('xzytPlaylistLoop', _plLoop ? '1' : '0'); } catch (e) {}
+    _plSyncLoopBtn();
+    if (typeof _vmUpdateFooter === 'function') {
+        var m = document.getElementById('videoModal');
+        if (m && m._curData) _vmUpdateFooter(m);   // refresh Prev/Next disabled state
+    }
+}
+
 // HTML-escape for a plain attribute value (data-plid)
 function _plEscAttr(s) {
     return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -140,7 +161,7 @@ function plTogglePanel() {
     var panel = document.getElementById('plPanel');
     if (!panel) return;
     panel.classList.toggle('hidden');
-    if (!panel.classList.contains('hidden')) setTimeout(plPositionPanel, 0);
+    if (!panel.classList.contains('hidden')) { plRenderPanel(); setTimeout(plPositionPanel, 0); }
 }
 
 // Anchors the playlist panel next to #floatBtnGroup, wherever the user has dragged it.
@@ -235,20 +256,25 @@ function plRenderPanel() {
     var list = document.getElementById('plList');
     if (badge) { badge.textContent = playlist.length; badge.style.display = playlist.length ? 'flex' : 'none'; }
     if (countEl) countEl.textContent = playlist.length;
+    _plSyncLoopBtn();
     if (!list) return;
     if (!playlist.length) {
         list.innerHTML = '<div class="pl-empty">Your playlist is empty<br>播放列表是空的</div>';
         return;
     }
+    var nowId = (typeof _vmQueue !== 'undefined' && _vmQueue && _vmQueue[_vmQueueIndex]) ? plId(_vmQueue[_vmQueueIndex]) : null;
     list.innerHTML = playlist.map(function (p, i) {
         var ytId = _getYtId(p.ytUrl);
         var thumb = ytId ? 'https://i.ytimg.com/vi/' + ytId + '/mqdefault.jpg' : (_getR2Thumb(p.r2Url) || '');
-        return '<div class="pl-item" onclick="plPlayFrom(' + i + ')">' +
+        var now = nowId && plId(p) === nowId;
+        return '<div class="pl-item' + (now ? ' pl-item-now' : '') + '" onclick="plPlayFrom(' + i + ')">' +
             '<img src="' + thumb + '" alt="" onerror="this.style.display=\'none\'">' +
-            '<div class="pl-item-title">' + p.title + '</div>' +
+            '<div class="pl-item-title">' + (now ? '<span class="pl-item-now-tag">▶ Now playing 正在播放</span>' : '') + p.title + '</div>' +
             '<button class="pl-item-remove" onclick="event.stopPropagation();plRemoveAt(' + i + ')" title="Remove">×</button>' +
             '</div>';
     }).join('');
+    var nowEl = list.querySelector('.pl-item-now');
+    if (nowEl) nowEl.scrollIntoView({ block: 'nearest' });
 }
 
 // Opens the on-site modal in continuous-playback (queue) mode.
@@ -279,6 +305,40 @@ function plShufflePlay() {
         var t = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = t;
     }
     _vmOpenQueue(shuffled, 0);
+}
+
+// === PLAY SERIES / PLAY FROM EPISODE N ===
+// Plays a drama/playlist card's OWN episode list as a throwaway queue (independent of
+// the user's hand-built playlist — same non-mutating pattern as plPlayFrom/plShufflePlay).
+// `fromIndex` (from the card's episode-start <select>) is where playback begins.
+function plPlayDrama(dramaId, fromIndex) {
+    var eps = _plEpsFor(dramaId);
+    if (!eps.length) return;
+    var i = Math.max(0, Math.min(parseInt(fromIndex, 10) || 0, eps.length - 1));
+    _vmOpenQueue(eps, i);
+}
+
+// "<position> · <title>" — position prefix keeps a usable handle even when titles
+// aren't numbered (specials, variety, free-form names); title is truncated for the dropdown.
+function _epPickerLabel(ep, i) {
+    var t = (ep && ep.title ? String(ep.title) : '').trim();
+    if (t.length > 44) t = t.slice(0, 43) + '…';
+    return (i + 1) + (t ? ' · ' + t : '');
+}
+
+// The "▶ Play 播放  [ 1 · … ▾ ]" row under a card's action row. Omitted for
+// single-episode collections (nothing to pick a start point in).
+function plEpPickerHtml(dramaId) {
+    var eps = window._dramaEps[dramaId] || [];
+    if (eps.length < 2) return '';
+    var opts = eps.map(function (ep, i) {
+        return '<option value="' + i + '">' + _plEscAttr(_epPickerLabel(ep, i)) + '</option>';
+    }).join('');
+    var selId = dramaId + '-epstart';
+    return '<div class="ep-play-group">' +
+        '<button class="ep-play-btn" onclick="plPlayDrama(\'' + dramaId + '\', document.getElementById(\'' + selId + '\').value)">▶ Play from 从此播放</button>' +
+        '<select id="' + selId + '" class="ep-play-picker" aria-label="Play series starting from / 从此集开始播放">' + opts + '</select>' +
+        '</div>';
 }
 
 plLoad();
@@ -392,6 +452,7 @@ function createDramaCard(drama) {
                             </span>
                             ${plAddAllBtnHtml(drama.id, eps.length)}
                         </div>
+                        ${plEpPickerHtml(drama.id)}
                         <div class="all-episodes-container" id="${drama.id}-episodes">
                             <div id="${drama.id}-pag-top"></div>
                             <div class="all-episodes-grid" id="${drama.id}-grid"></div>
@@ -456,6 +517,7 @@ function createPlaylistCard(playlistData) {
                             </span>
                             ${plAddAllBtnHtml(playlistData.id, eps.length)}
                         </div>
+                        ${plEpPickerHtml(playlistData.id)}
                         <div class="all-episodes-container" id="${playlistData.id}-episodes">
                             <div id="${playlistData.id}-pag-top"></div>
                             <div class="all-episodes-grid" id="${playlistData.id}-grid"></div>
