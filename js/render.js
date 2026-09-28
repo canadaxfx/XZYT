@@ -130,6 +130,12 @@ function plSyncAllCards() {
         var allIn = _plAllIn(list);
         btn.classList.toggle('pl-added', allIn);
         btn.textContent = allIn ? ('－ Remove all ' + list.length + ' from Playlist 移除') : ('＋ Add all ' + list.length + ' to Playlist 加入列表');
+    });    // featured video card (index.html) — one video, same toggle as the individual "+" buttons
+    document.querySelectorAll('.fc-pl-btn[data-plid]').forEach(function (btn) {
+        var id = btn.getAttribute('data-plid');
+        var inList = playlist.some(function (p) { return plId(p) === id; });
+        btn.classList.toggle('pl-added', inList);
+        btn.textContent = inList ? '✓ 已在播放列表 In Playlist' : '＋ 加入播放列表 Add to Playlist';
     });
 }
 
