@@ -217,6 +217,31 @@ font-size:18px;
 font-weight:700
 }
 
+/* ---------- Featured video card (settings from the shared featured.json) ---------- */
+.featured-card{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);margin:6px 0 26px;
+  background:#15151d;border-radius:10px;overflow:hidden;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.18);
+  border-top:5px solid #3a2a18;border-bottom:5px solid #3a2a18}
+.featured-card .fc-media{position:relative;aspect-ratio:16/9;cursor:pointer;background:#000;overflow:hidden}
+.featured-card .fc-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.featured-card .fc-media:hover img{transform:scale(1.03)}
+.featured-card .fc-media::after{content:'\25B6';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding-left:5px;box-sizing:border-box;
+  font-size:22px;color:#fff;background:rgba(var(--accent-rgb,201,123,61),.95);box-shadow:0 6px 24px rgba(0,0,0,.5)}
+.featured-card .fc-body{padding:22px 26px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.featured-card .fc-kicker{font:600 12px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.2em;color:#E0955A;text-transform:uppercase}
+.featured-card .fc-title{font:400 27px/1.15 'Fraunces',serif;margin:0;color:#fff}
+.featured-card .fc-zh{font-size:15px;font-weight:500;color:rgba(255,255,255,.82);margin:0}
+.featured-card .fc-desc{font-size:13.5px;color:rgba(255,255,255,.62);line-height:1.6;margin:4px 0 0}
+.featured-card .fc-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.featured-card .fc-actions button,.featured-card .fc-actions a{font-size:13px;font-weight:600;border-radius:999px;padding:7px 16px;
+  cursor:pointer;text-decoration:none;border:1px solid rgba(var(--accent-rgb,201,123,61),.6);color:#E0955A;background:transparent}
+.featured-card .fc-actions .fc-play{background:var(--accent-color,#C97B3D);color:#fff;border-color:var(--accent-color,#C97B3D)}
+@media(max-width:768px){
+  .featured-card{grid-template-columns:1fr;margin-top:0}
+  .featured-card .fc-body{padding:16px 18px 20px}
+  .featured-card .fc-title{font-size:22px}
+}
+
 .main-content {
 padding:0 0 40px
 }
@@ -1322,6 +1347,14 @@ grid-template-rows:repeat(2,auto)
   color:rgba(255,255,255,.75);font-weight:400;letter-spacing:.04em;
   margin:0 0 14px;max-width:780px;
 }
+.hero-play{display:inline-flex;align-items:center;gap:4px;cursor:pointer;margin-top:2px;
+  font:600 14px 'Noto Sans',sans-serif;letter-spacing:.04em;color:#fff;
+  background:linear-gradient(180deg,#E0955A,#C97B3D);border:0;border-radius:999px;padding:9px 20px;
+  box-shadow:0 6px 22px rgba(201,123,61,.4);transition:transform .15s,box-shadow .15s}
+.hero-play[hidden]{display:none}
+.hero-play span{font-weight:500;opacity:.8}
+.hero-play:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(201,123,61,.55)}
+@media(max-width:768px){.hero-play{font-size:12px;padding:6px 14px}.hero-play span{display:none}}
 .hero-sublinks{
   font-size:13px;color:rgba(255,255,255,.65);line-height:1.7;
   max-width:780px;
@@ -1593,6 +1626,7 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
         <div class="hero-content">
             <h1 class="hero-title">Xiao Zhan <em>YouTube Hub</em></h1>
             <p class="hero-zh">肖战作品 YouTube 聚合站</p>
+            <button type="button" class="hero-play" id="hero-play" hidden>▶ 观看「光影足迹」<span> · Watch the reel</span></button>
         </div>
     </header>
     
@@ -1615,6 +1649,8 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
             <button id="clear-search-button" class="clear-button">Clear</button>
         </div>
         <div id="search-results-count" class="search-results-count"></div>
+
+        <div class="container"><div id="featured-slot"></div></div>
 
         <div class="container">
             <div class="tab-container">
@@ -2211,6 +2247,13 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
                     }
                     _vmStartYtProgTimer(data);
                 },
+                onError: function () {
+                    // only for entries that opt in (the featured video); regular entries keep their current behaviour
+                    if (data && data.fallbackToR2 && data.r2Url && modal._curSrc === 'yt') {
+                        _vmLoad(data, 'r2');
+                        _vmUpdateFooter(modal);
+                    }
+                },
                 onStateChange: function (e) {
                     if (e.data === YT.PlayerState.ENDED) { _progForget(data); _vmAutoAdvance(); }
                     else if (e.data === YT.PlayerState.PAUSED) {
@@ -2239,7 +2282,7 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
             html += '<button class="vm-btn vm-btn-switch" onclick="_vmToggleUpNext()" title="Up Next 播放列表">☰ Up Next</button>';
         }
         if (data.r2Url) {
-            html += '<span class="vm-source-label">Source: </span><span id="vmSrcLabel" class="vm-source-label" style="color:#bbb;font-weight:600">' + (data.r2Url ? 'Backup' : 'YouTube') + '</span>';
+            html += '<span class="vm-source-label">Source: </span><span id="vmSrcLabel" class="vm-source-label" style="color:#bbb;font-weight:600">' + (modal._curSrc === 'r2' ? 'Backup' : 'YouTube') + '</span>';
         }
         if (data.r2Url && data.ytUrl) {
             html += '<button class="vm-btn vm-btn-switch" onclick="_vmSwitch()">Switch source</button>';
@@ -2508,5 +2551,63 @@ if (location.hostname.includes('github.io') && !localStorage.getItem('cfBannerDi
       window.addEventListener('resize', () => { if (mgOn && mgLayout === 'P') mgBuildTiles(); });
     })();
     </script>
+
+<script>
+// Featured video card — settings come from featured.json on the CDN, shared with XZWorks + Navigator and managed
+// in autosync (⚙️ 配置 → 精选视频 Featured). Shown when featured.showOn.xzyt is true. Plays on YouTube first
+// (counts toward the channel, offers the CC tracks); falls back to the R2 copy if YouTube can't play it.
+(function () {
+    var FEATURED_JSON = 'https://assets.xz-studio-gallery.com/xzworks/featured/featured.json';
+    var esc = function (v) { return String(v == null ? '' : v).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+
+    function openFeatured(data) {
+        _vmQueue = null;
+        _vmQueueIndex = -1;
+        document.getElementById('vmTitle').textContent = data.title || '';
+        var modal = document.getElementById('videoModal');
+        modal.classList.remove('hidden');
+        modal._curData = data;
+        document.body.style.overflow = 'hidden';
+        document.addEventListener('keydown', _vmKeyHandler);
+        _vmLoad(data, data.ytUrl ? 'yt' : 'r2');
+        _vmUpdateFooter(modal);
+        if (window.gtag) gtag('event', 'featured_video_play', { video: data.ytUrl || data.r2Url });
+    }
+    window.openFeaturedVideo = openFeatured;
+
+    fetch(FEATURED_JSON + '?t=' + Math.floor(Date.now() / 60000))
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (cfg) {
+            // header ▶ button: the site-wide reel (heroReel), same entry XZWorks uses
+            var h = cfg && cfg.heroReel;
+            if (h && h.video && !(h.showOn && h.showOn.xzyt === false)) {
+                var hyt = ((h.links || []).filter(function (l) { return l && /youtu\.?be/.test(l.url || ''); })[0] || {}).url || '';
+                var hdata = { title: h.title || '', ytUrl: hyt, r2Url: h.video, fallbackToR2: true };
+                var hbtn = document.getElementById('hero-play');
+                hbtn.hidden = false;
+                hbtn.onclick = function () { openFeatured(hdata); };
+            }
+            var f = cfg && cfg.featured;
+            if (!f || !f.video || !(f.showOn && f.showOn.xzyt)) return;
+            var yt = ((f.links || []).filter(function (l) { return l && /youtu\.?be/.test(l.url || ''); })[0] || {}).url || '';
+            var data = { title: [f.titleEn, f.titleZh].filter(Boolean).join(' · '), ytUrl: yt, r2Url: f.video, fallbackToR2: true };
+            var slot = document.getElementById('featured-slot');
+            slot.innerHTML = '<div class="featured-card">' +
+                '<div class="fc-media" role="button" tabindex="0" aria-label="Play"><img src="' + esc(f.poster) + '" alt="' + esc(data.title) + '" loading="lazy"></div>' +
+                '<div class="fc-body">' +
+                  '<div class="fc-kicker">Featured · ' + esc(f.occasion || '精选') + '</div>' +
+                  '<h3 class="fc-title">' + esc(f.titleEn || f.titleZh) + '</h3>' +
+                  '<p class="fc-zh">' + esc([f.titleEn ? f.titleZh : '', f.sub].filter(Boolean).join('  ')) + '</p>' +
+                  '<p class="fc-desc">' + esc(f.desc) + '</p>' +
+                  '<div class="fc-actions"><button type="button" class="fc-play">▶ 播放 Play</button>' +
+                    (yt ? '<a href="' + esc(yt) + '" target="_blank" rel="noopener">YouTube ↗</a>' : '') + '</div>' +
+                '</div></div>';
+            var media = slot.querySelector('.fc-media');
+            media.onclick = slot.querySelector('.fc-play').onclick = function () { openFeatured(data); };
+            media.onkeydown = function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFeatured(data); } };
+        })
+        .catch(function () {});
+})();
+</script>
 </body>
 </html>
