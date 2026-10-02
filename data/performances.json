@@ -459,6 +459,13 @@
   ],
   "featuredVideos": [
     {
+      "id": "entry-3",
+      "year": "2026-10-01",
+      "title": "我和我的祖国",
+      "embedUrl": "https://www.youtube.com/embed/Im4WQRhBnJ8?si=0hBRHXaYlAZKtiTP",
+      "description": "2026国庆特别节目"
+    },
+    {
       "id": "entry",
       "year": "2026-08-22",
       "title": "千年一声唱",
