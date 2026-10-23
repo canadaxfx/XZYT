@@ -113,6 +113,16 @@
       "description": "The drama revolves around Liu Zhengliang (played by Xiao Zhan), a brilliant, high-achieving genius surgeon who experiences a major career crisis and hits rock bottom. Forced to leave his prestigious position behind, he returns to his small hometown to rebuild his life from scratch.In his hometown, he gathers an eccentric, seemingly unreliable group of locals. Together, they take on highly meaningful medical challenges. Amid the warm, bustling, and down-to-earth atmosphere of town life, Liu Zhengliang learns to heal both his community and his own fractured spirit, finding that society's \"second-best solution\" might just be his perfect path.",
       "episodes": [
         {
+          "title": "Douyin interview",
+          "url": "https://www.youtube.com/watch?v=O6Gv54WYGCI",
+          "thumbnail": "https://i.ytimg.com/vi/O6Gv54WYGCI/mqdefault.jpg"
+        },
+        {
+          "title": "iqiyi interview",
+          "url": "https://www.youtube.com/watch?v=MzBQ8rhR04Y",
+          "thumbnail": "https://i.ytimg.com/vi/MzBQ8rhR04Y/mqdefault.jpg"
+        },
+        {
           "title": "Premiere Trailer",
           "url": "https://www.youtube.com/watch?v=fK7cIp4_s0Y",
           "thumbnail": "https://i.ytimg.com/vi/fK7cIp4_s0Y/mqdefault.jpg"
@@ -136,6 +146,26 @@
           "title": "Wrap-up Special",
           "url": "https://www.youtube.com/watch?v=CySmxdpnVkI",
           "thumbnail": "https://i.ytimg.com/vi/CySmxdpnVkI/mqdefault.jpg"
+        },
+        {
+          "title": "EP 1",
+          "url": "https://www.youtube.com/watch?v=XZOwUPLt8h8",
+          "thumbnail": "https://i.ytimg.com/vi/XZOwUPLt8h8/mqdefault.jpg"
+        },
+        {
+          "title": "EP 2",
+          "url": "https://www.youtube.com/watch?v=fT2CVnZGYMg",
+          "thumbnail": "https://i.ytimg.com/vi/fT2CVnZGYMg/mqdefault.jpg"
+        },
+        {
+          "title": "EP 3",
+          "url": "https://www.youtube.com/watch?v=wnRoub_3NVM",
+          "thumbnail": "https://i.ytimg.com/vi/wnRoub_3NVM/mqdefault.jpg"
+        },
+        {
+          "title": "EP 4",
+          "url": "https://www.youtube.com/watch?v=BlO8OzDFmx8",
+          "thumbnail": "https://i.ytimg.com/vi/BlO8OzDFmx8/mqdefault.jpg"
         }
       ]
     },
