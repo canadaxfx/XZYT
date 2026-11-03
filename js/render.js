@@ -72,10 +72,22 @@ function _plAllIn(list) {
     });
 }
 
+// Episodes hosted elsewhere (e.g. iQIYI): a link that isn't YouTube and no R2 copy.
+// They show as cards that open the site in a new tab, but can't go in the playlist.
+function _isExternalEp(ep) {
+    return !!(ep && ep.url && !ep.r2_url && !_getYtId(ep.url));
+}
+
+// A card's episodes minus the external ones — what the playlist, "Add all" and
+// "Play from" use, so the picker's positions match the play queue.
+function _playEps(dramaId) {
+    return ((window._dramaEps && window._dramaEps[dramaId]) || []).filter(function (ep) { return !_isExternalEp(ep); });
+}
+
 // Looks up a drama/playlist card's full episode list (not just the preview strip) and
 // converts it to the same {title,ytUrl,r2Url} shape used everywhere else in the playlist.
 function _plEpsFor(dramaId) {
-    var eps = window._dramaEps[dramaId] || [];
+    var eps = _playEps(dramaId);
     return eps.map(function (ep) { return { title: ep.title, ytUrl: ep.url || null, r2Url: ep.r2_url || null }; });
 }
 
@@ -337,7 +349,7 @@ function _epPickerLabel(ep, i) {
 // on a phone opens a full-screen OS picker, unusable for an 80+ episode drama.
 // Omitted for single-episode collections (nothing to pick a start point in).
 function plEpPickerHtml(dramaId) {
-    var eps = window._dramaEps[dramaId] || [];
+    var eps = _playEps(dramaId);
     if (eps.length < 2) return '';
     var did = _plEscAttr(dramaId);
     return '<div class="ep-play-group" data-drama-id="' + did + '">' +
@@ -396,7 +408,7 @@ function epddToggle(trig) {
     if (wasOpen) return;
     var group = trig.closest('.ep-play-group');
     var dramaId = group.getAttribute('data-drama-id');
-    var eps = (window._dramaEps && window._dramaEps[dramaId]) || [];
+    var eps = _playEps(dramaId);
     if (eps.length < 2) return;
     var panel = _epddPanel();
     var curI = parseInt(trig.getAttribute('data-i'), 10) || 0;
@@ -443,7 +455,7 @@ function _epddSyncTrigLabel(trig) {
     var g = trig.closest('.ep-play-group');
     var cur = g && g.querySelector('.ep-dd-cur');
     if (!cur) return;
-    var eps = (window._dramaEps && window._dramaEps[g.getAttribute('data-drama-id')]) || [];
+    var eps = _playEps(g.getAttribute('data-drama-id'));
     var i = parseInt(trig.getAttribute('data-i'), 10) || 0;
     cur.textContent = eps[i] ? _epPickerLabel(eps[i], i) : String(i + 1);
     cur.classList.remove('ep-dd-cur-open');
@@ -635,7 +647,7 @@ function createDramaCard(drama) {
                                 <span class="view-text">View All ${eps.length} Episodes 展开全集</span>
                                 <span class="close-text">Hide Episodes 收起全集</span>
                             </span>
-                            ${plAddAllBtnHtml(drama.id, eps.length)}
+                            ${plAddAllBtnHtml(drama.id, _playEps(drama.id).length)}
                         </div>
                         ${plEpPickerHtml(drama.id)}
                         <div class="all-episodes-container" id="${drama.id}-episodes">
@@ -651,6 +663,19 @@ function createDramaCard(drama) {
 }
 
 function createEpisodePreview(episode) {
+    if (_isExternalEp(episode)) {
+        var site = /iq\.com|iqiyi\.com/.test(episode.url) ? 'iQIYI' : 'Watch';
+        return `
+        <a class="episode-preview ep-external" href="${episode.url}" target="_blank" rel="noopener"
+           title="${episode.title} — opens ${site} in a new tab 在新窗口打开">
+            <div class="episode-thumbnail">
+                <img src="${episode.thumbnail || ''}" alt="${episode.title}" loading="lazy" referrerpolicy="no-referrer">
+                <span class="episode-number">${episode.title}</span>
+                <span class="ep-ext-badge">${site} ↗</span>
+            </div>
+        </a>
+    `;
+    }
     var ytUrl = episode.url || null;
     var r2Url = episode.r2_url || null;
     var key   = _regVideo(episode.title, ytUrl, r2Url);
@@ -700,7 +725,7 @@ function createPlaylistCard(playlistData) {
                                 <span class="view-text">View All ${eps.length} Videos 展开全集</span>
                                 <span class="close-text">Hide 收起全集</span>
                             </span>
-                            ${plAddAllBtnHtml(playlistData.id, eps.length)}
+                            ${plAddAllBtnHtml(playlistData.id, _playEps(playlistData.id).length)}
                         </div>
                         ${plEpPickerHtml(playlistData.id)}
                         <div class="all-episodes-container" id="${playlistData.id}-episodes">
