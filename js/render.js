@@ -664,16 +664,24 @@ function createDramaCard(drama) {
 
 function createEpisodePreview(episode) {
     if (_isExternalEp(episode)) {
-        var site = /iq\.com|iqiyi\.com/.test(episode.url) ? 'iQIYI' : 'Watch';
+        // One card, one or two site buttons: url_cn (爱奇艺, mainland) first when present, then url.
+        // Clicking the picture opens the first one.
+        var links = [];
+        if (episode.url_cn) links.push({ href: episode.url_cn, label: '爱奇艺' });
+        links.push({ href: episode.url, label: /iqiyi\.com/.test(episode.url) ? '爱奇艺' : /iq\.com/.test(episode.url) ? 'iQIYI' : 'Watch' });
         return `
-        <a class="episode-preview ep-external" href="${episode.url}" target="_blank" rel="noopener"
-           title="${episode.title} — opens ${site} in a new tab 在新窗口打开">
+        <div class="episode-preview ep-external" role="link" tabindex="0" data-href="${links[0].href}"
+             onclick="window.open(this.dataset.href,'_blank','noopener')"
+             onkeydown="if(event.key==='Enter')window.open(this.dataset.href,'_blank','noopener')"
+             title="${episode.title} — opens ${links[0].label} in a new tab 在新窗口打开">
             <div class="episode-thumbnail">
                 <img src="${episode.thumbnail || ''}" alt="${episode.title}" loading="lazy" referrerpolicy="no-referrer">
                 <span class="episode-number">${episode.title}</span>
-                <span class="ep-ext-badge">${site} ↗</span>
+                <span class="ep-ext-links">${links.map(function (l) {
+                    return '<a class="ep-ext-badge" href="' + l.href + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + l.label + ' ↗</a>';
+                }).join('')}</span>
             </div>
-        </a>
+        </div>
     `;
     }
     var ytUrl = episode.url || null;

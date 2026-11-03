@@ -738,7 +738,9 @@ display:inline
 .episode-preview:hover .ep-play-overlay{background:rgba(0,0,0,.38)}
 .ep-play-overlay::after{content:'';width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:14px solid rgba(255,255,255,0);transition:border-left-color .2s;margin-left:3px}
 .episode-preview:hover .ep-play-overlay::after{border-left-color:rgba(255,255,255,.92)}
-.ep-ext-badge{position:absolute;top:4px;right:4px;padding:1px 5px;border-radius:3px;background:#00b32c;color:#fff;font-size:10px;font-weight:700;line-height:1.5;pointer-events:none}
+.ep-ext-links{position:absolute;top:4px;right:4px;display:flex;gap:3px;z-index:3}
+.ep-ext-badge{padding:1px 5px;border-radius:3px;background:#00b32c;color:#fff;font-size:10px;font-weight:700;line-height:1.5;text-decoration:none;text-transform:none}
+.ep-ext-badge:hover{background:#009425}
 
 @media(max-width:600px){
 .vm-dialog{border-radius:8px}
