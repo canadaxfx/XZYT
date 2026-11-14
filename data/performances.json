@@ -12,6 +12,21 @@
       "description": "",
       "episodes": [
         {
+          "title": "轻轻",
+          "url": "https://www.youtube.com/watch?v=luOdoEkAuAU",
+          "thumbnail": "https://i.ytimg.com/vi/luOdoEkAuAU/mqdefault.jpg"
+        },
+        {
+          "title": "灯塔",
+          "url": "https://www.youtube.com/watch?v=6mLhxi_ySOQ",
+          "thumbnail": "https://i.ytimg.com/vi/6mLhxi_ySOQ/mqdefault.jpg"
+        },
+        {
+          "title": "轻轻",
+          "url": "https://www.youtube.com/watch?v=GMlrFXO9Q1I",
+          "thumbnail": "https://i.ytimg.com/vi/GMlrFXO9Q1I/mqdefault.jpg"
+        },
+        {
           "title": "竹石",
           "url": "https://www.youtube.com/watch?v=qIoChusERYY",
           "thumbnail": "https://i.ytimg.com/vi/qIoChusERYY/mqdefault.jpg"
@@ -475,11 +490,18 @@
   ],
   "featuredVideos": [
     {
+      "id": "entry-8",
+      "year": "2026-11-06",
+      "title": "轻轻",
+      "embedUrl": "https://www.youtube.com/embed/luOdoEkAuAU?si=YINOc1W615lngqeW",
+      "description": "2026上海演唱会"
+    },
+    {
       "id": "entry-4",
       "year": "2026-10-23",
       "title": "竹石",
       "embedUrl": "https://www.youtube.com/embed/qIoChusERYY?si=v2qw47nCHiHR7DKS",
-      "description": "20261023南京演唱会"
+      "description": "2026南京演唱会"
     },
     {
       "id": "entry-5",
