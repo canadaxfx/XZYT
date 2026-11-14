@@ -12,6 +12,11 @@
       "description": "",
       "episodes": [
         {
+          "title": "竹石",
+          "url": "https://www.youtube.com/watch?v=qIoChusERYY",
+          "thumbnail": "https://i.ytimg.com/vi/qIoChusERYY/mqdefault.jpg"
+        },
+        {
           "title": "春暖花开",
           "url": "https://www.youtube.com/watch?v=xaZt2nyROpA",
           "thumbnail": "https://i.ytimg.com/vi/xaZt2nyROpA/mqdefault.jpg"
@@ -93,8 +98,9 @@
         },
         {
           "title": "冬梦",
-          "url": "https://w.yangshipin.cn/video?type=0&vid=f000099v8tv&cid=nxigpbeei12heg7&ptag=4_2.2.3.23078_wxf",
-          "thumbnail": "images/thumbnails/dm.jpg"
+          "url": "https://www.youtube.com/watch?v=oRPK6qMXmC8",
+          "thumbnail": "https://i.ytimg.com/vi/oRPK6qMXmC8/mqdefault.jpg",
+          "r2_url": "https://w.yangshipin.cn/video?type=0&vid=f000099v8tv&cid=nxigpbeei12heg7&ptag=4_2.2.3.23078_wxf"
         },
         {
           "title": "Something Just<br>Like This",
@@ -315,6 +321,11 @@
       "description": "",
       "episodes": [
         {
+          "title": "异想天开",
+          "url": "https://www.youtube.com/watch?v=LRofzSvaNrY",
+          "thumbnail": "https://i.ytimg.com/vi/LRofzSvaNrY/mqdefault.jpg"
+        },
+        {
           "title": "轻轻",
           "url": "https://www.youtube.com/watch?v=mNrlt2yIQIk",
           "thumbnail": "https://i.ytimg.com/vi/mNrlt2yIQIk/mqdefault.jpg"
@@ -464,11 +475,25 @@
   ],
   "featuredVideos": [
     {
+      "id": "entry-4",
+      "year": "2026-10-23",
+      "title": "竹石",
+      "embedUrl": "https://www.youtube.com/embed/qIoChusERYY?si=v2qw47nCHiHR7DKS",
+      "description": "20261023南京演唱会"
+    },
+    {
       "id": "entry-5",
       "year": "2026-10-26",
       "title": "轻轻",
       "embedUrl": "https://www.youtube.com/embed/mNrlt2yIQIk?si=1iRyhl1HuNKueAF5",
       "description": "2026小城良方片尾曲"
+    },
+    {
+      "id": "entry-6",
+      "year": "2026-10-04",
+      "title": "异乡天开",
+      "embedUrl": "https://www.youtube.com/embed/LRofzSvaNrY?si=bVxXobSSjYNWUR2S",
+      "description": "2026 EP"
     },
     {
       "id": "entry-3",
